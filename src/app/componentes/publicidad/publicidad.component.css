@@ -1,0 +1,942 @@
+
+span-.btn{
+  border-radius: 10rem;
+}
+
+
+#firstHeader {
+  font-size: 2.5em;
+  /* font-family: "Bungee Outline", cursive; */
+  letter-spacing: 0.30em;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  display: inline-flex;
+
+  /*
+  font-size: 2.5em;
+  letter--spacinf: 0.30rem;
+  color: rgb(0,0,0);
+  display: flex;
+  felx-wrap;
+  justify-content: center;
+  display: incline-flex;
+  font-size: 22.5rem;
+  letter-spacing: 0.30em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: cener;
+  display: inline-flex;
+  
+  
+  
+  */
+}
+.ads{
+  margin-left: 1rem;
+  margin-top: 1rem;
+  width: 20rem;
+  position: relative;
+  transition: transform .2s; 
+}
+
+.ads:hover{
+  cursor: pointer;
+  width: 21rem;
+  position:sticky;
+  transform: scale(1.2); 
+  z-index: 2;
+
+  
+}
+
+
+/* Full screen size animations */
+
+.Welcome {
+  animation-name: displaceContent, fadein;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  /*
+  animation-name: discplaceContent, fadein;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count:1;
+  animation-fill-mode_forwards;
+  
+  
+  */
+}
+
+@keyframes displaceContent {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(0, 0, 0);
+    transform: translateX(3em);
+  }
+}
+
+.to {
+  animation-name: displaceContent2;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  width: 8em;
+  /*
+  aniamtion-name: displaceContent2;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  widht: 8em;
+  
+  */
+}
+
+@keyframes displaceContent2 {
+  from {
+    opacity: 0;
+    transform: translateY(3em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0em);
+  }
+}
+
+.the {
+  animation-name: displaceContent3;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  /*
+  animation-name: displacecontent3;
+  animation-duration:1s;
+  animation-delay: 0s;
+  animation-iteraction-count:1;
+  animation-fill-mode: forwards;
+  
+  */
+}
+
+@keyframes displaceContent3 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 0.9;
+    transform: translateX(-3em);
+  }
+}
+
+.Future {
+  animation-name: displaceContent4;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  width: -1000px;
+  /*
+  animation-name: displaceContent4;
+  animation-duration: 0s;
+  animation-fill-mode: forwards;
+  widht: -1000px;
+  
+  */
+}
+
+@keyframes displaceContent4 {
+  from {
+    opacity: 0;
+    transform: translate(0em, -3em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(0, 0, 0);
+    transform: translate(-3em, 0em);
+  }
+}
+
+/* Stars changes */
+
+@media only screen and (max-width: 1335px) {
+  .Future {
+    animation-name: displaceContent5;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /* 
+    animation-name: displaceContent5;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    widht: -1000px;
+    */
+  }
+}
+
+@keyframes displaceContent5 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(13em);
+  }
+}
+
+@media only screen and (max-width: 1235px) {
+  .Future {
+    animation-name: displaceContentx;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displaceContetx;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    widht: -1000px;
+    
+    
+    */
+  }
+}
+
+@keyframes displaceContentx {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(11em);
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  .Future {
+    animation-name: displaceContent6;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displaceContent6;
+    animation-duration:1s;
+    animation-elay: 0s;
+    animation-iteration-count-1;
+    animation-fill-mode: forwards;
+    widht: -1000px;
+  
+    
+    
+    */
+  }
+
+  .the {
+    animation-name: displaceContent7;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    aniamtion-name: displacecontent7;
+    animation-duration: 1s;
+    animation-delay:0;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    widht: -1000px;
+
+    
+    */
+  }
+}
+
+@keyframes displaceContent6 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(6em);
+  }
+}
+
+@keyframes displaceContent7 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(6em);
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .Future {
+    animation-name: displaceContent8;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displacecontent8;
+    animation-duratin: 1s;
+    animaton-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    widht: -1000px;
+    
+    
+    */
+  }
+
+  .the {
+    animation-name: displaceContent9;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displacecontent9;
+    aniamtion-duration: 1s;
+    animation-delay: 0s;
+    animation-delay:0s;
+    animation-iteration-count:1;
+    aniamtion-fill-mode: forwards;
+    widht: -1000px;
+    
+    
+    */
+  }
+  .collapse navbar-collaps {
+    width: max-content;
+  }
+}
+
+@keyframes displaceContent8 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(3em);
+  }
+}
+
+@keyframes displaceContent9 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-3em);
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .Future {
+    animation-name: displaceContent10;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displaceCpntent10;
+    animation-duration: 1s;
+    animation-delay:0;
+    animation-iteration-count:1;
+    animation-fill-mode: forwards;
+    widht: -1000px;
+
+    
+    
+    */
+  }
+
+  .the {
+    animation-name: displaceContent11;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displacecounten11;
+    animation-diratio: 1s;
+    animation-delay: 0;
+    animation-fill-count: 1;
+    animation-fill-mode: forwards;
+    widht: -1000px;
+    
+    
+    
+    */
+  }
+  .collapse navbar-collaps {
+    width: max-content;
+  }
+}
+
+@keyframes displaceContent10 {
+  from {
+    opacity: 0;
+    transform: translateX(1em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(-1em);
+  }
+}
+
+@keyframes displaceContent11 {
+  from {
+    opacity: 0;
+    transform: translate(0em, 0em);
+  }
+  to {
+    opacity: 1;
+    transform: translate(5em, -1.2em);
+  }
+}
+
+@keyframes displaceContent12 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-3em);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .collapse navbar-collaps {
+    width: max-content;
+  }
+
+  .Welcome {
+    animation-name: displaceContent13;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    /*
+    animation-name: displaceContent13;
+    animation-duration:15s;
+    animation-delay: 0s;
+    aniamtion-iteration*count:1;
+    animation-fil-mode: forwards;
+    widht: -1000px;
+    
+    
+    */
+  }
+
+  .to {
+    animation-name: displaceContent14;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: 8em;
+    /*
+    animatiopn-name: displacecontent14;
+    aniamtion-duration: 1s;
+    aniamtion-delay:0s;
+    animation-iteration-count:1;
+    animation-fill-mode: forwards;
+    widht: 8em;
+    
+    
+    */
+  }
+
+  .the {
+    animation-name: displaceContent15;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displaceContent15;
+    animation-duration: 0;
+    
+    
+    */
+  }
+
+  .Future {
+    animation-name: displaceContent16;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+  }
+}
+
+@keyframes displaceContent13 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(1em);
+  }
+}
+
+@keyframes displaceContent14 {
+  from {
+    opacity: 0;
+    transform: translateX(0.5em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-1.3em);
+  }
+}
+
+@keyframes displaceContent15 {
+  from {
+    opacity: 0;
+    transform: translate(0em, 0em);
+  }
+  to {
+    opacity: 1;
+    transform: translate(4em, -1.2em);
+  }
+}
+
+@keyframes displaceContent16 {
+  from {
+    opacity: 0;
+    transform: translateX(3em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(-1em);
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .collapse navbar-collaps {
+    width: fit-content;
+  }
+
+  .Welcome {
+    animation-name: displaceContent17;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    /*
+    animation-name: displaceContent17;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation:iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+    */
+  }
+
+  .to {
+    animation-name: displaceContent18;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: 8em;
+    /*
+    animation-name: displaceConttent18;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-cont: 1;
+    animation-fill-mode: forwards;
+    widht: 8em;
+    
+    
+    */
+  }
+
+  .the {
+    animation-name: displaceContent19;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation-name: displaceContent19;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    widht: -1000px;
+
+    */
+  }
+
+  .Future {
+    animation-name: displaceContent20;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: -1000px;
+    /*
+    animation--name: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode:forwads;
+    widht: -1000px;
+    
+    */
+    /*
+    animation-name: displaceCount20;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: forwards;
+    animation-fil-mode: forwards;
+    widht: -1000px;
+    
+    */
+  }
+}
+
+@keyframes displaceContent17 {
+  from {
+    opacity: 0;
+    transform: translateX(0em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(1em);
+  }
+}
+
+@keyframes displaceContent18 {
+  from {
+    opacity: 0;
+    transform: translateX(0.5em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-1.3em);
+  }
+}
+
+@keyframes displaceContent19 {
+  from {
+    opacity: 0;
+    transform: translate(0em, 0em);
+  }
+  to {
+    opacity: 1;
+    transform: translate(4em, -1.2em);
+  }
+}
+
+@keyframes displaceContent20 {
+  from {
+    opacity: 0;
+    transform: translateX(3em);
+  }
+  to {
+    opacity: 1;
+    color: rgb(148, 148, 148);
+    transform: translateX(-1em);
+  }
+}
+
+/* Footer part */
+
+/* Info animations */
+
+@keyframes backgroundChange {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes borderSpin {
+  0% {
+    border-color: #c31432;
+  }
+  50% {
+    border-position: 100% 50%;
+    border-color: #240b36;
+  }
+  100% {
+    border-position: 0% 50%;
+    border-color: #240b36;
+  }
+}
+
+
+/* 
+.add-dup-parent-fields{
+  margin-left: 203px;
+}
+.__remove-field{
+  position: relative;
+  top: -110px;
+  right: -80px;
+}
+#add-dup{
+  display: none;
+}
+.upload-area{
+  border-radius:3px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: auto;
+}
+.upload-area:hover{
+  cursor: pointer;
+}
+.upload-area h4{
+  text-align: center;
+  font-weight: normal;
+  font-family: sans-serif;
+  color: darkslategray;
+}
+.user-file{
+  display: none;
+}
+
+*/
+
+@media screen and (min-width: 1500px) and (max-width: 5000px) { 
+	.navprincipal{
+	  width: 5%;
+	  height: 100vh;
+	  height: 100%;
+	  position: relative;
+	  background-color: black;
+    /*
+    widht: 5%;
+    heigth: 100vh;
+    height: 100%;
+    position: relative;;
+    background-color: black;
+    
+    */
+    /*
+    widht: 5%;
+    height: 100vh;
+    heighy: 100%;
+    position: relative;
+    background-color: black;
+    
+    */
+	}
+	.contenidoprincipal{
+	  width: 92%;
+    margin-left: 5em;
+    /*
+    widht: 92%;
+    margin-left: 5em;
+    */
+	  /* background-color: blue; */
+	}
+  .navprincipal:hover{
+		position:sticky;
+		z-index:3000;
+    /*
+    position: sticky
+    z-index:3000;
+    */
+	}
+  }
+  @media screen and (min-width: 700px) and (max-width: 1500px) { 
+    .navprincipal:hover{
+      position:sticky;
+      z-index:3000;
+      
+    }
+    .contenidoprincipal{
+      width: 90%;
+      margin-left: 5em;
+    
+      }
+    }
+    .list-group-item.active {
+      -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+      z-index: 2;
+      color: #fff;
+      background-color: #f4c284;
+      border-color: #f4c284;
+      font-family: "Montserrat", Helvetica, sans-serif;
+      font-size: 17px;
+    /* color: #000000 !important; */
+      display: inline-block;
+      text-align: center;
+      text-rendering: auto;
+      
+  }
+  .btn-success2 {
+    background: #5aae51;
+    box-shadow: 0 0 0 2px rgb(158, 156, 156), 0 0 0 4px rgb(0, 0, 0);
+    -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+    text-align: center;
+    text-rendering: auto;
+    height: 7vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 15px;
+    display: inline-block;
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-size: 20px;
+    width: 16.5vh;
+    color: #000000 !important;
+    margin: 10px auto !important;
+    display: block;
+   
+}
+  .btn-success {
+    background: #5aae51;
+    box-shadow: 0 0 0 2px rgb(158, 156, 156), 0 0 0 4px rgb(0, 0, 0);
+    -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+    text-align: center;
+    text-rendering: auto;
+    height: 4.5vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 15px;
+    display: inline-block;
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-size: 20px;
+    width: 15vh;
+    color: #000000 !important;
+    margin: 10px auto !important;
+    display: block;
+   
+}
+
+
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@-webkit-keyframes wiggle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(30deg);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}
+
+element.style {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  background: #222;
+  color: rgb(0, 0, 0);
+  position: relative;
+  text-align: center;
+  font-size: 1rem;
+  font-family: sans-serif;
+  padding-bottom: 3em;
+}
+.page-wrap {
+  display: inline-block;
+  margin: 2em auto;
+}
+.controls__input {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  font-size: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+  outline: none;
+  color: rgb(0, 0, 0);
+}
+.controls__btn {
+  background: dodgerblue;
+  color: #fff;
+  border: none;
+  font-size: 1em;
+}
+.controls__label {
+  display: block;
+  font-size: 0.8em;
+  padding-top: 0.3em;
+  margin-bottom: 2em;
+}
+
+
+
+

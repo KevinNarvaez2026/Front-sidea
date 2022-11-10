@@ -1,0 +1,96 @@
+
+
+
+
+<!-- LOADER PAGE -->
+<div class="c-loaderPage" id="loaderPage">
+  <div class="c-loader"></div>
+</div>
+
+
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="title">
+    <!-- <div class="logoImg">
+    </div> -->
+    <div class="titleText">
+      ACTAS AL INSTANTE
+    </div>
+  </div>
+  <div class="user">
+    <img class="card-avatar" src="../../../assets/images/faces/user.png" alt="avatar" />
+    <label for="user" class="user-label">{{ usuario }}</label>
+
+
+    <!-- <div class="displayMenu">
+      <div class="menuNav">
+          <li> <fa-icon [icon]="faAddressCard"></fa-icon> Perfil  </li>
+          <li> <fa-icon [icon]="faPowerOff"></fa-icon> Cerrar Sesión  </li>
+      </div>
+    </div> -->
+
+
+  </div>
+
+
+
+
+</div>
+
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="side-title"> 
+
+    <fa-icon [icon]="faBars" class="icon-menu"></fa-icon>
+
+    <label for="side-title" class="title-menu">MENU</label>
+    
+  </div>
+
+
+  <div class="side-menu">
+    <div class="col">
+      <div class="row" (click)="SelectOption(0)">
+        <fa-icon [icon]="faHomeUser" class="icon"></fa-icon> <label for="row" class="category">INICIO</label>
+      </div>
+      <div class="row" (click)="SelectOption(1)" *ngIf="myRol == 'Admin' || myRol == 'Supervisor'">
+        <fa-icon [icon]="faGear" class="icon"></fa-icon> <label for="row" class="category">ADMINISTRAR</label>
+      </div>
+      <div class="row" (click)="SelectOption(2)">
+        <fa-icon [icon]="faFile" class="icon"></fa-icon> <label for="row" class="category">ACTAS</label>
+      </div>
+      <div class="row" (click)="SelectOption(3)">
+        <fa-icon [icon]="faFile" class="icon"></fa-icon> <label for="row" class="category">RFC</label>
+      </div>
+      <div class="row" (click)="SelectOption(4)">
+        <fa-icon [icon]="faSackDollar" class="icon"></fa-icon> <label for="row" class="category">CORTE</label>
+      </div>
+      <div class="row" (click)="SelectOption(5)" *ngIf="myRol == 'Admin' || myRol == 'Supervisor'">
+        <fa-icon [icon]="faBook" class="icon"></fa-icon> <label for="row" class="category">DOCUMENTOS</label>
+      </div>
+      <div class="row" (click)="SelectOption(6)">
+        <fa-icon [icon]="faPersonWalkingArrowRight" class="icon"></fa-icon> <label for="row" class="category">SALIR</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- CONTENTS -->
+
+<div class="myContent" [ngSwitch]="option">
+  <app-home *ngSwitchCase="0"></app-home>
+  <app-management *ngSwitchCase="1"></app-management>
+  <app-actas *ngSwitchCase="2"></app-actas>
+  <app-rfcs *ngSwitchCase="3"></app-rfcs>
+  <app-pays *ngSwitchCase="4"></app-pays>
+  <app-documents *ngSwitchCase="5"></app-documents>
+</div>
+
+
+
+<div class="back">
+</div>

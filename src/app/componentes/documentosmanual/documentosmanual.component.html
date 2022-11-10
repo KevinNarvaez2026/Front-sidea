@@ -1,0 +1,227 @@
+<!-- SIDEBAR EN LA CLASE SIDERBARCOMPONENTE -->
+<div *ngIf="myRol != ClienteVista()" >
+
+
+<div class="navprincipal">
+  <app-sidebar></app-sidebar>
+  </div>
+<div class="contenidoprincipal">
+  <app-sidebarpanelhistorial></app-sidebarpanelhistorial>
+<div id="container fondo">
+  <h1 class="firstH1">
+    <b>
+      <div class="Welcome" id="firstHeader">&bull;Doc</div>
+      <div class="to" id="firstHeader">um</div>
+      <div class="the" id="firstHeader">entos&bull;</div>
+   
+    </b>
+  </h1>
+    <div class="col  animate__animated animate__fadeIn">
+  
+      <h1>&bull;Cargar documentos de forma manual&bull;</h1>
+      
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Tipo de documento -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Tipo de documento</h5>
+                <!-- <li class="list-group-item">{{ info?.tipo }}</li>  -->
+  
+              
+                <div class="dropdown">
+                  <button class="conteo5" type="button" id="conteo2" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{tipo || "Selecciona un tipo de documento"}}
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Nacimiento')">Acta de Nacimiento</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Defunción')">Acta de Defunción</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Matrimonio')">Acta de Matrimonio</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Acta de Divorcio')">Acta de Divorcio</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Constancia de Vigencia de Derechos')">Constancia
+                        de Vigencia de Derechos</a></li>
+                    <li><a class="dropdown-item"
+                      style="cursor:pointer" (click)="setTipoDeActa('Constancia de Semanas Cotizadas en el IMSS')">Constancia de Semanas
+                        Cotizadas en el IMSS</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Registro Federal de Contribuyentes')">Registro
+                        Federal de Contribuyentes</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('CONSTANCIA DE NO INHABILITACIÓN')">CONSTANCIA DE
+                        NO INHABILITACIÓN</a></li>
+                    <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeActa('Estado de Cuenta Infonavit')">Estado de Cuenta Infonavit</a></li>
+                    <li><a class="dropdown-item"
+                      style="cursor:pointer" (click)="setTipoDeActa('Asignación de Número de Seguridad Social')">Asignación de Número de
+                        Seguridad Social</a></li>
+                    <li><a class="dropdown-item"
+                      style="cursor:pointer" (click)="setTipoDeActa('CFE')">CFE</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tipo de CURP -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Curp</h5>
+                <!-- <li class="list-group-item">{{ info?.curp }}</li> -->
+  
+                <input style="text-transform:uppercase ;" type="text" [(ngModel)]="curp">
+                <!-- <label class="form-label" ,gggmgkggffgfgf for="form1">Search</laliioiuooubel> -->
+              </div>
+            </div>
+          </div>
+        </div>
+         <!-- Tipo de ESTADO -->
+         <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810;" class="card-title">Estado</h5>
+                <!-- <li class="list-group-item">{{ info?.estado }}</li> -->
+                <div class="dropdown">
+                  <button class="conteo7" type="button" id="conteo2" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{estado || "Selecciona un Estado"}}
+                  </button>
+                  
+
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('AGUASCALIENTES')">AGUASCALIENTES</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('BAJA CALIFORNIA')">BAJA CALIFORNIA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('BAJA CALIFORNIA SUR')">BAJA CALIFORNIA SUR</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CAMPECHE')">CAMPECHE</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CIUDAD DE MEXICO')">CIUDAD DE MEXICO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CDMX')">CDMX</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CHIAPAS')">CHIAPAS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('CHIHUAHUA')">CHIHUAHUA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('COAHUILA')">COAHUILA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('COAHUILA DE ZARAGOZA')">COAHUILA DE ZARAGOZA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('COLIMA')">COLIMA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('DURANGO')">DURANGO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('GUANAJUATO')">GUANAJUATO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('GUERRERO')">GUERRERO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('HIDALGO')">HIDALGO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('JALISCO')">JALISCO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MEXICO')">MEXICO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MICHOACAN')">MICHOACAN</a></li>
+                       <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MICHOACAN DE OCAMPO')">MICHOACAN DE OCAMPO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('MORELOS')">MORELOS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('NAYARIT')">NAYARIT</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('NUEVO LEON')">NUEVO LEON</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('OAXACA')">OAXACA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('PUEBLA')">PUEBLA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('QUERETARO')">QUERETARO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('QUINTANA ROO')">QUINTANA ROO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('SAN LUIS POTOSI')">SAN LUIS POTOSI</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('SINALOA')">SINALOA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('SONORA')">SONORA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TABASCO')">TABASCO</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TAMAULIPAS')">TAMAULIPAS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('TLAXCALA')">TLAXCALA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('VERACRUZ')">VERACRUZ</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('VERACRUZ DE IGNACIO DE LA')">VERACRUZ DE IGNACIO DE LA</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('YUCATAN')">YUCATAN</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('ZACATECAS')">ZACATECAS</a></li>
+                      <li><a class="dropdown-item" style="cursor:pointer" (click)="setTipoDeEstado('EXTRANJERO')">EXTRANJERO</a></li>         
+
+                    </ul>
+
+
+           
+                
+                </div>
+
+
+
+                <!-- <input style="text-transform:uppercase ; tthththhgnnytyfyhhfththjtgnht" type="text" [(ngModel)]="estado"> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tipo de NOMBBRE -->
+        <div class="col">
+          <div class="card h-100">
+  
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Nombre</h5>
+                <!-- <li class="list-group-item">{{ info?.nombre }}</li> -->
+                <input type="text" [(ngModel)]="nombredecliente">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tipo de APELIIDOS -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Apellidos</h5>
+                <!-- <li class="list-group-item">{{ info?.apellidos }}</li> -->
+                <input type="text" [(ngModel)]="apellidosc">
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Asesor</h5>
+                <li class="list-group-item">{{nombreasesor}}</li>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- PRECIO -->
+        <div class="col" *ngIf="myRol == 'Admin'">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-outline">
+                <h5 style="color: #efb810" class="card-title">Precio</h5>
+           <li class="list-group-item">{{precioyasesor?.precio}}</li>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="card-body">
+          <div class="form-outline">
+            <div class="input-group mb-3">
+              <!-- FORMA MANUAL FORMULARIO -->
+  
+              <input [(ngModel)]="valorabuscar" type="text" class="txtbuscar" placeholder="Busca tu Ciber" />
+            </div>
+            <table class="table" *ngIf="valorabuscar.length>0 && nombreasesor==''">
+              <tbody>
+                <tr *ngFor="let cibers of getciber | buscarciber: valorabuscar ">
+                  <td (click)="clickciber(cibers.id, cibers.nombre)" style="cursor: pointer; " (click)="changeView4()">
+                    {{cibers?.nombre}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+        <!-- LISTBOX AESORES -->
+      </div>
+      <!-- BOTON DE ENVIAR DEL FORMULAERIO DE ASESORES Y DATOS DEL DOCUMENTO -->
+      <button *ngIf="conteo3" class="conteo2" (click)="enviaractamanual()">Enviar</button>
+      <!-- <button *ngIf="conteo3" class="conteo3" (click)="backUp()">Regresar</button> -->
+    </div>
+    <button class="conteo3" (click)="Volver2()">Regresar</button>
+  </div>
+
+
+</div>
+

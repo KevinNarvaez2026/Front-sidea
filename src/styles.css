@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "ag-grid-community/dist/styles/ag-theme-dark.css";
+
+.submenu{
+    display: none;
+    width: 120px;
+    position: absolute;
+}
+#pagos:hover .submenu{
+    display: block;
+    background-color: black;
+}
+.lisub{
+    padding: 10px;
+    background-color: black;
+}
+.lisub:hover{
+    border-bottom: 2px solid red;
+}
+
+.responsivo{
+    color:goldenrod;
+}

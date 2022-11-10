@@ -1,0 +1,278 @@
+#download {
+    display: none;
+  }
+
+.mytable:hover{
+color:rgb(223, 223, 223) !important;
+background-color: rgb(61, 61, 61);
+}
+
+.myheaders{
+    background: linear-gradient(0, rgba(25,91,111,1) 0%, rgba(34,165,223,1) 100%); 
+    color: white; 
+    border-radius: 0.5rem;
+}
+*{
+  text-transform: capitalize;
+}
+table, th, td{
+border : 1px solid rgb(202, 202, 198);border-collapse:collapse;padding:15px;font-size:14px}
+
+table.center{margin-left: auto;margin-right:auto;}
+#t01 {
+width: 100%;    
+background-color:  gray; color: yellow ;
+}
+
+.button {
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.5em;
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   padding-right: 3.5em;
+  cursor: pointer;
+  
+}
+.button:before,
+.button:after {
+  position: absolute;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  font-size: inherit;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2.8em;
+  transition: 0.2s;
+  transform-origin: 50% 60%;
+  
+  /*  Uncomment below to set icon background color.  Set as black 
+in example with RGB opacity to  make it stand out a bit more.   */
+  
+  /*  background: rgba(0,0,0,0.10); */
+ 
+}
+/* Remarcar */
+
+.arrow {
+  background: #3c3b6e;
+}
+.arrow:hover {
+  background: #b22234;
+}
+.arrow:active,
+.arrow:focus {
+  background: #b22234;
+}
+/* Entity Icon   */
+.arrow:after {
+  content: "\2794";
+}
+/* Set Arrow Icon Bounce Animation   */
+.arrow:hover:after {
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+}
+
+/* Phone Button Markup  */
+
+.phone {
+  background: rgb(255, 255, 255);
+}
+.phone:hover {
+  background: rgb(173, 171, 171);
+}
+.phone:active{
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+}
+.phone:focus {
+  background: #fdfd96;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+.select {
+  
+  background: #fdfd96;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+  text-align: center;
+  text-rendering: auto;
+  height: 3em;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px;
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  /* padding: 0.8em 1.5em; */
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   /* padding-right: 9.5em; */
+  cursor: pointer;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+ol {
+  height: 23rem;
+  overflow:hidden; 
+  overflow-y:scroll;
+}
+
+.panel-cibers {
+  position: sticky;
+  top: 230px;
+}
+
+
+.conteo {
+  
+  background: #9696fd;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+  text-align: center;
+  text-rendering: auto;
+  height: 5vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px;
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.5em;
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   padding-right: 9.5em;
+  cursor: pointer;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+/* Entity Icon   */
+
+/* Set Phone Icon Wiggle Animation   */
+/* .phone:hover:after {
+  -webkit-animation: wiggle 0.05s alternate ease infinite;
+  animation: wiggle 0.05s alternate ease infinite;
+} */
+
+/* Animations  */
+
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@-webkit-keyframes wiggle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(30deg);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}
+
+/* Demo Stuff  */
+
+
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  margin: 15px;
+}
+
+.contenedor{
+  margin: auto;
+  width: 110rem;
+  z-index: -1;
+}
+.contenidoprincipal{
+  width: 67%;
+  padding-left: 25px;
+}
+.navprincipal{
+  width: 30%;
+  z-index: 1000;
+}
+.navprincipal, .contenidoprincipal{
+  display: inline-block;
+  vertical-align: text-top;
+}
+@media screen and (min-width: 1500px) and (max-width: 5000px) { 
+  .navprincipal{
+    width: 5%;
+    z-index: 1000;
+    height: 100vh;
+    height: 100%;
+    position: relative;
+  }
+  .contenidoprincipal{
+    width: 92%;
+
+  }
+  .contenedor{
+    z-index: -1;
+  }
+}
+.estatic{
+position: sticky;
+top: 0px;
+z-index: 1;
+}
+
