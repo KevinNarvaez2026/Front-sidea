@@ -533,7 +533,7 @@ export class ActasComponent implements OnInit {
               Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Error interno',
+                text: err.error.error ? err.error.error : 'Error interno',
               });
             }
           }
