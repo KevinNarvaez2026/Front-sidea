@@ -489,7 +489,7 @@ export class ActasComponent implements OnInit {
     this.ModalReq = false;
 
     if (
-      preferences == 2 ||
+      (preferences == 2 && this.Estado == 'NACIDO EN EL EXTRANJERO') ||
       (preferences == 3 && this.Estado == 'NACIDO EN EL EXTRANJERO')
     ) {
       console.log('Error');
