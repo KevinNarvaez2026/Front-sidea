@@ -1,27 +1,32 @@
-
-
-
-
 <!-- LOADER PAGE -->
 <div class="c-loaderPage" id="loaderPage">
   <div class="c-loader"></div>
 </div>
-
-
 
 <!-- NAVBAR -->
 <div class="navbar">
   <div class="title">
     <!-- <div class="logoImg">
     </div> -->
-    <div class="titleText">
-      ACTAS AL INSTANTE
-    </div>
+    <div class="titleText">ACTAS AL INSTANTE</div>
   </div>
-  <div class="user">
-    <img class="card-avatar" src="../../../assets/images/faces/user.png" alt="avatar" />
-    <label for="user" class="user-label">{{ usuario }}</label>
 
+  <div (click)="openPopup()" class="user">
+    <img
+      style="cursor: pointer"
+      class="card-avatar"
+      [src]="imageToShow"
+      *ngIf="!isImageLoading; else noImageFound"
+    />
+    <ng-template #noImageFound>
+      <img
+        class="card-avatar"
+        src="../../../assets/images/faces/user.png"
+        alt="avatar"
+      />
+    </ng-template>
+
+    <label for="user" class="user-label">{{ usuario }}</label>
 
     <!-- <div class="displayMenu">
       <div class="menuNav">
@@ -29,55 +34,90 @@
           <li> <fa-icon [icon]="faPowerOff"></fa-icon> Cerrar Sesión  </li>
       </div>
     </div> -->
-
-
   </div>
-
-
-
-
 </div>
-
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-
-  <div class="side-title"> 
-
-    <fa-icon [icon]="faBars" class="icon-menu"></fa-icon>
-
-    <label for="side-title" class="title-menu">MENU</label>
-    
-  </div>
-
-
-  <div class="side-menu">
-    <div class="col">
-      <div class="row" (click)="SelectOption(0)">
-        <fa-icon [icon]="faHomeUser" class="icon"></fa-icon> <label for="row" class="category">INICIO</label>
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">SUBIR FOTO DE PERFIL</h4>
       </div>
-      <div class="row" (click)="SelectOption(1)" *ngIf="myRol == 'Admin' || myRol == 'Supervisor'">
-        <fa-icon [icon]="faGear" class="icon"></fa-icon> <label for="row" class="category">ADMINISTRAR</label>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input
+              accept="image/png , image/jpeg"
+              type="file"
+              (change)="onImageUpload($event)"
+            />
+          </div>
+        </form>
       </div>
-      <div class="row" (click)="SelectOption(2)">
-        <fa-icon [icon]="faFile" class="icon"></fa-icon> <label for="row" class="category">ACTAS</label>
-      </div>
-      <div class="row" (click)="SelectOption(3)">
-        <fa-icon [icon]="faFile" class="icon"></fa-icon> <label for="row" class="category">RFC</label>
-      </div>
-      <div class="row" (click)="SelectOption(4)">
-        <fa-icon [icon]="faSackDollar" class="icon"></fa-icon> <label for="row" class="category">CORTE</label>
-      </div>
-      <div class="row" (click)="SelectOption(5)" *ngIf="myRol == 'Admin' || myRol == 'Supervisor'">
-        <fa-icon [icon]="faBook" class="icon"></fa-icon> <label for="row" class="category">DOCUMENTOS</label>
-      </div>
-      <div class="row" (click)="SelectOption(6)">
-        <fa-icon [icon]="faPersonWalkingArrowRight" class="icon"></fa-icon> <label for="row" class="category">SALIR</label>
+      <div></div>
+      <div (click)="imageUploadAction()" class="modal-footer">
+        <button type="button" class="btn btn-success">Subir Foto</button>
+        <button type="button" class="btn btn-danger" (click)="closePopup()">
+          Close
+        </button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="side-title">
+    <fa-icon [icon]="faBars" class="icon-menu"></fa-icon>
+
+    <label for="side-title" class="title-menu">MENU</label>
+  </div>
+
+  <div class="side-menu">
+    <div class="col">
+      <div class="row" (click)="SelectOption(0)">
+        <fa-icon [icon]="faHomeUser" class="icon"></fa-icon>
+        <label for="row" class="category">INICIO</label>
+      </div>
+      <div
+        class="row"
+        (click)="SelectOption(1)"
+        *ngIf="myRol == 'Admin' || myRol == 'Supervisor'"
+      >
+        <fa-icon [icon]="faGear" class="icon"></fa-icon>
+        <label for="row" class="category">ADMINISTRAR</label>
+      </div>
+      <div class="row" (click)="SelectOption(2)">
+        <fa-icon [icon]="faFile" class="icon"></fa-icon>
+        <label for="row" class="category">ACTAS</label>
+      </div>
+      <div class="row" (click)="SelectOption(3)">
+        <fa-icon [icon]="faFile" class="icon"></fa-icon>
+        <label for="row" class="category">RFC</label>
+      </div>
+      <div class="row" (click)="SelectOption(4)">
+        <fa-icon [icon]="faSackDollar" class="icon"></fa-icon>
+        <label for="row" class="category">CORTE</label>
+      </div>
+      <div
+        class="row"
+        (click)="SelectOption(5)"
+        *ngIf="myRol == 'Admin' || myRol == 'Supervisor'"
+      >
+        <fa-icon [icon]="faBook" class="icon"></fa-icon>
+        <label for="row" class="category">DOCUMENTOS</label>
+      </div>
+      <div class="row" (click)="SelectOption(6)">
+        <fa-icon [icon]="faPersonWalkingArrowRight" class="icon"></fa-icon>
+        <label for="row" class="category">SALIR</label>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- CONTENTS -->
 
@@ -90,7 +130,4 @@
   <app-documents *ngSwitchCase="5"></app-documents>
 </div>
 
-
-
-<div class="back">
-</div>
+<div class="back"></div>

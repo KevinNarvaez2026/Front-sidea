@@ -698,7 +698,50 @@
             </div>
           </div>
 
-
+          <div style="width: 100%; height: 152%;  z-index: 1;  background-color: #2121217a;"  class="position-absolute top-0" *ngIf="showEditServicesModal == true" >
+            <div class="modal-dialog" style="position: sticky; top: 0px;">
+              <div class="modal-content">
+                <div class="modal-header ">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Servicios para {{ userToUpdateServices[1] }}
+                  </h5>
+                  <button type="button" (click)="closeServiceModal()" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+          
+          
+          
+                  <span class="badge bg-primary text-center" style="margin-bottom: 1rem; font-size: 1rem;">
+                   <label style="color: #e2e2e2;"> Servicio actual: &nbsp; </label> 
+                    <label *ngIf="userToUpdateServices[2] == 'all'"> Todos </label>
+                    <label *ngIf="userToUpdateServices[2] == 'actas'"> Sólo Actas </label>
+                    <label *ngIf="userToUpdateServices[2] == 'rfc'"> Sólo RFC </label>
+                    <label *ngIf="userToUpdateServices[2] == 'none'"> Ninguno </label>
+                    
+                    <!-- <div *ngIf="editServices==false" (click)="editServicios()" 
+                    style="width: 2rem; height: 2rem; padding: 0.5rem; background-color: #359661; border-radius: 100%; cursor: pointer; position: absolute; margin-top: -1.5rem; margin-left: 13rem;">
+                      <fa-icon [icon]="faPencil"></fa-icon>
+                    </div> -->
+                  </span>
+          
+                  
+                  
+                  <br>
+                  <select class="form-select" aria-label="Default select example" [(ngModel)]="tipodeservicio" >
+                    <option selected hidden>Seleccione el Servicios</option>
+                    <option value="all">Todos</option>
+                    <option value="actas">Sólo Actas</option>
+                    <option value="rfc">Sólo RFC</option>
+                    <option value="none">Ninguno</option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" (click)="closeServiceModal()" class="btn btn-secondary">Cerrar</button>
+                  <button type="button" (click)="servicios()"  class="btn btn-primary">Enviar</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="mb-3 ">
             <h6>Buscar</h6>
@@ -749,6 +792,8 @@
             </tbody>
           </table>
           <pagination-controls [(page)]="page" (pageChange)="page = $event"></pagination-controls>
+       
+       
         </div>
       </div>
     </div>
@@ -761,50 +806,7 @@
 
 
 
-<div style="width: 100%; height: 152%;  z-index: 1;  background-color: #2121217a;"  class="position-absolute top-0" *ngIf="showEditServicesModal == true" >
-  <div class="modal-dialog" style="position: sticky; top: 0px;">
-    <div class="modal-content">
-      <div class="modal-header ">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Servicios para {{ userToUpdateServices[1] }}
-        </h5>
-        <button type="button" (click)="closeServiceModal()" class="btn-close" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
 
-
-
-        <span class="badge bg-primary text-center" style="margin-bottom: 1rem; font-size: 1rem;">
-         <label style="color: #e2e2e2;"> Servicio actual: &nbsp; </label> 
-          <label *ngIf="userToUpdateServices[2] == 'all'"> Todos </label>
-          <label *ngIf="userToUpdateServices[2] == 'actas'"> Sólo Actas </label>
-          <label *ngIf="userToUpdateServices[2] == 'rfc'"> Sólo RFC </label>
-          <label *ngIf="userToUpdateServices[2] == 'none'"> Ninguno </label>
-          
-          <!-- <div *ngIf="editServices==false" (click)="editServicios()" 
-          style="width: 2rem; height: 2rem; padding: 0.5rem; background-color: #359661; border-radius: 100%; cursor: pointer; position: absolute; margin-top: -1.5rem; margin-left: 13rem;">
-            <fa-icon [icon]="faPencil"></fa-icon>
-          </div> -->
-        </span>
-
-        
-        
-        <br>
-        <select class="form-select" aria-label="Default select example" [(ngModel)]="tipodeservicio" >
-          <option selected hidden>Seleccione el Servicios</option>
-          <option value="all">Todos</option>
-          <option value="actas">Sólo Actas</option>
-          <option value="rfc">Sólo RFC</option>
-          <option value="none">Ninguno</option>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button type="button" (click)="closeServiceModal()" class="btn btn-secondary">Cerrar</button>
-        <button type="button" (click)="servicios()"  class="btn btn-primary">Enviar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 </div>
 

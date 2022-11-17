@@ -487,81 +487,94 @@ export class ActasComponent implements OnInit {
 
   EnviarSolicitud(preferences: Number) {
     this.ModalReq = false;
-    let metadata = {};
-    loader();
-    if (this.MetodoBusqueda == 'CURP') {
-      metadata = {
-        type: this.ActoRegistral,
-        state: this.Estado,
-        curp: this.DatoEnviar,
-      };
 
-      this.reqService
-        .SendARequest(
-          this.ActoRegistral,
-          this.MetodoBusqueda,
-          this.DatoEnviar,
-          this.Estado,
-          preferences
-        )
-        .subscribe(
-          (data: any) => {
-            closeAlert();
-            this.ActoRegistral = 'ACTA REGISTRAL';
-            this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
-            this.DatoEnviar = '';
-            this.Lock = false;
-            this.CanInput = false;
+    if (
+      preferences == 2 ||
+      (preferences == 3 && this.Estado == 'NACIDO EN EL EXTRANJERO')
+    ) {
+      console.log('Error');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'NO APLICA PARA ACTAS DEL EXTRANJERO',
+      });
+    } else {
+      let metadata = {};
+      loader();
+      if (this.MetodoBusqueda == 'CURP') {
+        metadata = {
+          type: this.ActoRegistral,
+          state: this.Estado,
+          curp: this.DatoEnviar,
+        };
 
-            this.reqResult = data;
-            document
-              .getElementsByName('ActoRegistral')[0]
-              ?.setAttribute('disabled', '');
-            document
-              .getElementById('solicitarReq')
-              ?.setAttribute('class', 'myButtonOff');
-          },
-          (err: any) => {
-            closeAlert();
-            if (err.status == 404) {
-              Swal.fire({
-                icon: 'error',
-                title: 'NO ENCONTRADO',
-                text: err.error.error ? err.error.error : 'Error interno',
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: err.error.error ? err.error.error : 'Error interno',
-              });
+        this.reqService
+          .SendARequest(
+            this.ActoRegistral,
+            this.MetodoBusqueda,
+            this.DatoEnviar,
+            this.Estado,
+            preferences
+          )
+          .subscribe(
+            (data: any) => {
+              closeAlert();
+              this.ActoRegistral = 'ACTA REGISTRAL';
+              this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
+              this.DatoEnviar = '';
+              this.Lock = false;
+              this.CanInput = false;
+
+              this.reqResult = data;
+              document
+                .getElementsByName('ActoRegistral')[0]
+                ?.setAttribute('disabled', '');
+              document
+                .getElementById('solicitarReq')
+                ?.setAttribute('class', 'myButtonOff');
+            },
+            (err: any) => {
+              closeAlert();
+              if (err.status == 404) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'NO ENCONTRADO',
+                  text: err.error.error ? err.error.error : 'Error interno',
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: err.error.message ? err.error.message : 'Error interno',
+                });
+              }
             }
-          }
-        );
-      // } else if (this.MetodoBusqueda == 'CADENA') {
-      //   metadata = { cadena: this.DatoEnviar };
-      //   this.reqService
-      //     .SendARequest('Cadena Digital', metadata, preferences)
-      //     .subscribe(
-      //       (data: any) => {
-      //         this.ActoRegistral = 'ACTA REGISTRAL';
-      //         this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
-      //         this.DatoEnviar = '';
-      //         this.CanInput = false;
-      //         this.Lock = false;
-      //         document
-      //           .getElementById('solicitarReq')
-      //           ?.setAttribute('class', 'myButtonOff');
-      //         document
-      //           .getElementsByName('ActoRegistral')[0]
-      //           ?.setAttribute('disabled', '');
-      //       },
-      //       (err: any) => {
-      //         this.auth.Unauth();
-      //         console.log(err);
-      //       }
-      //     );
-      // }
+          );
+        // } else if (this.MetodoBusqueda == 'CADENA') {
+        //   metadata = { cadena: this.DatoEnviar };
+        //   this.reqService
+        //     .SendARequest('Cadena Digital', metadata, preferences)
+        //     .subscribe(
+        //       (data: any) => {
+        //         this.ActoRegistral = 'ACTA REGISTRAL';
+        //         this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
+        //         this.DatoEnviar = '';
+        //         this.CanInput = false;
+        //         this.Lock = false;
+        //         document
+        //           .getElementById('solicitarReq')
+        //           ?.setAttribute('class', 'myButtonOff');
+        //         document
+        //           .getElementsByName('ActoRegistral')[0]
+        //           ?.setAttribute('disabled', '');
+        //       },
+        //       (err: any) => {
+        //         this.auth.Unauth();
+        //         console.log(err);
+        //       }
+        //     );
+        // }
+      }
     }
   }
 

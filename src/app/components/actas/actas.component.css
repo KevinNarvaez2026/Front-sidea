@@ -74,11 +74,11 @@
 .mySubCard {
     border-radius: 0.3rem;
     margin-top: 1rem;
-    /* position: relative; */
+     position: relative; 
     width: 45rem;
     height: fit-content;
     padding: 1rem;
-    /* border: solid 4px #181717; */
+ border: solid 4px #181717; 
 }
 
 .back1{
@@ -602,3 +602,5 @@
  .container td:nth-child(4),
  .container th:nth-child(4) { display: none; }
  }
+
+ 

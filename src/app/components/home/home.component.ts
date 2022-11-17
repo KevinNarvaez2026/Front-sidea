@@ -12,6 +12,7 @@ import { faKey } from '@fortawesome/free-solid-svg-icons';
 //Models
 import { myData } from 'src/app/models/myData.model';
 import { Robot } from 'src/app/models/Robot.model';
+import { ActasService } from 'src/app/servicios/Actas/actas.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -29,10 +30,12 @@ export class HomeComponent implements OnInit {
   imageToShow: any;
   myRol:string = "";
   robothandle:any = [];
+  isImageLoading:boolean = false;
+  
   //new Instruction
   instruction:any = [];
   NewAccessToken:string="";
-  constructor(private localStorageService: LocalstorageService, private robots: RobotsService, private auth: AuthService) {
+  constructor(private actas: ActasService, private robots: RobotsService, private auth: AuthService) {
     this.myData$ = auth.GetMyData;
   }
 
@@ -47,6 +50,7 @@ export class HomeComponent implements OnInit {
           break;
       }
     });
+ 
   }
 
 
@@ -150,7 +154,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
+  
 
 
 }

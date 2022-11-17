@@ -61,6 +61,19 @@ export class ActasService {
       return this.http.put(api+"/api/actas/reg/transpose/"+id, { newciber: provider, service: service }, { headers });
     }
   
+    getImage(): Observable<Blob> {
+      var token = this.localStorage.TokenDesencrypt();
+      const headers = new HttpHeaders({ 'x-access-token': token! });
+      return this.http.get(api+"/api/user/avatar/", { responseType: 'blob',headers });
+    }
 
+    uploadImage( image:any) {
+      var token = this.localStorage.TokenDesencrypt();
+      const headers = new HttpHeaders({ 'x-access-token': token! });
+      const formData: FormData = new FormData();
+      formData.append('avatar', image);
+    
+      return this.http.post(api+'/api/user/avatar/up/', formData,{headers});
+    }
 
 }

@@ -1,0 +1,415 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+.myCard {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 16px 12px 24px 12px;
+}
+
+.myBackground {
+  z-index: -1;
+  float: left;
+  width: 100%;
+  height: 10rem;
+  overflow: hidden;
+  vertical-align: top;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+.myTitle {
+  color: rgb(68, 67, 66);
+  position: relative;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-size: 1.3rem;
+  user-select: none;
+  letter-spacing: 0.1em;
+  font-weight: 720;
+}
+
+.space {
+  justify-content: space-around;
+}
+
+.back1 {
+  background-image: url(../../../assets/svgs/check.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+/* MAIN PRINCIPAL*/
+/* .myBody {
+    display: flex;
+    list-style: none;
+    flex-flow: wrap;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    /* position: relative; */
+
+.mySubTitle {
+  text-align: left;
+  text-transform: uppercase;
+  /* color: rgb(19, 18, 18); */
+  color: green;
+  font-size: 1.1rem;
+  user-select: none;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.MyCircle {
+  text-align: left;
+  text-transform: uppercase;
+  /* color: rgb(19, 18, 18); */
+  color: black;
+  font-size: 2.1rem;
+  user-select: none;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.mySubInfo {
+  user-select: none;
+  cursor: default;
+  text-align: justify;
+  /* color: rgb(63, 60, 60); */
+  color: white !important;
+}
+
+/* Table */
+
+/*	
+	Table Responsive
+	===================
+	Author: https://github.com/pablorgarcia
+ */
+
+/* Icon Button */
+.icon-button {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+}
+
+.stepper-on > core-icon {
+  margin: 16px;
+  transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stepper-on:hover > core-icon {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.stepper-on > paper-ripple {
+  overflow: hidden;
+  color: #646464;
+}
+
+.stepper-on.red > core-icon::shadow path {
+  fill: #db4437;
+}
+
+.stepper-on.red > paper-ripple {
+  color: #db4437;
+}
+
+.stepper-on.blue > core-icon::shadow path {
+  fill: #4285f4;
+}
+
+.stepper-on.blue > paper-ripple {
+  color: #4285f4;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+.stepper-on {
+  height: 100px;
+  width: 100px;
+  background: #4285f4;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+.emailHelp {
+  align-items: center;
+  align-content: center;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-size: 1.3rem;
+  user-select: none;
+  letter-spacing: 0.1em;
+  font-weight: 720;
+  color: #fb667a;
+}
+
+.Sub_text {
+  text-align: left;
+  text-transform: uppercase;
+  /* color: rgb(19, 18, 18); */
+  color: whitesmoke;
+  font-size: 1.1rem;
+  user-select: none;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.Table_actas h1 {
+  font-size: 3em;
+  font-weight: 300;
+  line-height: 1em;
+  text-align: center;
+  color: #4dc3fa;
+}
+
+.Table_actas h2 {
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height: 1em;
+  padding-bottom: 2em;
+  color: #fb667a;
+}
+
+.Table_actas h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fb667a;
+  text-decoration: none;
+}
+
+.blue {
+  color: #185875;
+}
+.yellow {
+  color: #fff842;
+}
+
+.container th h1 {
+  font-weight: bold;
+  font-size: 1em;
+  text-align: left;
+  color: white;
+}
+
+.container td {
+  font-weight: normal;
+  font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #fff;
+  -moz-box-shadow: 0 2px 2px -2px #fff;
+  box-shadow: 0 2px 2px -2px #fff;
+  color: #fff;
+}
+
+.container {
+  text-align: left;
+  overflow: hidden;
+  width: 80%;
+  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+}
+
+.container td,
+.container th {
+  padding-bottom: 2%;
+  padding-top: 2%;
+  padding-left: 2%;
+}
+
+/* Background-color of the odd rows */
+.container tr:nth-child(odd) {
+  background-color: #323c50;
+}
+
+/* Background-color of the even rows */
+.container tr:nth-child(even) {
+  background-color: rgb(43, 54, 78);
+}
+
+.container th {
+  background-color: rgb(1, 8, 31);
+}
+
+.container th:first-child {
+  color: #fb667a;
+}
+
+.container tr:hover {
+  background-color: #464a52;
+  -webkit-box-shadow: 0 6px 6px -6px #fff;
+  -moz-box-shadow: 0 6px 6px -6px #fff;
+  box-shadow: 0 6px 6px -6px #fff;
+}
+
+.container td:hover {
+  background-color: rgba(204, 204, 204, 1);
+  color: #403e10;
+  font-weight: bold;
+
+  box-shadow: #7f7c21 -1px 1px, #7f7c21 -2px 2px, #7f7c21 -3px 3px,
+    #7f7c21 -4px 4px, #7f7c21 -5px 5px, #7f7c21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  transition-timing-function: line;
+}
+
+@media (max-width: 800px) {
+  .container td:nth-child(4),
+  .container th:nth-child(4) {
+    display: none;
+  }
+}
+.mySubCard {
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  /* position: relative; */
+
+  width: 45rem;
+  height: fit-content;
+  padding: 1rem;
+  /* border: solid 4px #181717; */
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 55vh;
+}
+
+.Card_User {
+  background: #ffffff;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+}
+card-title {
+  color: black;
+  position: relative;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-size: 1.3rem;
+  user-select: none;
+  letter-spacing: 0.1em;
+  font-weight: 720;
+}
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 1px;
+
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+}
+
+/*   
+  .card:hover {
+    color: rgb(88 199 250 / 100%);
+    transition: color 1s;
+  }
+  .card:hover:before, .card:hover:after {
+    animation: none;
+    opacity: 0;
+  }
+  
+  
+  .card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate)
+      , #5ddcff, #3c67e3 43%, #4e00c2);
+      position: absolute;
+      z-index: -1;
+      top: -1%;
+      left: -2%;
+      animation: spin 2.5s linear infinite;
+  }
+  
+  .card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(
+      var(--rotate)
+      , #5ddcff, #3c67e3 43%, #4e00c2);
+      opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+  } */
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+a {
+  color: #212534;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.joinBtn {
+  width: 10em;
+  height: 5ex;
+  background-color: black;
+
+  border-radius: 10px;
+  font-weight: bold;
+  color: green;
+  cursor: pointer;
+}
+
+.joinBtn:hover {
+  background-color: white;
+}
