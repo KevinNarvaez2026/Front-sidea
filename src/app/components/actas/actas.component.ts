@@ -112,7 +112,10 @@ export class ActasComponent implements OnInit {
     this.reqService.getMyDatesActasRequest().subscribe(
       (data: any) => {
         this.view = 1;
-        this.selectDate(data[0].corte);
+        this.dates = data;
+        this.selectDate(data[0].deadline);
+        //console.log(data[0].deadline);
+        
       },
       (err: any) => {
         //No Identificated!
@@ -123,7 +126,7 @@ export class ActasComponent implements OnInit {
 
   selectDate(date: any) {
     this.dateSelect = date;
-    this.reqService.getAllActasRequest().subscribe(
+    this.reqService.getAllActasRequest(this.dateSelect).subscribe(
       (data: any) => {
         this.actas = [];
         for (let i = 0; i < data.length; i++) {
@@ -586,7 +589,7 @@ export class ActasComponent implements OnInit {
       let a = document.createElement('a');
       var url = URL.createObjectURL(blob);
       a.href = url;
-      a.download = String(curp + '.pdf');
+      a.download = String(curp);
       a.click();
       URL.revokeObjectURL(url);
       a.remove();

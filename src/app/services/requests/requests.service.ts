@@ -17,13 +17,13 @@ export class RequestsService {
   getMyDatesActasRequest() {
     let token = this.local.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.get(urlApi + '/api/services/actas/regs/', { headers });
+    return this.http.get(urlApi + '/api/requests/dates/', { headers });
   }
 
-  getAllActasRequest() {
+  getAllActasRequest(date:any) {
     let token = this.local.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.get(urlApi + '/api/services/actas/regs/' , {
+    return this.http.get(urlApi + '/api/get/myRequests/'+date,  {
       headers,
     });
   }
