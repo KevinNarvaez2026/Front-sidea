@@ -48,7 +48,7 @@ export class ActasComponent implements OnInit {
   //MyRol
   myRol: string = '';
   id: string = '';
-
+  valorabuscar: string = "";
   //TableResult
   reqResult = {} as Respuesta | undefined;
 

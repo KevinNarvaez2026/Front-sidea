@@ -121,7 +121,7 @@
             <div class="filter" style="width: 50rem">
               <h6 class="text-center" style="color: white">BUSCADOR</h6>
               <div class="input-group mb-3">
-                <input
+                <input [(ngModel)]="valorabuscar"
                   type="text"
                   class="form-control"
                   placeholder="BUSCAR POR DATOS PROPORCIONADOS"
@@ -170,7 +170,7 @@
       </div>
       <div class="myContentFlex">
         <div
-          *ngFor="let req of actas"
+          *ngFor="let req of actas | pipeacta: valorabuscar"
           class="viewCard animate__animated animate__fadeInUp"
         >
           <span
