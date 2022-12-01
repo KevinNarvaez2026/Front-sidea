@@ -72,7 +72,7 @@
                         <div class="filter" style="width: 50rem;">
                             <h6 class="text-center" style="color: white;"> BUSCADOR </h6>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="BUSCAR POR DATOS PROPORCIONADOS"
+                                <input  [(ngModel)]="valorabuscar" type="text" class="form-control" placeholder="BUSCAR POR DATOS PROPORCIONADOS"
                                     aria-label="Recipient's username" aria-describedby="basic-addon2">
                                 <span class="input-group-text" id="basic-addon2">
                                     <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
@@ -97,14 +97,14 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                      </div>
                     </div>
 
 
                 </div>
             </div>
             <div class="myContentFlex">
-                <div *ngFor="let req of rfcs" class="viewCard">
+                <div *ngFor="let req of rfcs | pipeacta: valorabuscar" class="viewCard">
                 <span class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary"
                     style="z-index: 2;">
                     {{ req.nm }}

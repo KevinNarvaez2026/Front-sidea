@@ -40,6 +40,7 @@ export class RfcsComponent implements OnInit {
   //MyData
   myRol:string = "";
   id:string = "";
+  valorabuscar: string = "";
   //Values New Req
   MetodoBusqueda: string = "MÉTODO DE BUSQUEDA";
   Persona: string = "PERSONA";
