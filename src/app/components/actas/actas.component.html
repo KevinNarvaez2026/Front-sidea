@@ -355,7 +355,7 @@
              
               <div
               *ngIf="myRol == 'Supervisor'  && req.url != null && req.comments == 'Descargado' || id == '1500'  && req.url != null && req.comments == 'Descargado' || id == '1585'  && req.url != null && req.comments == 'Descargado'  || myRol == 'Admin' && req.url != null && req.comments == 'Descargado'">
-              <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row"
+              <div *ngIf="req.transposeId == null" (click)="obtainAllUsers(req.id)" class="row"
                   style="margin-top: 0.5em;">
                   <a class="btn btn-primary">
                       <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
@@ -364,7 +364,7 @@
               </div>
 
 
-              <div *ngIf="req.idtranspose != null" (click)="obtainAllUsers(req.id)" class="row"
+              <div *ngIf="req.transposeId != null" (click)="obtainAllUsers(req.id)" class="row"
                   style="margin-top: 0.5em;">
                   <a class="btn btn-secondary">
                       <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>

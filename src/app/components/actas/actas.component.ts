@@ -194,6 +194,7 @@ export class ActasComponent implements OnInit {
               break;
           }
       
+       
           
           this.actas.push({
             nm: i + 1,
@@ -204,7 +205,7 @@ export class ActasComponent implements OnInit {
             send: data[i].send,
             comments: data[i].comments,
             url: data[i].curp ? `${data[i].curp}.pdf` : null,
-            idtranspose: data[i].idtranspose,
+            transposeId: data[i].transposeId,
             downloaded: data[i].downloaded,
           });
         }
