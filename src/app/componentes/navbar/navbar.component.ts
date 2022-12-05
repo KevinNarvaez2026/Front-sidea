@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
   myRol: any = '';
   imageToShow: any;
   //Selectable
-  option: Number = 0;
+  option: Number = 2;
   fileToUpload: any;
   Imagenes: any;
 

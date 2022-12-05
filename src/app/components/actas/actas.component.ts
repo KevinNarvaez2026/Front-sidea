@@ -708,7 +708,7 @@ export class ActasComponent implements OnInit {
           timer: 1500
         }
       );
-      this.reloadCurrentRoute();
+     this.reloadCurrentRoute();
     });
 
 

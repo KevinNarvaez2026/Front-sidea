@@ -4,82 +4,100 @@ import { LocalstorageService } from 'src/app/servicios/localstorage/localstorage
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { Token } from '../../componentes/login/token.model';
-const api = "https://actasalinstante.com:3030";
+const api = 'https://actasalinstante.com:3030';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActasService {
-//ACTAS DE NACIMIENTO, ETC ... POR CURP
-  constructor(private http: HttpClient, private localStorage:LocalstorageService) { }
+  //ACTAS DE NACIMIENTO, ETC ... POR CURP
+  constructor(
+    private http: HttpClient,
+    private localStorage: LocalstorageService
+  ) {}
 
-  updateServicio(id:any, newService:any){
+  updateServicio(id: any, newService: any) {
     var token = this.localStorage.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
 
-    return this.http.put(api+'/api/update/services/'+id,{ "servicios": newService } ,{ headers });
+    return this.http.put(
+      api + '/api/update/services/' + id,
+      { servicios: newService },
+      { headers }
+    );
   }
 
-  
   //SE optienen las actas
   obtainActasRequest() {
     var token = this.localStorage.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.get(api+'/api/actas/requests/obtainAll/', { headers });
+    return this.http.get(api + '/api/actas/requests/obtainAll/', { headers });
   }
 
-
-  getDates(){
+  getDates() {
     var token = this.localStorage.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.get(api+'/api/actas/requests/myDates/', { headers });
+    return this.http.get(api + '/api/actas/requests/myDates/', { headers });
   }
 
-  getMyRequets(date:any){
+  getMyRequets(date: any) {
     var token = this.localStorage.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.get(api+'/api/actas/requests/myRequests/' + date, { headers });
+    return this.http.get(api + '/api/actas/requests/myRequests/' + date, {
+      headers,
+    });
   }
 
-
-  getMyActa(id:any): Observable<any> {
-    return this.http.get(api+'/api/actas/requests/getMyActa/'+id,{ responseType: 'blob'})
+  getMyActa(id: any): Observable<any> {
+    return this.http.get(api + '/api/actas/requests/getMyActa/' + id, {
+      responseType: 'blob',
+    });
   }
-    //Se envian las actas
-    SolicitudactasporCurp(datos: any) {
-      var token = this.localStorage.TokenDesencrypt();
-      const headers = new HttpHeaders({ 'x-access-token': token! });
-      return this.http.post(api + '/api/actas/requests/createOne/', datos, { headers });
-    }
-    //SE trae a todos los usuarios
-    getuser(): Observable<any> {
-      return this.http.get(api+'/api/user/getFull/')
-    }
-    
-    reAsignarActa(id:any, provider:any, service:any){
-      var token = this.localStorage.TokenDesencrypt();
-      const headers = new HttpHeaders({ 'x-access-token': token! });
-      return this.http.put(api+"/api/actas/reg/reassign/"+id, { newciber: provider, service: service }, { headers });
-    }
-    reAsignarActaID(folio:any,id:any){
-      console.log(folio+id);
-      
-      var token = this.localStorage.TokenDesencrypt();
-      const headers = new HttpHeaders({ 'x-access-token': token! });
-      return this.http.put(api+"/api/actas/reg/reassign/"+folio,{reassignId:id}, { headers });
-    }
-    getImage(): Observable<Blob> {
-      var token = this.localStorage.TokenDesencrypt();
-      const headers = new HttpHeaders({ 'x-access-token': token! });
-      return this.http.get(api+"/api/user/avatar/", { responseType: 'blob',headers });
-    }
+  //Se envian las actas
+  SolicitudactasporCurp(datos: any) {
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.post(api + '/api/actas/requests/createOne/', datos, {
+      headers,
+    });
+  }
+  //SE trae a todos los usuarios
+  getuser(): Observable<any> {
+    return this.http.get(api + '/api/user/getFull/');
+  }
 
-    uploadImage( image:any) {
-      var token = this.localStorage.TokenDesencrypt();
-      const headers = new HttpHeaders({ 'x-access-token': token! });
-      const formData: FormData = new FormData();
-      formData.append('avatar', image);
-    
-      return this.http.post(api+'/api/user/avatar/up/', formData,{headers});
-    }
+  reAsignarActa(id: any, provider: any, service: any) {
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.put(
+      api + '/api/actas/reg/reassign/' + id,
+      { newciber: provider, service: service },
+      { headers }
+    );
+  }
+  reAsignarActaID(folio: any, id: any) {
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.put(
+      api + '/api/actas/reg/reassign/' + folio,
+      { reassignId: id },
+      { headers }
+    );
+  }
+  getImage(): Observable<Blob> {
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.get(api + '/api/user/avatar/', {
+      responseType: 'blob',
+      headers,
+    });
+  }
 
+  uploadImage(image: any) {
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    const formData: FormData = new FormData();
+    formData.append('avatar', image);
+
+    return this.http.post(api + '/api/user/avatar/up/', formData, { headers });
+  }
 }
