@@ -121,8 +121,10 @@ export class PagosComponent implements OnInit {
 
 
   async getAllDates() {
-    await this.database.getAllDates().subscribe((data: any) => {
+    await this.database.getAllDate_propio().subscribe((data: any) => {
       this.fechasParaBuscarClientes = data;
+      console.log(data);
+      
     });
 
   }
@@ -446,9 +448,10 @@ export class PagosComponent implements OnInit {
 
 
 
-    this.adminService.getCorteByUserForDate( date).subscribe((data: any) => {
+    this.adminService.Select_corte(this.ciberidselect,date).subscribe((data: any) => {
       this.corteDelUsuario = data;
-
+        console.log(data);
+        
 
 
 
@@ -523,11 +526,12 @@ export class PagosComponent implements OnInit {
       this.router.navigateByUrl('/inicio');
     }
   }
-
+//CORTE GENERAL, ME TARE USUARIOS
   async getClientsByDateSelected(date: any) {
     this.fechaDeUsuarioSeleccionada = date;
     this.CiberSelect = [];
-
+    
+      
 
     loader();
 
@@ -535,7 +539,7 @@ export class PagosComponent implements OnInit {
       this.fechaDeUsuarioSeleccionada = "Actual";
     }
 
-    this.adminService.getMyClientForDate(date).subscribe((data: any) => {
+    this.adminService.getCorteByUserForDates(date).subscribe((data: any) => {
       closeAlert();
       this.usuariosEnFecha = data;
     },

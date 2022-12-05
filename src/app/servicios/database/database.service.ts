@@ -70,6 +70,16 @@ export class DatabaseService {
     return this.httpClient.get(api+'/api/actas/reg/corte/MyDates/',{headers});
   }
 
+  getAllDate_propio(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.httpClient.get(api+'/api/actas/reg/Corte/Dates/',{headers});
+  }
+
+
   HistorialDeRegistros(date:any){
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);

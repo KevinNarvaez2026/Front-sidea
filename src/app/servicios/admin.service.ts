@@ -99,7 +99,7 @@ export class AdminService {
     };
   }
 
-
+//seleciono el cliente el cliente personal
   getMyClientForDate(date:any){
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
@@ -110,7 +110,7 @@ export class AdminService {
     return this.http.get(urlApi+'/api/actas/reg/Corte/Clients/'+date, { headers });
   };
 
-
+//MI CORTE PERSONAL
   getCorteByUserForDate(date:any){
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
@@ -119,7 +119,25 @@ export class AdminService {
     const headers = new HttpHeaders({ 'x-access-token': final! });
     return this.http.get(urlApi+'/api/actas/reg/myCorte/'+date,{headers});
   }
+  //CORTE GENERAL
+  getCorteByUserForDates(date:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.http.get(urlApi+'/api/actas/reg/Corte/Clients/'+ date,{headers});
+  }
+//GENERAL
+  Select_corte(id:any,date:any){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
 
+    return this.http.get(urlApi+'/api/actas/reg/Corte/'+id+'/'+date, { headers });
+  };
 
 
   getHistorialAt(date:any){
