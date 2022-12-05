@@ -446,7 +446,7 @@ export class PagosComponent implements OnInit {
 
 
 
-    this.adminService.getCorteByUserForDate(id, date).subscribe((data: any) => {
+    this.adminService.getCorteByUserForDate( date).subscribe((data: any) => {
       this.corteDelUsuario = data;
 
 

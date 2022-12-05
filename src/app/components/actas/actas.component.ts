@@ -19,6 +19,8 @@ declare function closeAlert(): any;
 import { myData } from 'src/app/models/myData.model';
 import Swal from 'sweetalert2';
 import { Respuesta } from './req.model';
+import { ActasService } from 'src/app/servicios/Actas/actas.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-actas',
   templateUrl: './actas.component.html',
@@ -37,6 +39,10 @@ export class ActasComponent implements OnInit {
   faCircleXmark = faCircleXmark;
   faRotate = faRotate;
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
+  switchTranspose: boolean = false;
+  valorabuscartranspose:string = "";
+  newTranspose:any = [];
+  allUsers: any;
   //DatesOnCut
   dates: any = [];
   dateSelect: any;
@@ -62,7 +68,7 @@ export class ActasComponent implements OnInit {
   CanInput: boolean = false;
   Table_Vista: boolean = false;
   Table_Result: any = [];
-  constructor(private reqService: RequestsService, private auth: AuthService) {}
+  constructor(private router: Router,private reqService: RequestsService, private auth: AuthService,private actasservice: ActasService) {}
 
   ngOnInit(): void {
     // document.getElementById("typeReq")?.setAttribute("*ngIf", "false");
@@ -187,6 +193,8 @@ export class ActasComponent implements OnInit {
               metadata = '';
               break;
           }
+      
+          
           this.actas.push({
             nm: i + 1,
             id: data[i].id,
@@ -639,4 +647,78 @@ export class ActasComponent implements OnInit {
       });
     }
   }
+
+  obtainAllUsers(id:any) {
+    //getuser
+    this.switchTranspose = !this.switchTranspose;
+
+
+    if (this.switchTranspose == true) {
+      this.newTranspose = id;
+           
+            
+
+      this.actasservice.getuser().subscribe((data: any) =>  {
+        this.allUsers = data;
+      
+        
+
+      });
+      
+    }
+
+    
+
+
+
+    else{
+      this.allUsers = [];
+    }
+
+  }
+
+  
+  reAsignarActas(idProvider:any){
+  
+    
+    this.switchTranspose = false;
+    this.actasservice.reAsignarActaID( this.newTranspose,idProvider).subscribe((data:any) => {
+ 
+    
+      
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'success',
+          title: 'Re-Asignado',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+
+      this.reloadCurrentRoute();
+    }, (error:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'error',
+          title: 'Contacte al equipo de soporte',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+      this.reloadCurrentRoute();
+    });
+
+
+  }
+
+   //RECARGAMOS LA PAGINA POR SI MISMA
+   reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
 }

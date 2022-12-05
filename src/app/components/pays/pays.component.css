@@ -1,8 +1,9 @@
 .myCard {
-    overflow: auto;
+  overflow-y: scroll;
+  
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 1010px;
 }
 
 
@@ -42,7 +43,9 @@
 .MyContainerPanel{
     padding: 1rem;
     width: 100vh;
-    height:100%;
+    height:100vh;
+    
+  
 }
 
 .MySearcher{
@@ -91,3 +94,482 @@
     background: #d4d4d4;
 }
 
+#download {
+    display: none;
+  }
+
+.mytable:hover{
+color:rgb(223, 223, 223) !important;
+background-color: rgb(61, 61, 61);
+}
+
+.myheaders{
+    background: linear-gradient(0, rgba(25,91,111,1) 0%, rgba(34,165,223,1) 100%); 
+    color: white; 
+    border-radius: 0.5rem;
+}
+*{
+  text-transform: capitalize;
+}
+
+.button {
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.5em;
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   padding-right: 3.5em;
+  cursor: pointer;
+  
+}
+.button:before,
+.button:after {
+  position: absolute;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  font-size: inherit;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2.8em;
+  transition: 0.2s;
+  transform-origin: 50% 60%;
+  
+  /*  Uncomment below to set icon background color.  Set as black 
+in example with RGB opacity to  make it stand out a bit more.   */
+  
+  /*  background: rgba(0,0,0,0.10); */
+ 
+}
+/* Remarcar */
+
+.arrow {
+  background: #3c3b6e;
+}
+.arrow:hover {
+  background: #b22234;
+}
+.arrow:active,
+.arrow:focus {
+  background: #b22234;
+}
+/* Entity Icon   */
+.arrow:after {
+  content: "\2794";
+}
+/* Set Arrow Icon Bounce Animation   */
+.arrow:hover:after {
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+}
+
+/* Phone Button Markup  */
+
+.phone {
+  background: rgb(255, 255, 255);
+}
+.phone:hover {
+  background: rgb(173, 171, 171);
+}
+.phone:active{
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+}
+.phone:focus {
+  background: #fcfc4a;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+.select {
+  
+  background: #fcfc4a;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+  text-align: center;
+  align-items: center;
+  text-rendering: auto;
+  height: 3em;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px;
+  display: inline-block;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  /* padding: 0.8em 1.5em; */
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   /* padding-right: 9.5em; */
+  cursor: pointer;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+ol {
+  height: 23rem;
+  overflow:hidden; 
+  overflow-y:scroll;
+}
+
+.panel-cibers {
+  position: sticky;
+  top: 230px;
+}
+
+
+.conteo {
+  
+  background: #9696fd;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 0, 0);
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+  text-align: center;
+  text-rendering: auto;
+  height: 5vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px;
+  display: inline-block;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  /* Button is responsive to font size.*/  
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.5em;
+  border: none;
+  color: rgb(0, 0, 0);
+  transition: 0.2s;
+  text-decoration: none;
+  border: rgb(255, 255, 255) solid 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    /* Setting opacity so button isn't so bright.  Could use a filter. */  
+   opacity: 0.95;
+
+   padding-right: 9.5em;
+  cursor: pointer;
+  /* box-shadow: 0 0 0 2px white, 0 0 0 4px blue; */
+}
+
+/* Entity Icon   */
+
+/* Set Phone Icon Wiggle Animation   */
+/* .phone:hover:after {
+  -webkit-animation: wiggle 0.05s alternate ease infinite;
+  animation: wiggle 0.05s alternate ease infinite;
+} */
+
+/* Animations  */
+
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@-webkit-keyframes wiggle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(30deg);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}
+
+/* Demo Stuff  */
+
+
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  margin: 15px;
+}
+
+.contenedor{
+  margin: auto;
+  width: 110rem;
+  z-index: -1;
+}
+.contenidoprincipal{
+  width: 67%;
+  padding-left: 25px;
+}
+.navprincipal{
+  width: 30%;
+  z-index: 1000;
+}
+.navprincipal, .contenidoprincipal{
+  display: inline-block;
+  vertical-align: text-top;
+}
+@media screen and (min-width: 1500px) and (max-width: 5000px) { 
+  .navprincipal{
+    width: 5%;
+    z-index: 1000;
+    height: 100vh;
+    height: 100%;
+    position: relative;
+  }
+  .contenidoprincipal{
+    width: 92%;
+
+  }
+  .contenedor{
+    z-index: -1;
+  }
+}
+.estatic{
+position: sticky;
+top: 0px;
+z-index: 1;
+}
+
+/* Table */
+
+/*	
+	Table Responsive
+	===================
+	Author: https://github.com/pablorgarcia
+ */
+
+
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+ 
+ 
+ 
+ .Table_actas h1 {
+   font-size:3em; 
+   font-weight: 300;
+   line-height:1em;
+   text-align: center;
+   color: #4DC3FA;
+ }
+ 
+ .Table_actas h2 {
+   font-size:1em; 
+   font-weight: 300;
+   text-align: center;
+   display: block;
+   line-height:1em;
+   padding-bottom: 2em;
+   color: #FB667A;
+ }
+ 
+ .Table_actas h2 a {
+   font-weight: 700;
+   text-transform: uppercase;
+   color: #FB667A;
+   text-decoration: none;
+ }
+ 
+ .blue { color: #185875; }
+ .yellow { color: #FFF842; }
+ 
+ .container th h1 {
+  width: 100px;
+       font-weight: bold;
+       font-size: 1em;
+   text-align: left;
+   color: white;
+ }
+ 
+ .container td {
+       font-weight: normal;
+       font-size: 1em;
+   -webkit-box-shadow: 0 2px 2px -2px #fff;
+        -moz-box-shadow: 0 2px 2px -2px #fff;
+             box-shadow: 0 2px 2px -2px #fff;
+             color: #fff;
+ }
+ 
+ .container {
+       text-align: center;
+       overflow: hidden;
+       width: 110%;
+       height: 100px;
+       margin: 0 auto;
+   display: table;
+   padding: 0 0 8em 0;
+ }
+ 
+ .container td, .container th {
+       padding-bottom: 2%;
+       padding-top: 2%;
+   padding-left:2%;  
+ }
+ 
+ /* Background-color of the odd rows */
+ .container tr:nth-child(odd) {
+       background-color: #323C50;
+ }
+ 
+ /* Background-color of the even rows */
+ .container tr:nth-child(even) {
+       background-color: rgb(43, 54, 78);
+ }
+ 
+ .container th {
+       background-color: rgb(1, 8, 31);;
+ }
+ 
+ .container td:first-child { color: #FB667A; }
+ 
+ .container tr:hover {
+    background-color: #464A52;
+ -webkit-box-shadow: 0 6px 6px -6px #fff;
+        -moz-box-shadow: 0 6px 6px -6px #fff;
+             box-shadow: 0 6px 6px -6px #fff;
+ }
+ 
+ .container td:hover {
+   background-color: rgba(204,204,204,1) ;
+   color: #403E10;
+   font-weight: bold;
+   
+   box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+   transform: translate3d(6px, -6px, 0);
+   
+   transition-delay: 0s;
+       transition-duration: 0.4s;
+       transition-property: all;
+   transition-timing-function: line;
+ }
+ 
+ @media (max-width: 800px) {
+ .container td:nth-child(4),
+ .container th:nth-child(4) { display: none; }
+ }
+
+ 
+
+ .title {
+  text-align: center;
+  font-size: 80px;
+  font-weight: bold;
+  color: #000;
+  
+}
+/* 
+CONTEO */
+
+.container2 th h1 {
+  width: 100px;
+       font-weight: bold;
+       font-size: 1em;
+   text-align: left;
+   color: white;
+ }
+ 
+ .container2 td {
+       font-weight: normal;
+       font-size: 1em;
+   -webkit-box-shadow: 0 2px 2px -2px #fff;
+        -moz-box-shadow: 0 2px 2px -2px #fff;
+             box-shadow: 0 2px 2px -2px #fff;
+             color: #fff;
+ }
+ 
+ .container2 {
+       text-align: center;
+       overflow: hidden;
+       width: 110%;
+       height: 100px;
+       margin: 0 auto;
+   display: table;
+   padding: 0 0 8em 0;
+ }
+ 
+ .container2 td, .container th {
+       padding-bottom: 2%;
+       padding-top: 2%;
+   padding-left:2%;  
+ }
+ 
+ /* Background-color of the odd rows */
+ .container2 tr:nth-child(odd) {
+       background-color: #323C50;
+ }
+ 
+ /* Background-color of the even rows */
+ .container tr:nth-child(even) {
+       background-color: rgb(43, 54, 78);
+ }
+ 
+ .container2 th {
+       background-color: rgb(1, 8, 31);;
+ }
+ 
+ .container2 td{ color: #FB667A; }
+ .container2 .color_Disable {
+
+
+  color: #fff; 
+
+ }
+ 
+ .container2 tr:hover {
+    background-color: #464A52;
+ -webkit-box-shadow: 0 6px 6px -6px #fff;
+        -moz-box-shadow: 0 6px 6px -6px #fff;
+             box-shadow: 0 6px 6px -6px #fff;
+ }
+ 
+ .container2 td:hover {
+   background-color: rgba(204,204,204,1) ;
+   color: #403E10;
+   font-weight: bold;
+   
+   box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+   transform: translate3d(6px, -6px, 0);
+   
+   transition-delay: 0s;
+       transition-duration: 0.4s;
+       transition-property: all;
+   transition-timing-function: line;
+ }
+ 
+ @media (max-width: 800px) {
+ .container2 td:nth-child(4),
+ .container2 th:nth-child(4) { display: none; }
+ }

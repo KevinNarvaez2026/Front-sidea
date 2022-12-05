@@ -58,9 +58,15 @@ export class ActasService {
     reAsignarActa(id:any, provider:any, service:any){
       var token = this.localStorage.TokenDesencrypt();
       const headers = new HttpHeaders({ 'x-access-token': token! });
-      return this.http.put(api+"/api/actas/reg/transpose/"+id, { newciber: provider, service: service }, { headers });
+      return this.http.put(api+"/api/actas/reg/reassign/"+id, { newciber: provider, service: service }, { headers });
     }
-  
+    reAsignarActaID(folio:any,id:any){
+      console.log(folio+id);
+      
+      var token = this.localStorage.TokenDesencrypt();
+      const headers = new HttpHeaders({ 'x-access-token': token! });
+      return this.http.put(api+"/api/actas/reg/reassign/"+folio,{reassignId:id}, { headers });
+    }
     getImage(): Observable<Blob> {
       var token = this.localStorage.TokenDesencrypt();
       const headers = new HttpHeaders({ 'x-access-token': token! });

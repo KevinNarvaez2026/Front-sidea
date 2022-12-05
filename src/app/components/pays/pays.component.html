@@ -1,77 +1,457 @@
-<!-- <div class="myCard">
-    <div class="row">
-        <div class="ColTools">
-            <div class="MySearcher">
-                <div class="card text-center" style="background-color: rgb(49, 49, 49); color: white;">
-                    <div class="card-body">
-                        <div class="col">
-                            <div class="row">
-                                <label for="title">FILTRO</label>
-                            </div>
-                            <div class="row" style="padding: 1rem;">
-                                <div class="col">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                          Actual
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-dark">
-                                          <li><a class="dropdown-item active">Action</a></li>
-                                        </ul>
-                                      </div>
-                                </div>
-                                <div class="col">
-                                    <button class="btn btn-success">Exportar Excel</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon1">
-                                  </div>
-                            </div>
-                            <div class="row">
-                                <div class="">
-                                    <li class="list-group-item active" aria-current="true">CIBERS</li>
-                                    <ul class="list-group myListClients">
-                                            <li class="list-group-item">A second item</li>
-                                            <li class="list-group-item">A third item</li>
-                                            <li class="list-group-item">A fourth item</li>
-                                            <li class="list-group-item">And a fifth one</li>
-                                            <li class="list-group-item">A second item</li>
-                                            <li class="list-group-item">A third item</li>
-                                            <li class="list-group-item">A fourth item</li>
-                                            <li class="list-group-item">And a fifth one</li>
-                                            <li class="list-group-item">A second item</li>
-                                            <li class="list-group-item">A third item</li>
-                                            <li class="list-group-item">A fourth item</li>
-                                            <li class="list-group-item">And a fifth one</li>
-                                            <li class="list-group-item">A second item</li>
-                                            <li class="list-group-item">A third item</li>
-                                            <li class="list-group-item">A fourth item</li>
-                                            <li class="list-group-item">And a fifth one</li>
-                                            <li class="list-group-item">A third item</li>
-                                            <li class="list-group-item">A fourth item</li>
-                                            <li class="list-group-item">And a fifth one</li>
-                                            <li class="list-group-item">A third item</li>
-                                            <li class="list-group-item">A fourth item</li>
-                                            <li class="list-group-item">And a fifth one</li>
-                                      </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
+<div class="myCard">
+  <div class="row">
+    <div class="ColTools">
+      <div class="MySearcher">
+        <div
+          class="card text-center"
+          style="background-color: rgb(49, 49, 49); color: white"
+        >
+          <div class="card-body">
+            <div class="col">
+              <div class="row">
+                <label for="title">FILTRO</label>
+              </div>
+
+              <div class="dropdown align-middle" style="margin-top: 1em">
+                <div class="row">
+                  <div class="col">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton2"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {{
+                        fechaDeUsuarioSeleccionada ||
+                          "Selecciona las fechas a buscar"
+                      }}
+                    </button>
+
+                    <ul
+                      class="dropdown-menu dropdown-menu-dark"
+                      aria-labelledby="dropdownMenuButton2"
+                    >
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          style="cursor: pointer"
+                          *ngFor="let fechas of fechasParaBuscarClientes"
+                          (click)="getClientsByDateSelected(fechas.corte)"
+                          >{{ fechas.corte || "Actual" }}</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-success" (click)="exportExcel()">
+                      Exportar Excel
+                    </button>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="MyContainerPanel">
-                <div class="card" style="background-color: rgb(245, 241, 237);">
-                    <div class="card-body">
-                        <p>SELECCIONA UN CIBER</p>
-                        <p>Para Visualizar Detalles Debes De Seleccionar El Ciber/Cliente Primero.</p>
-                    </div>
+              </div>
+
+              <!-- <div class="row" style="padding: 1rem">
+                <div class="col">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Actual
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                      <li>
+                        <a
+                          class="dropdown-item active"
+                          *ngFor="let fechas of fechasParaBuscarClientes"
+                          (click)="getClientsByDateSelected(fechas.corte)"
+                          >{{ fechas.corte || "Actual" }}</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+                <div class="col">
+                  <button class="btn btn-success">Exportar Excel</button>
+                </div>
+              </div> -->
+              <br />
+              <div class="row">
+                <div class="input-group mb-3">
+                  <input
+                    [(ngModel)]="ciberSearch"
+                    type="text"
+                    class="form-control"
+                    placeholder="Buscar"
+                    aria-label="Buscar"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="">
+                  <li class="list-group-item active" aria-current="true">
+                    CIBERS
+                  </li>
+                  <ul class="list-group myListClients">
+                    <li
+                      class="list-group-item"
+                      style="cursor: pointer"
+                      *ngFor="
+                        let ciber of usuariosEnFecha | buscarciber : ciberSearch
+                      "
+                      (click)="getCorte(ciber.id, ciber.nombre)"
+                    >
+                      <div class="ms-2 me-auto">
+                        <button
+                          class="button phone"
+                          *ngIf="CiberSelect != ciber.nombre"
+                        >
+                          {{ ciber.nombre }}
+                        </button>
+                        <button
+                          class="select"
+                          *ngIf="CiberSelect === ciber.nombre"
+                        >
+                          {{ ciber.nombre }}
+                        </button>
+                        <!-- <button type="button" class="list-group-item list-group-item-action">{{ ciber.nombre }}</button> -->
+                        <!-- <div  class=" list-group-item-action">{{ ciber.nombre }}</div>  -->
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="col">
+      <div class="MyContainerPanel">
+        <div
+          class="card"
+          style="background-color: rgb(245, 241, 237)"
+          *ngIf="CiberSelect.length == 0"
+        >
+          <div class="card-body">
+            <p>SELECCIONA UN CIBER</p>
+            <p>
+              Para Visualizar Detalles Debes De Seleccionar El Ciber/Cliente
+              Primero.
+            </p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="title">
+            <h5 class="card-title" style="text-transform: uppercase">
+              {{ CiberSelect }}
+            </h5>
+          </div>
+
+          <!-- <span
+            *ngIf="CiberSelect.length != 0"
+            class="btn btn-success"
+            (click)="alert()"
+            >Descargar PNG</span
+          > -->
+          <button
+            *ngIf="CiberSelect.length != 0"
+            class="btn btn-success"
+            (click)="descargarexcelvista()"
+            (click)="alert2()"
+          >
+            Descargar Excel
+          </button>
+          <button
+            class="btn btn-success"
+            (click)="alert3()"
+            *ngIf="valordelobservable == 'ENVIADO'"
+          >
+            Por enviar
+          </button>
+          <div class="Table_actas" *ngIf="CiberSelect.length != 0">
+            <br />
+            <br />
+            <table class="container animate__animated animate__fadeInUp">
+              <thead>
+                <tr>
+                  <th><h1>#</h1></th>
+                  <th><h1>Documento</h1></th>
+                  <th><h1>Fecha</h1></th>
+                  <th><h1>Estado</h1></th>
+                  <th><h1>Nombres</h1></th>
+                  <th><h1>Curp</h1></th>
+
+                  <th><h1>Precio</h1></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let acta of corteDelUsuario
+                      | paginate : { itemsPerPage: 5, currentPage: page };
+                    let infexof = index
+                  "
+                >
+                  <td scope="row">{{ infexof + 1 }}</td>
+                  <td>{{ acta.document }}</td>
+                  <td>{{ acta.createdAt | ddMmYYYYDate }}</td>
+                  <td>{{ acta.state }}</td>
+                  <td>{{ acta.nameinside }}</td>
+                  <td>{{ acta.dataset }}</td>
+
+                  <td>{{ acta.price0 }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls
+              [(page)]="page"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+
+          <div class="Table_actas" *ngIf="CiberSelect.length != 0">
+            <div class="title">
+              <h4>&bull;Conteo&bull;</h4>
+              <h4>&mdash;&mdash;</h4>
+            </div>
+            <table class="container2 animate__animated animate__fadeInUp">
+              <thead>
+                <tr>
+                  <th><h1>Acta de Nacimiento</h1></th>
+                  <th><h1>Acta de Defunción</h1></th>
+                  <th><h1>Acta de Matrimonio</h1></th>
+                  <th><h1>Acta de Divorcio</h1></th>
+                  <th><h1>Semanas cotizadas</h1></th>
+                  <th><h1>NSS</h1></th>
+                  <th><h1>RFC</h1></th>
+                  <th><h1>Constacia de derechos</h1></th>
+                  <th><h1>Constacia de Inhabilitación</h1></th>
+                  <th><h1>Total de actas</h1></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="cursor: pointer">
+                  <td class="color_Disable" *ngIf="conteo_nacimiento == 0">
+                    {{ conteo_nacimiento }}
+                  </td>
+                  <td *ngIf="conteo_nacimiento != 0">
+                    {{ conteo_nacimiento }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_defuncion == 0">
+                    {{ conteo_defuncion }}
+                  </td>
+                  <td *ngIf="conteo_defuncion != 0">
+                    {{ conteo_defuncion }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_matrimonio == 0">
+                    {{ conteo_matrimonio }}
+                  </td>
+                  <td *ngIf="conteo_matrimonio != 0">
+                    {{ conteo_matrimonio }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_divorcio == 0">
+                    {{ conteo_divorcio }}
+                  </td>
+                  <td *ngIf="conteo_divorcio != 0">
+                    {{ conteo_divorcio }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_cot == 0">
+                    {{ conteo_cot }}
+                  </td>
+                  <td *ngIf="conteo_cot != 0">
+                    {{ conteo_cot }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_nss == 0">
+                    {{ conteo_nss }}
+                  </td>
+                  <td *ngIf="conteo_nss != 0">
+                    {{ conteo_nss }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_rfc == 0">
+                    {{ conteo_rfc }}
+                  </td>
+                  <td *ngIf="conteo_rfc != 0">
+                    {{ conteo_rfc }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_der == 0">
+                    {{ conteo_der }}
+                  </td>
+                  <td *ngIf="conteo_der != 0">
+                    {{ conteo_der }}
+                  </td>
+
+                  <td class="color_Disable" *ngIf="conteo_inh == 0">
+                    {{ conteo_inh }}
+                  </td>
+                  <td *ngIf="conteo_inh != 0">
+                    {{ conteo_inh }}
+                  </td>
+
+                  <td
+                    style="
+                      background-color: #D61C4E;
+                      color: #000;
+                      font-size: 1.2em;
+                      font-weight: bolder;
+                    "
+                  >
+                    {{ totalActas }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div *ngIf="excel">
+            <div
+              id="excel-table"
+              class="Table_actas"
+              *ngIf="CiberSelect.length != 0"
+            >
+              <br />
+              <br />
+              <table class="container animate__animated animate__fadeInUp">
+                <thead>
+                  <tr>
+                    <th><h1>#</h1></th>
+                    <th><h1>Documento</h1></th>
+                    <th><h1>Fecha</h1></th>
+                    <th><h1>Estado</h1></th>
+                    <th><h1>Nombres</h1></th>
+                    <th><h1>Curp</h1></th>
+
+                    <th><h1>Precio</h1></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let acta of corteDelUsuario; let infexof = index">
+                    <td scope="row">{{ infexof + 1 }}</td>
+                    <td>{{ acta.document }}</td>
+                    <td>{{ acta.createdAt }}</td>
+                    <td>{{ acta.state }}</td>
+                    <td>{{ acta.nameinside }}</td>
+                    <td>{{ acta.dataset }}</td>
+
+                    <td>{{ acta.price0 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="Table_actas">
+              <div class="title">
+                <h4>&bull;Conteo&bull;</h4>
+                <h4>&mdash;&mdash;</h4>
+              </div>
+              <table class="container animate__animated animate__fadeInUp">
+                <thead>
+                  <tr>
+                    <th><h1>Acta de Nacimiento</h1></th>
+                    <th><h1>Acta de Defunción</h1></th>
+                    <th><h1>Acta de Matrimonio</h1></th>
+                    <th><h1>Acta de Divorcio</h1></th>
+                    <th><h1>Semanas cotizadas</h1></th>
+                    <th><h1>NSS</h1></th>
+                    <th><h1>RFC</h1></th>
+                    <th><h1>Constacia de derechos</h1></th>
+                    <th><h1>Constacia de Inhabilitación</h1></th>
+                    <th><h1>Total de actas</h1></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="cursor: pointer">
+                    <td *ngIf="conteo_nacimiento == 0">
+                      {{ conteo_nacimiento }}
+                    </td>
+                    <td *ngIf="conteo_nacimiento != 0">
+                      {{ conteo_nacimiento }}
+                    </td>
+
+                    <td *ngIf="conteo_defuncion == 0">
+                      {{ conteo_defuncion }}
+                    </td>
+                    <td *ngIf="conteo_defuncion != 0">
+                      {{ conteo_defuncion }}
+                    </td>
+
+                    <td *ngIf="conteo_matrimonio == 0">
+                      {{ conteo_matrimonio }}
+                    </td>
+                    <td *ngIf="conteo_matrimonio != 0">
+                      {{ conteo_matrimonio }}
+                    </td>
+
+                    <td *ngIf="conteo_divorcio == 0">
+                      {{ conteo_divorcio }}
+                    </td>
+                    <td *ngIf="conteo_divorcio != 0">
+                      {{ conteo_divorcio }}
+                    </td>
+
+                    <td *ngIf="conteo_cot == 0">
+                      {{ conteo_cot }}
+                    </td>
+                    <td *ngIf="conteo_cot != 0">
+                      {{ conteo_cot }}
+                    </td>
+
+                    <td *ngIf="conteo_nss == 0">
+                      {{ conteo_nss }}
+                    </td>
+                    <td *ngIf="conteo_nss != 0">
+                      {{ conteo_nss }}
+                    </td>
+
+                    <td *ngIf="conteo_rfc == 0">
+                      {{ conteo_rfc }}
+                    </td>
+                    <td *ngIf="conteo_rfc != 0">
+                      {{ conteo_rfc }}
+                    </td>
+
+                    <td *ngIf="conteo_der == 0">
+                      {{ conteo_der }}
+                    </td>
+                    <td *ngIf="conteo_der != 0">
+                      {{ conteo_der }}
+                    </td>
+
+                    <td *ngIf="conteo_inh == 0">
+                      {{ conteo_inh }}
+                    </td>
+                    <td *ngIf="conteo_inh != 0">
+                      {{ conteo_inh }}
+                    </td>
+
+                    <td
+                      style="
+                        background-color: #D61C4E;
+                        color: #000;
+                        font-size: 1.2em;
+                        font-weight: bolder;
+                      ">
+                      {{ totalActas }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
- -->
