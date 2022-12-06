@@ -17,6 +17,8 @@ export class DatabaseService {
   }
 
   getAllProviders(rol:string){
+    console.log(rol);
+    
     return this.httpClient.get(api+'/api/user/getMySuperviser/'+rol);
   }
 

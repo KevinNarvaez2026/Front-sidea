@@ -406,6 +406,8 @@ export class EditarpreciosComponent implements OnInit {
   selectProvider(provider: string) {
     if (this.responsableSearch != "") {
       this.newResponsable = provider;
+      
+      
     }
   }
   selectProvidertable(provider: string) {
@@ -420,6 +422,8 @@ export class EditarpreciosComponent implements OnInit {
 
     if (this.newRol != "") {
       const providers = await this.database.getAllProviders(this.newRol).toPromise();
+      console.log(providers);
+      
       if (providers) {
         this.providers = providers;
       }

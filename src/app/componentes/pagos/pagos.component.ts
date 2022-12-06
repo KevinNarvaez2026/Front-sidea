@@ -5,13 +5,22 @@ import * as CryptoJS from 'crypto-js';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { distinctUntilChanged, Observable } from 'rxjs';
-import { GridApi, GridReadyEvent, RowSpanParams, ValueGetterFunc, ValueGetterParams } from 'ag-grid-community';
+import {
+  GridApi,
+  GridReadyEvent,
+  RowSpanParams,
+  ValueGetterFunc,
+  ValueGetterParams,
+} from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
-import { faArrowRightFromBracket, faL } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowRightFromBracket,
+  faL,
+} from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
-import * as XLSX from 'xlsx'
+import * as XLSX from 'xlsx';
 import Swal from 'sweetalert2';
 import { AdminService } from 'src/app/servicios/admin.service';
 import { LocalstorageService } from 'src/app/servicios/localstorage/localstorage.service';
@@ -23,14 +32,11 @@ declare function closeAlert(): any;
 declare function loadedData(): any;
 
 @Component({
-
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
-  styleUrls: ['./pagos.component.css']
+  styleUrls: ['./pagos.component.css'],
 })
-
 export class PagosComponent implements OnInit {
-
   date = new Date();
   @ViewChild('screen') screen!: ElementRef;
   @ViewChild('canvas') canvas!: ElementRef;
@@ -43,8 +49,8 @@ export class PagosComponent implements OnInit {
   tipos: any = [];
   getcortes: any;
   page: number = 0;
-  usuario: any = "Usuario";
-  username: string = "";
+  usuario: any = 'Usuario';
+  username: string = '';
   totalPrecio: number = 0;
   totalActas: number = 0;
   faArrowRightFromBracket = faArrowRightFromBracket;
@@ -60,11 +66,11 @@ export class PagosComponent implements OnInit {
   porEnviar: boolean = false;
   faRobot = faRobot;
   fechasParaBuscarClientes: any;
-  usernameLocal: string = "";
+  usernameLocal: string = '';
   public rowData!: any[];
   public pinnedBottomRowData!: any[];
   //Tabla
-  ciberSearch: string = "";
+  ciberSearch: string = '';
   //TABLE
   Cibers: any;
   CiberSelect: any = [];
@@ -92,7 +98,7 @@ export class PagosComponent implements OnInit {
   conteo_total: number = 0;
   valordelobservable: any;
   //TABLE
-  corteSeleccionado: string = "Seleccionar corte";
+  corteSeleccionado: string = 'Seleccionar corte';
   //Variable de Rol
   myRol: any;
   //Variable fechaDeUsuarioSeleccionada
@@ -105,7 +111,8 @@ export class PagosComponent implements OnInit {
   indexOfItems: any;
   data$!: Observable<String>;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private restservice: RestService,
     private http: HttpClient,
     private database: DatabaseService,
@@ -113,20 +120,19 @@ export class PagosComponent implements OnInit {
     private localstorage: LocalstorageService
   ) {
     this.data$ = adminService.getSelect;
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
+    var usuario = CryptoJS.AES.decrypt(
+      localStorage.getItem('іди') || '{}',
+      'іди'
+    );
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
   }
-
-
 
   async getAllDates() {
     await this.database.getAllDate_propio().subscribe((data: any) => {
       this.fechasParaBuscarClientes = data;
       console.log(data);
-      
     });
-
   }
 
   exportExcel() {
@@ -136,11 +142,10 @@ export class PagosComponent implements OnInit {
     XLSX.writeFile(workBook, 'Clientes.xlsx');
   }
 
-
   //DESINCRIPTAMOS EL TOKEN PARA OBTENER LOS DATOS Y EL ROL
   async descry() {
-    var idlocal = localStorage.getItem("іди");
-    var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
+    var idlocal = localStorage.getItem('іди');
+    var i = CryptoJS.AES.decrypt(idlocal || '{}', 'іди');
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
     const data: any = await this.database.getmydata(id).toPromise();
@@ -151,18 +156,18 @@ export class PagosComponent implements OnInit {
     this.excel = !this.excel;
   }
 
-
   ClienteVista() {
     if (this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
       this.MyrolCliente = !this.MyrolCliente;
     }
   }
   ExportExcel2(): void {
-
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+    var usuario = CryptoJS.AES.decrypt(
+      localStorage.getItem('Імякористувача') || '{}',
+      'Імякористувача'
+    );
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
-
 
     /*PASAMOS EL ID DE L TABLA PARA PPSTERIORMENTE MANDARLO A LA BASE DE DATOS*/
     let element = document.getElementById('excel-table');
@@ -174,7 +179,7 @@ export class PagosComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Corte');
 
     /* save to file */
-    XLSX.writeFile(wb, "Pagos-" + arreglo[1] + ".xlsx");
+    XLSX.writeFile(wb, 'Pagos-' + arreglo[1] + '.xlsx');
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -182,15 +187,16 @@ export class PagosComponent implements OnInit {
       showConfirmButton: true,
 
       //timer: 1500
-    })
+    });
 
     this.reloadCurrentRoute();
   }
 
-
-
   exportexcel(): void {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+    var usuario = CryptoJS.AES.decrypt(
+      localStorage.getItem('Імякористувача') || '{}',
+      'Імякористувача'
+    );
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
 
@@ -205,7 +211,7 @@ export class PagosComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Corte');
 
     /* Exportamos a excel */
-    XLSX.writeFile(wb, "Pagos-" + this.CiberSelect + ".xlsx");
+    XLSX.writeFile(wb, 'Pagos-' + this.CiberSelect + '.xlsx');
     /*     Swal.fire({
           position: 'center',
           icon: 'success',
@@ -242,54 +248,53 @@ export class PagosComponent implements OnInit {
     closeAlert();
     if (this.corteDelUsuario.length <= 10) {
       loader();
-      await html2canvas(this.screen.nativeElement).then(canvas => {
+      await html2canvas(this.screen.nativeElement).then((canvas) => {
         this.canvas.nativeElement.src = canvas.toDataURL();
         this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
-        this.downloadLink.nativeElement.download = 'Corte -' + this.CiberSelect + ' .png';
+        this.downloadLink.nativeElement.download =
+          'Corte -' + this.CiberSelect + ' .png';
         this.downloadLink.nativeElement.click();
         closeAlert();
-        this.getCorte(this.ciberidselect, this.CiberSelect)
+        this.getCorte(this.ciberidselect, this.CiberSelect);
         this.paginacion = false;
       });
-    }
-    else if ((this.corteDelUsuario.length > 10)) {
+    } else if (this.corteDelUsuario.length > 10) {
       Swal.fire({
         title: 'Aviso',
-        text: "Tienes mas de 10 elementos, ¿Deseas descargarlo por partes?",
+        text: 'Tienes mas de 10 elementos, ¿Deseas descargarlo por partes?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si',
-        cancelButtonText: 'No, en una sola imagen'
+        cancelButtonText: 'No, en una sola imagen',
       }).then(async (result) => {
         if (result.isConfirmed) {
           loader();
-          this.paginacionCorte().then(data => {
-            this.getCorte(this.ciberidselect, this.CiberSelect)
-            this.paginacion = false;
-            closeAlert();
-          }).catch(err => {
-            this.paginacion = false;
-          });
-        }
-        else {
+          this.paginacionCorte()
+            .then((data) => {
+              this.getCorte(this.ciberidselect, this.CiberSelect);
+              this.paginacion = false;
+              closeAlert();
+            })
+            .catch((err) => {
+              this.paginacion = false;
+            });
+        } else {
           loader();
           this.paginacion = false;
-          await html2canvas(this.screen.nativeElement).then(canvas => {
+          await html2canvas(this.screen.nativeElement).then((canvas) => {
             this.canvas.nativeElement.src = canvas.toDataURL();
-            this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
-            this.downloadLink.nativeElement.download = 'Corte -' + this.CiberSelect + ' .png';
+            this.downloadLink.nativeElement.href =
+              canvas.toDataURL('image/png');
+            this.downloadLink.nativeElement.download =
+              'Corte -' + this.CiberSelect + ' .png';
             this.downloadLink.nativeElement.click();
             closeAlert();
-            this.getCorte(this.ciberidselect, this.CiberSelect)
-
+            this.getCorte(this.ciberidselect, this.CiberSelect);
           });
         }
-
-
-      })
-
+      });
     }
   }
   async paginacionCorte() {
@@ -313,9 +318,8 @@ export class PagosComponent implements OnInit {
       this.indexOfItems = [];
       for (let b = 0; b < this.itemPerPage; b++) {
         if (currentPageData[currentPageData.length - 1] != undefined) {
-
           pageData.push(currentPageData[currentPageData.length - 1]);
-          currentPageData.pop()
+          currentPageData.pop();
           index += 1;
           indexes.push(index);
         }
@@ -323,32 +327,36 @@ export class PagosComponent implements OnInit {
 
       this.indexOfItems.push(indexes);
       this.items = await pageData;
-      await html2canvas(this.screen.nativeElement).then(canvas => {
+      await html2canvas(this.screen.nativeElement).then((canvas) => {
         if (this.paginacion == true && a > 0) {
           this.canvas.nativeElement.src = canvas.toDataURL();
           this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
           let pagina = a;
-          this.downloadLink.nativeElement.download = 'Corte -' + this.CiberSelect + '-Pag:' + pagina + '-' + pages + ' .png';
+          this.downloadLink.nativeElement.download =
+            'Corte -' +
+            this.CiberSelect +
+            '-Pag:' +
+            pagina +
+            '-' +
+            pages +
+            ' .png';
           this.downloadLink.nativeElement.click();
         }
       });
     }
     this.corteDelUsuario = backup;
     this.indexOfItems = [];
-
   }
 
   alert() {
     this.downloadCorte();
   }
 
-
-
   alert3() {
     Swal.fire({
       position: 'center',
       icon: 'warning',
-      title: 'Por enviar',//'Corte de ' + this.CiberSelect + ' descargado',
+      title: 'Por enviar', //'Corte de ' + this.CiberSelect + ' descargado',
       text: '¿Deseas regresar al apartado "Por Enviar"?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -356,51 +364,50 @@ export class PagosComponent implements OnInit {
       confirmButtonText: 'Si',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Se regresó a "Por Enviar"'
-        )
+        Swal.fire('Se regresó a "Por Enviar"');
         //Estatus a enviado
-        let date: string = "";
-        if (this.corteSeleccionado == "Actual") {
-          date = "null";
-        }
-        else {
+        let date: string = '';
+        if (this.corteSeleccionado == 'Actual') {
+          date = 'null';
+        } else {
           date = this.corteSeleccionado;
         }
-        await this.adminService.cambiarstatus(this.ciberidselect, date, false).toPromise();
+        await this.adminService
+          .cambiarstatus(this.ciberidselect, date, false)
+          .toPromise();
         this.reloadCurrentRoute();
       }
-    })
+    });
   }
 
   async setCorte(fecha: any) {
     for (let i = 0; i < this.corteDelUsuario.length; i++) {
       switch (this.corteDelUsuario[i].document) {
-        case "Asignación de Número de Seguridad Social":
+        case 'Asignación de Número de Seguridad Social':
           this.conteo_nss += 1;
           break;
-        case "Acta de Defunción":
+        case 'Acta de Defunción':
           this.conteo_defuncion += 1;
           break;
-        case "Acta de Nacimiento":
+        case 'Acta de Nacimiento':
           this.conteo_nacimiento += 1;
           break;
-        case "Acta de Matrimonio":
+        case 'Acta de Matrimonio':
           this.conteo_matrimonio += 1;
           break;
-        case "Acta de Divorcio":
+        case 'Acta de Divorcio':
           this.conteo_divorcio += 1;
           break;
-        case "Constancia de Vigencia de Derechos":
+        case 'Constancia de Vigencia de Derechos':
           this.conteo_der += 1;
           break;
-        case "Constancia de Semanas Cotizadas en el IMSS":
+        case 'Constancia de Semanas Cotizadas en el IMSS':
           this.conteo_cot += 1;
           break;
-        case "Registro Federal de Contribuyentes":
+        case 'Registro Federal de Contribuyentes':
           this.conteo_rfc += 1;
           break;
-        case "CONSTANCIA DE NO INHABILITACIÓN":
+        case 'CONSTANCIA DE NO INHABILITACIÓN':
           this.conteo_inh += 1;
           break;
         default:
@@ -423,7 +430,7 @@ export class PagosComponent implements OnInit {
     this.conteo_inh = 0;
     this.conteo_total = 0;
     this.Corte = [];
-    this.corteSeleccionado = "Seleccionar corte";
+    this.corteSeleccionado = 'Seleccionar corte';
     this.CiberSelect = nombre;
     this.ciberidselect = id;
     this.TotalCorte = 0;
@@ -442,26 +449,21 @@ export class PagosComponent implements OnInit {
     // this.total = data["total"];
     // this.NumerodeActas = data;
     let date: any = this.fechaDeUsuarioSeleccionada;
-    if (this.fechaDeUsuarioSeleccionada == "Actual") {
+    if (this.fechaDeUsuarioSeleccionada == 'Actual') {
       date = null;
     }
 
-
-
-    this.adminService.Select_corte(this.ciberidselect,date).subscribe((data: any) => {
-      this.corteDelUsuario = data;
+    this.adminService.Select_corte(this.ciberidselect, date).subscribe(
+      (data: any) => {
+        this.corteDelUsuario = data;
         console.log(data);
-        
 
-
-
-      this.precioTotal();
-      this.setCorte(0);
-      loadedData();
-    }, (err: any) => {
-
-    });
-
+        this.precioTotal();
+        this.setCorte(0);
+        loadedData();
+      },
+      (err: any) => {}
+    );
   }
 
   //PRECIO TOTAL
@@ -477,28 +479,30 @@ export class PagosComponent implements OnInit {
     this.totalActas = addActas;
   }
 
-
   //CAMBIO DEL FILTRO CON EL TOKEN Y USUARIO PARA OPTENER TOLOS LOS CLIENTES
   async changeFilter(filter: any) {
-
     if (filter == 1 && this.filter1 == false) {
       this.filter1 = true;
       this.filter2 = false;
-      var usuario = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
+      var usuario = CryptoJS.AES.decrypt(
+        localStorage.getItem('іди') || '{}',
+        'іди'
+      );
       let userName = usuario.toString(CryptoJS.enc.Utf8);
       let arreglo = userName.split('"');
-      let users: any = await this.database.getAllClients(arreglo[1]).toPromise();
+      let users: any = await this.database
+        .getAllClients(arreglo[1])
+        .toPromise();
       let enterprises: any = [];
       users!.forEach((element: any) => {
         enterprises.push(element.enterprise);
       });
       this.Cibers = enterprises;
-    }
-    else if (filter == 2 && this.filter2 == false) {
+    } else if (filter == 2 && this.filter2 == false) {
       this.filter2 = true;
       this.filter1 = false;
-      var idlocal = localStorage.getItem("іди");
-      var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
+      var idlocal = localStorage.getItem('іди');
+      var i = CryptoJS.AES.decrypt(idlocal || '{}', 'іди');
       var id: any = i.toString(CryptoJS.enc.Utf8);
       const users: any = await this.database.getAllUsers(id).toPromise();
       let enterprises: any = [];
@@ -514,71 +518,45 @@ export class PagosComponent implements OnInit {
     let token = this.localstorage.TokenDesencrypt();
 
     if (this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
-
       this.getAllDates();
       this.getClientsByDateSelected(null);
 
       if (!token) {
         this.router.navigateByUrl('/login');
       }
-    }
-    else {
+    } else {
       this.router.navigateByUrl('/inicio');
     }
   }
-//CORTE GENERAL, ME TARE USUARIOS
+  //CORTE GENERAL, ME TARE USUARIOS
   async getClientsByDateSelected(date: any) {
     this.fechaDeUsuarioSeleccionada = date;
     this.CiberSelect = [];
-    
-      
 
     loader();
 
     if (date == null) {
-      this.fechaDeUsuarioSeleccionada = "Actual";
+      this.fechaDeUsuarioSeleccionada = 'Actual';
     }
 
-    this.adminService.getCorteByUserForDates(date).subscribe((data: any) => {
-      closeAlert();
-      this.usuariosEnFecha = data;
-    },
+    this.adminService.getCorteByUserForDates(date).subscribe(
+      (data: any) => {
+        closeAlert();
+        this.usuariosEnFecha = data;
+      },
       (error: any) => {
         closeAlert();
         console.log(error);
-      });
+      }
+    );
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //EXPORTAR EL CORTE 
+  //EXPORTAR EL CORTE
   onBtnExport() {
-    var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+    var usuario = CryptoJS.AES.decrypt(
+      localStorage.getItem('Імякористувача') || '{}',
+      'Імякористувача'
+    );
     let userName = usuario.toString(CryptoJS.enc.Utf8);
     let arreglo = userName.split('"');
     this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' });
@@ -586,14 +564,21 @@ export class PagosComponent implements OnInit {
 
   //SE OPTIENE EL TOKEN Y TRAE EL CLIENTE ACUTAL CON EL PRECIO TOTAL
   async requestData() {
-    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var i = CryptoJS.AES.decrypt(
+      localStorage.getItem('привіт') || '{}',
+      'привіт'
+    );
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
     const data: any = await this.http
-      .get<any[]>('https://actasalinstante.com:3030/api/actas/ClientsActuals/', { headers }).toPromise();
+      .get<any[]>(
+        'https://actasalinstante.com:3030/api/actas/ClientsActuals/',
+        { headers }
+      )
+      .toPromise();
     this.rowData = data;
     this.precioTotal();
   }
@@ -601,28 +586,22 @@ export class PagosComponent implements OnInit {
   getTodos() {
     this.data$.pipe(distinctUntilChanged()).subscribe(async (Data: any) => {
       let datos: any;
-      if (Data === "POR ENVIAR") {
+      if (Data === 'POR ENVIAR') {
         datos = await this.adminService.porenviar().toPromise();
-
-      }
-      else {
+      } else {
         datos = await this.adminService.enviado().toPromise();
       }
-      this.CiberSelect = "";
+      this.CiberSelect = '';
       this.valordelobservable = Data;
       this.rowData = datos;
     });
   }
 
-
-
-
-
   createData() {
     var result = [];
     result.push({
       enterprise: 'Actas: ' + this.totalActas,
-      price: 'Total: ' + this.totalPrecio
+      price: 'Total: ' + this.totalPrecio,
     });
     return result;
   }
@@ -630,7 +609,10 @@ export class PagosComponent implements OnInit {
   async getcorte() {
     if (localStorage.getItem('привіт') != null) {
       if (localStorage.getItem('Імякористувача') != null) {
-        var usuario = CryptoJS.AES.decrypt(localStorage.getItem('Імякористувача') || '{}', "Імякористувача");
+        var usuario = CryptoJS.AES.decrypt(
+          localStorage.getItem('Імякористувача') || '{}',
+          'Імякористувача'
+        );
         let userName = usuario.toString(CryptoJS.enc.Utf8);
         let arreglo = userName.split('"');
         this.rowData = await this.restservice.getcorte().toPromise();
@@ -638,11 +620,10 @@ export class PagosComponent implements OnInit {
     }
   }
 
-  //FILTRO DE ENTERPRISE 
+  //FILTRO DE ENTERPRISE
   async noRepeatData() {
     let enterprises: any[] = [];
-    let enter = this.rowData.filter((item, index) => {
-    });
+    let enter = this.rowData.filter((item, index) => {});
     this.Cibers = enter;
   }
 }

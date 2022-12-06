@@ -57,7 +57,18 @@ export class HomeComponent implements OnInit {
   GiveMeAllRobots(){
     this.robots.GetAllRobots().subscribe(data => {
       this.robothandle = data;
+      console.log(this.robothandle);
+      
     });
+  }
+  GiveSIDRobots(){
+
+    this.robots.GetRobots_SID().subscribe(data => {
+      this.robothandle = data;
+      console.log(this.robothandle);
+      
+    });
+
   }
 
   GiveMeCaptcha() {
@@ -112,7 +123,7 @@ export class HomeComponent implements OnInit {
 
         break;
       case "on":
-        this.robots.UpNewInstruction(this.instruction[0], this.instruction[1].name).subscribe(data => {
+        this.robots.UpNewInstruction( this.instruction[0],this.instruction[1].name).subscribe(data => {
           console.log(data);
           this.instruction = [];
           document.getElementById("modal")?.setAttribute("style", "display: none;");
@@ -122,17 +133,19 @@ export class HomeComponent implements OnInit {
           this.auth.Unauth();
         });
         break;
-      case "changeAccessToken":
-        this.robots.UpNewInstruction(`${this.instruction[0]}=${this.NewAccessToken}`, this.instruction[1].name).subscribe(data => {
-          this.instruction = [];
-          this.NewAccessToken = "";
-          document.getElementById("modal")?.setAttribute("style", "display: none;");
-          document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");  
-          this.GiveMeAllRobots();      
-        }, err => {
-          this.auth.Unauth();
-        });
-        break;
+
+        case "changeAccessToken":
+          this.robots.UpNewInstruction(`${this.instruction[0]}=${this.NewAccessToken}`, this.instruction[1].name).subscribe(data => {
+            this.instruction = [];
+            this.NewAccessToken = "";
+            document.getElementById("modal")?.setAttribute("style", "display: none;");
+            document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");  
+            this.GiveMeAllRobots();      
+          }, err => {
+            this.auth.Unauth();
+          });
+          break;
+      
     }
   }
 
