@@ -164,18 +164,17 @@
                         </div>
 
                         <div
-                            *ngIf="myRol == 'Supervisor'  && req.url != null && req.comments == 'Enviado' || id == '1500'  && req.url != null && req.comments == 'Enviado' || id == '1585'  && req.url != null && req.comments == 'Enviado'  || myRol == 'Admin' && req.url != null && req.comments == 'Enviado'">
-                            <div *ngIf="req.idtranspose == null"  class="row"
-                                style="margin-top: 0.5em;">
-                                <a class="btn btn-primary">
-                                    <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
-                                    &nbsp;Re-Asignar Acta
-                                </a>
+                        *ngIf="myRol == 'Supervisor'  && req.url != null && req.comments == 'Descargado' || id == '1500'  && req.url != null && req.comments == 'Descargado' || id == '1585'  && req.url != null && req.comments == 'Enviado'  || myRol == 'Admin' && req.url != null && req.comments == 'Descargado'">
+                        <div *ngIf="req.idtranspose == null" (click)="obtainAllUsers(req.id)" class="row" style="margin-top: 0.5em;">
+                            <a class="btn btn-primary">
+                                <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
+                                &nbsp;Re-Asignar Acta
+                            </a>
                             </div>
-
-
-                            <div *ngIf="req.idtranspose != null" class="row"
-                                style="margin-top: 0.5em;">
+    
+    
+                            <div *ngIf="req.idtranspose != null" (click)="obtainAllUsers(req.id)" class="row"
+                                style="margin-top: 1em;">
                                 <a class="btn btn-secondary">
                                     <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
                                     &nbsp;Acta Asignada
@@ -278,4 +277,49 @@
 
 
 
+</div>
+<div *ngIf="switchTranspose" class="animate__animated animate__fadeIn"
+    style="width: 100%; height: 100%;  z-index: 5000;  background-color: #2121217a; position: fixed; top: 0px;">
+    <div class="card"
+        style="width: 50%; margin: auto; margin-top: 15%; position: sticky !important; top: 10px !important;">
+        <div class="card-header" style="background-color: #478edf;">
+
+            <div class="row">
+                <div class="col">
+                    <div style="color: white; margin-left: 10rem; text-align: center;">
+                        Re-Asignar Acta
+                    </div>
+
+
+                </div>
+
+                <div class="col-2" style="text-align: right;">
+                    <a (click)="obtainAllUsers(0)" class="btn btn-danger">
+                        Cerrar
+                    </a>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="valorabuscartranspose" name="valorabuscartranspose"
+                    placeholder="Nuevo Ciber">
+            </div>
+
+            <div *ngIf="valorabuscartranspose.length > 0 "
+                style=" overflow: hidden; overflow-y: scroll; height: 30rem;">
+                <li class="list-group-item active" aria-current="true">Resultados:</li>
+                <li *ngFor="let user of allUsers | buscarciber: valorabuscartranspose" class="list-group-item"
+                    style="cursor: pointer;" (click)="reAsignarActas(user.id)">{{ user.nombre }} - {{ user.rol }}</li>
+            </div>
+
+        </div>
+
+    </div>
 </div>
