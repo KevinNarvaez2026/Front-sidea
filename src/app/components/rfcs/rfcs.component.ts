@@ -16,6 +16,8 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { RfcService } from 'src/app/servicios/RFC/rfc.service';
+import { Router } from '@angular/router';
 //JS
 declare function LoaderModal():any;
 declare function closeAlert():any;
@@ -52,8 +54,11 @@ export class RfcsComponent implements OnInit {
   dateSelect:any;
   //Views
   view:number = 0;
-
-  constructor(private req:RequestsService, private auth: AuthService) {
+  switchTranspose:boolean = false;
+  newTranspose:any;
+  allUsers:any;
+  valorabuscartranspose:string = "";
+  constructor(private router: Router,  private rfcservice: RfcService, private req:RequestsService, private auth: AuthService) {
     auth.GetMyData.subscribe(data => {
       this.myRol = data.rol;
       this.id = data.id.toString();
@@ -63,6 +68,44 @@ export class RfcsComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  
+  reAsignarActas(idProvider:any){
+    this.switchTranspose = false;
+    this.rfcservice.reAsignarActa(this.newTranspose, idProvider, "rfc").subscribe((data:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'success',
+          title: 'Re-Asignado',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+
+      this.reloadCurrentRoute();
+    }, (error:any) => {
+      Swal.fire(
+        {
+          position: 'center',
+          icon: 'error',
+          title: 'Contacte al equipo de soporte',
+          showConfirmButton: false,
+          timer: 1500
+        }
+      );
+      this.reloadCurrentRoute();
+    });
+
+
+  }
+  //RECARGAMOS LA PAGINA POR SI MISMA
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
 
   //Views
   switcheableView(i: number) {
@@ -80,6 +123,25 @@ export class RfcsComponent implements OnInit {
         this.view = 0;
         break;
     }
+  }
+  obtainAllUsers(id:any) {
+    //getuser
+    this.switchTranspose = !this.switchTranspose;
+
+
+    if (this.switchTranspose == true) {
+      this.newTranspose = id;
+
+
+      this.rfcservice.getuser().subscribe((data: any) =>  {
+        this.allUsers = data;
+
+      });
+    }
+    else{
+      this.allUsers = [];
+    }
+
   }
 
 
