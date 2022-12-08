@@ -26,7 +26,7 @@ export class RobotsService {
 
     let token = this.local.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.get(api+"/api/robotsUsage/get/all", { headers });
+    return this.http.get(api+"/api/robotsUsage/get/all/", { headers });
 
 
   }

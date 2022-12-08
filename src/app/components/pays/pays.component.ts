@@ -51,11 +51,12 @@ export class PaysComponent implements OnInit {
   ids: any = [];
   tipos: any = [];
   getcortes: any;
-  page: number = 0;
+  page: number = 1;
   usuario: any = 'Usuario';
   username: string = '';
-  usuario_Mycorte:any;
+  usuario_Mycorte: any;
   totalPrecio: number = 0;
+  totalPrecio_mycut: number = 0;
   totalActas: number = 0;
   faArrowRightFromBracket = faArrowRightFromBracket;
   private gridApi!: GridApi;
@@ -138,8 +139,7 @@ export class PaysComponent implements OnInit {
   async getAllDates() {
     await this.database.getAllDates().subscribe((data: any) => {
       this.fechasParaBuscarClientes = data;
-    
-     
+
       // this.getCorte_personal(this.fechasParaBuscarClientes);
       // console.log(data);
     });
@@ -148,7 +148,6 @@ export class PaysComponent implements OnInit {
   async Getdates_General() {
     await this.database.getAllDate_propio().subscribe((data: any) => {
       this.fechasParaBuscarClientes = data;
-   
 
       // this.getCorte_personal(this.fechasParaBuscarClientes);
       // console.log(data);
@@ -172,7 +171,6 @@ export class PaysComponent implements OnInit {
     this.myRol = data.data.rol;
     this.usuario_Mycorte = data.data.username;
     //console.log(data.data.username);
-    
   }
 
   descargarexcelvista() {
@@ -185,6 +183,7 @@ export class PaysComponent implements OnInit {
     }
   }
   ExportExcel2(): void {
+  
     var usuario = CryptoJS.AES.decrypt(
       localStorage.getItem('Імякористувача') || '{}',
       'Імякористувача'
@@ -215,34 +214,34 @@ export class PaysComponent implements OnInit {
     this.reloadCurrentRoute();
   }
 
-  exportexcel(): void {
-    var usuario = CryptoJS.AES.decrypt(
-      localStorage.getItem('Імякористувача') || '{}',
-      'Імякористувача'
-    );
-    let userName = usuario.toString(CryptoJS.enc.Utf8);
-    let arreglo = userName.split('"');
+  // exportexcel(): void {
+  //   var usuario = CryptoJS.AES.decrypt(
+  //     localStorage.getItem('Імякористувача') || '{}',
+  //     'Імякористувача'
+  //   );
+  //   let userName = usuario.toString(CryptoJS.enc.Utf8);
+  //   let arreglo = userName.split('"');
 
-    // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' }) Esta funcion permite exporytar a excel;
+  //   // this.gridApi.exportDataAsCsv({ fileName: 'Corte-' + arreglo[1] + '.csv' }) Esta funcion permite exporytar a excel;
 
-    /* Pasamos el id de la tabla de registros */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+  //   /* Pasamos el id de la tabla de registros */
+  //   let element = document.getElementById('excel-table');
+  //   const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    /* genera el excel y agregra los elementos de la tabla */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Corte');
+  //   /* genera el excel y agregra los elementos de la tabla */
+  //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, 'Corte');
 
-    /* Exportamos a excel */
-    XLSX.writeFile(wb, 'Pagos-' + this.CiberSelect + '.xlsx');
-    /*     Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Corte de ' + arreglo[1] + ' descargado',
-          showConfirmButton: false,
-          timer: 1500
-        }) */
-  }
+  //   /* Exportamos a excel */
+  //   XLSX.writeFile(wb, 'Pagos-' + this.CiberSelect + '.xlsx');
+  //   /*     Swal.fire({
+  //         position: 'center',
+  //         icon: 'success',
+  //         title: 'Corte de ' + arreglo[1] + ' descargado',
+  //         showConfirmButton: false,
+  //         timer: 1500
+  //       }) */
+  // }
 
   Downloadexcel() {
     this.ExportExcel2();
@@ -267,25 +266,22 @@ export class PaysComponent implements OnInit {
       console.log('Personal');
       this.getAllDates();
       this.getCorte_personal(null);
- 
     } else {
-
-      
       console.log('General');
       this.Getdates_General();
 
-      this.getCorte(this.ciberidselect,null);
+      this.getCorte(this.ciberidselect, null);
       this.select = undefined;
 
       closeAlert();
       console.log(this.vista);
-
     }
 
     this.vista = !this.vista;
   }
 
   reloadCurrentRoute() {
+    closeAlert();
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
@@ -465,7 +461,6 @@ export class PaysComponent implements OnInit {
   }
   //SE OBTIENE EL CORTE CON EL CIBER
   async getCorte_personal(dates: any) {
-
     this.corteDelUsuario = [];
     this.conteo_nacimiento = 0;
     this.conteo_defuncion = 0;
@@ -481,7 +476,7 @@ export class PaysComponent implements OnInit {
     this.corteSeleccionado = 'Seleccionar corte';
 
     this.TotalCorte = 0;
-    this.page = 0;
+    this.page = 1;
     // this.fechas = await this.database.Obtenerfechas(id).toPromise();
     // const data: any = await this.restservice.GetActasNumber(id).toPromise();
 
@@ -500,7 +495,7 @@ export class PaysComponent implements OnInit {
       date = null;
     }
     loader();
-  
+
     this.adminService.getCorteByUserForDate(date).subscribe(
       (data: any) => {
         closeAlert();
@@ -508,9 +503,9 @@ export class PaysComponent implements OnInit {
         console.log(data);
 
         this.precioTotal();
+        this.precioTotal_Mycorte();
         this.setCorte(0);
         loadedData();
-     
       },
       (err: any) => {}
     );
@@ -518,7 +513,6 @@ export class PaysComponent implements OnInit {
 
   //SE OBTIENE EL CORTE CON EL CIBER
   async getCorte(id: any, nombre: any) {
-    
     this.corteDelUsuario = [];
     this.conteo_nacimiento = 0;
     this.conteo_defuncion = 0;
@@ -535,7 +529,7 @@ export class PaysComponent implements OnInit {
     this.CiberSelect = nombre;
     this.ciberidselect = id;
     this.TotalCorte = 0;
-    this.page = 0;
+    this.page = 1;
     // this.fechas = await this.database.Obtenerfechas(id).toPromise();
     // const data: any = await this.restservice.GetActasNumber(id).toPromise();
 
@@ -560,6 +554,7 @@ export class PaysComponent implements OnInit {
         console.log(data);
 
         this.precioTotal();
+        this.precioTotal_Mycorte();
         this.setCorte(0);
         closeAlert();
       },
@@ -577,6 +572,20 @@ export class PaysComponent implements OnInit {
       addActas += 1;
     }
     this.totalPrecio = addNumber;
+    this.totalActas = addActas;
+  }
+  precioTotal_Mycorte() {
+    var addNumber: number = 0;
+    var addActas: number = 0;
+    for (let i = 0; i < this.corteDelUsuario.length; i++) {
+      addNumber += this.corteDelUsuario[i]?.price0;
+      console.log("HOLA");
+      
+        console.log(addNumber);
+        
+      addActas += 1;
+    }
+    this.totalPrecio_mycut = addNumber;
     this.totalActas = addActas;
   }
 
@@ -619,8 +628,8 @@ export class PaysComponent implements OnInit {
     let token = this.localstorage.TokenDesencrypt();
 
     if (this.myRol != 'Sucursal' && this.myRol != 'Empleado') {
-        this.getAllDates();
-       this.getClientsByDateSelected(null);
+      this.getAllDates();
+      this.getClientsByDateSelected(null);
       this.getClientsByDateSelecte_General(null);
       this.Getdates_General();
 
@@ -746,6 +755,14 @@ export class PaysComponent implements OnInit {
     result.push({
       enterprise: 'Actas: ' + this.totalActas,
       price: 'Total: ' + this.totalPrecio,
+    });
+    return result;
+  }
+  createData2() {
+    var result = [];
+    result.push({
+      enterprise: 'Actas: ' + this.totalActas,
+      price0: 'Total: ' + this.totalPrecio_mycut,
     });
     return result;
   }

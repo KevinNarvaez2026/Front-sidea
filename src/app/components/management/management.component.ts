@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../servicios/login.service';
 import Swal from 'sweetalert2';
-
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { fa1 } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,7 @@ import { faGripLines } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
+
 
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
@@ -44,6 +45,7 @@ export class ManagementComponent implements OnInit {
   alert: any = [];
   MyrolCliente: boolean = false;
   usernameLocal: string = '';
+  faMagnifyingGlass = faMagnifyingGlass;
   //Lista de precios de actas
   nac: number = 0;
   mat: number = 150;
@@ -177,6 +179,19 @@ export class ManagementComponent implements OnInit {
   //RESETEAMOS LA PAGINA
   resetPagination() {
     this.page = 1;
+  }
+
+  displayStyle = 'none';
+
+  openPopup() {
+    this.displayStyle = 'block';
+   this.agregaUsuario();
+    
+  }
+  closePopup() {
+  
+
+    this.displayStyle = 'none';
   }
   //SELECCIONAMOS EL PRECIO DEL USUARIO
   setPriceUsername() {

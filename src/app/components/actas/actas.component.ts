@@ -73,6 +73,7 @@ export class ActasComponent implements OnInit {
   ngOnInit(): void {
     // document.getElementById("typeReq")?.setAttribute("*ngIf", "false");
     this.GetMyData();
+    closeAlert();
   }
 
   switcheableView(i: number) {
