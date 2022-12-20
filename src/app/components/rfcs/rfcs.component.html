@@ -54,7 +54,7 @@
     </div>
   </div>
 
-  <div [ngSwitch]="view">
+  <div [ngSwitch]="view"  *ngIf="Vista"   >
     <div *ngSwitchCase="1">
       <div class="myBody" *ngIf="view == 1">
         <div class="mySubCard" style="background-color: #494848; width: 100%">

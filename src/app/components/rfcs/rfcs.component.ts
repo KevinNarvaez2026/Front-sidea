@@ -55,6 +55,7 @@ export class RfcsComponent implements OnInit {
   //Views
   view:number = 0;
   switchTranspose:boolean = false;
+  Vista:boolean = false;
   newTranspose:any;
   allUsers:any;
   valorabuscartranspose:string = "";
@@ -68,7 +69,14 @@ export class RfcsComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  Vista_actas() {
+    this.Vista= true;
   
+  }
+  close_actas(){
+    this.Vista= false;
+  }
+
   reAsignarActas(idProvider:any){
     this.switchTranspose = false;
     this.rfcservice.reAsignarActa(this.newTranspose, idProvider, "rfc").subscribe((data:any) => {
@@ -82,7 +90,7 @@ export class RfcsComponent implements OnInit {
         }
       );
 
-      this.reloadCurrentRoute();
+      this. close_actas();
     }, (error:any) => {
       Swal.fire(
         {
@@ -93,7 +101,7 @@ export class RfcsComponent implements OnInit {
           timer: 1500
         }
       );
-      this.reloadCurrentRoute();
+      this. close_actas();
     });
 
 
@@ -115,6 +123,7 @@ export class RfcsComponent implements OnInit {
       case 1:
         this.view = 1;
         this.GetMyDates();
+        this. Vista_actas();
         break;
       case 2:
         this.view = 2;
@@ -331,6 +340,7 @@ export class RfcsComponent implements OnInit {
   DownloadActa(id:any, name:any){
     if(name != null){
       this.req.DownloadRFC(id).subscribe(data => {
+        this. close_actas();
         const a = document.createElement('a')
         const objectUrl = URL.createObjectURL(data);
         a.href = objectUrl

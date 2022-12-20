@@ -50,7 +50,7 @@ export class ActasComponent implements OnInit {
   view: number = 0;
   //Actas
   actas: any;
-
+  Vista:boolean = false;
   //MyRol
   myRol: string = '';
   id: string = '';
@@ -83,9 +83,11 @@ export class ActasComponent implements OnInit {
     switch (i) {
       case 1:
         this.getDates();
+        this. Vista_actas();
         break;
       case 2:
         this.getServices();
+      
         break;
       default:
         break;
@@ -590,11 +592,19 @@ export class ActasComponent implements OnInit {
       }
     }
   }
+  Vista_actas() {
+    this.Vista= true;
+  
+  }
+  close_actas(){
+    this.Vista= false;
+  }
 
   DescargarActa(folio: string, curp: string) {
     loader();
     this.reqService.DownloadFolio(folio).subscribe((data: any) => {
       var blob = this.b64toBlob(data?.b64, 'application/pdf');
+     this. close_actas();
       closeAlert();
       let a = document.createElement('a');
       var url = URL.createObjectURL(blob);
@@ -698,7 +708,7 @@ export class ActasComponent implements OnInit {
         }
       );
 
-      this.reloadCurrentRoute();
+      this. close_actas();
     }, (error:any) => {
       Swal.fire(
         {
@@ -709,7 +719,7 @@ export class ActasComponent implements OnInit {
           timer: 1500
         }
       );
-     this.reloadCurrentRoute();
+      this. close_actas();
     });
 
 
