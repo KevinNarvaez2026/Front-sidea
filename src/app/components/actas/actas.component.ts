@@ -40,8 +40,8 @@ export class ActasComponent implements OnInit {
   faRotate = faRotate;
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   switchTranspose: boolean = false;
-  valorabuscartranspose:string = "";
-  newTranspose:any = [];
+  valorabuscartranspose: string = '';
+  newTranspose: any = [];
   allUsers: any = [];
   //DatesOnCut
   dates: any = [];
@@ -50,11 +50,11 @@ export class ActasComponent implements OnInit {
   view: number = 0;
   //Actas
   actas: any;
-  Vista:boolean = false;
+  Vista: boolean = false;
   //MyRol
   myRol: string = '';
   id: string = '';
-  valorabuscar: string = "";
+  valorabuscar: string = '';
   //TableResult
   reqResult = {} as Respuesta | undefined;
 
@@ -68,7 +68,12 @@ export class ActasComponent implements OnInit {
   CanInput: boolean = false;
   Table_Vista: boolean = false;
   Table_Result: any = [];
-  constructor(private router: Router,private reqService: RequestsService, private auth: AuthService,private actasservice: ActasService) {}
+  constructor(
+    private router: Router,
+    private reqService: RequestsService,
+    private auth: AuthService,
+    private actasservice: ActasService
+  ) {}
 
   ngOnInit(): void {
     // document.getElementById("typeReq")?.setAttribute("*ngIf", "false");
@@ -83,11 +88,11 @@ export class ActasComponent implements OnInit {
     switch (i) {
       case 1:
         this.getDates();
-        this. Vista_actas();
+        this.Vista_actas();
         break;
       case 2:
         this.getServices();
-        this. Vista_actas();
+        this.Vista_actas();
         break;
       default:
         break;
@@ -124,7 +129,6 @@ export class ActasComponent implements OnInit {
         this.dates = data;
         this.selectDate(data[0].deadline);
         //console.log(data[0].deadline);
-        
       },
       (err: any) => {
         //No Identificated!
@@ -196,9 +200,7 @@ export class ActasComponent implements OnInit {
               metadata = '';
               break;
           }
-      
-       
-          
+
           this.actas.push({
             nm: i + 1,
             id: data[i].id,
@@ -593,24 +595,24 @@ export class ActasComponent implements OnInit {
     }
   }
   Vista_actas() {
-    this.Vista= true;
-  
+    this.Vista = true;
   }
-  close_actas(){
-    this.Vista= false;
+  close_actas() {
+    this.Vista = false;
     this.Table_Result = [];
     this._tableResult = '';
     this.switchTranspose = false;
-    this.newTranspose= [];
-   this. allUsers = [];
-   this.valorabuscartranspose = "";
+    this.newTranspose = [];
+    this.allUsers = [];
+    this.valorabuscartranspose = '';
+    this.actas = [];
   }
 
   DescargarActa(folio: string, curp: string) {
     loader();
     this.reqService.DownloadFolio(folio).subscribe((data: any) => {
       var blob = this.b64toBlob(data?.b64, 'application/pdf');
-     this. close_actas();
+      this.close_actas();
       closeAlert();
       let a = document.createElement('a');
       var url = URL.createObjectURL(blob);
@@ -666,77 +668,53 @@ export class ActasComponent implements OnInit {
     }
   }
 
-  obtainAllUsers(id:any) {
+  obtainAllUsers(id: any) {
     //getuser
     this.switchTranspose = !this.switchTranspose;
 
-
     if (this.switchTranspose == true) {
       this.newTranspose = id;
-           
-            
 
-      this.actasservice.getuser().subscribe((data: any) =>  {
+      this.actasservice.getuser().subscribe((data: any) => {
         this.allUsers = data;
-      
-        
-
       });
-      
-    }
-
-    
-
-
-
-    else{
+    } else {
       this.allUsers = [];
     }
-
   }
 
-  
-  reAsignarActas(idProvider:any){
-  
-    
+  reAsignarActas(idProvider: any) {
     this.switchTranspose = false;
-    this.actasservice.reAsignarActaID( this.newTranspose,idProvider).subscribe((data:any) => {
- 
-    
-      
-      Swal.fire(
-        {
+    this.actasservice.reAsignarActaID(this.newTranspose, idProvider).subscribe(
+      (data: any) => {
+        Swal.fire({
           position: 'center',
           icon: 'success',
           title: 'Re-Asignado',
           showConfirmButton: false,
-          timer: 1500
-        }
-      );
+          timer: 1500,
+        });
 
-      this. close_actas();
-    }, (error:any) => {
-      Swal.fire(
-        {
+        this.close_actas();
+      },
+      (error: any) => {
+        Swal.fire({
           position: 'center',
           icon: 'error',
           title: 'Contacte al equipo de soporte',
           showConfirmButton: false,
-          timer: 1500
-        }
-      );
-      this. close_actas();
-    });
-
-
+          timer: 1500,
+        });
+        this.close_actas();
+      }
+    );
   }
 
-   //RECARGAMOS LA PAGINA POR SI MISMA
-   reloadCurrentRoute() {
+  //RECARGAMOS LA PAGINA POR SI MISMA
+  reloadCurrentRoute() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
   }
-
 }

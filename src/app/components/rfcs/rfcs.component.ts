@@ -80,6 +80,7 @@ export class RfcsComponent implements OnInit {
     this.newTranspose= [];
    this. allUsers = [];
    this.valorabuscartranspose = "";
+   this.rfcs = [];
   }
 
   reAsignarActas(idProvider:any){
