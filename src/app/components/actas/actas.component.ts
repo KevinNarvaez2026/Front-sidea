@@ -42,7 +42,7 @@ export class ActasComponent implements OnInit {
   switchTranspose: boolean = false;
   valorabuscartranspose:string = "";
   newTranspose:any = [];
-  allUsers: any;
+  allUsers: any = [];
   //DatesOnCut
   dates: any = [];
   dateSelect: any;
@@ -598,6 +598,12 @@ export class ActasComponent implements OnInit {
   }
   close_actas(){
     this.Vista= false;
+    this.Table_Result = [];
+    this._tableResult = '';
+    this.switchTranspose = false;
+    this.newTranspose= [];
+   this. allUsers = [];
+   this.valorabuscartranspose = "";
   }
 
   DescargarActa(folio: string, curp: string) {

@@ -75,6 +75,11 @@ export class RfcsComponent implements OnInit {
   }
   close_actas(){
     this.Vista= false;
+  
+    this.switchTranspose = false;
+    this.newTranspose= [];
+   this. allUsers = [];
+   this.valorabuscartranspose = "";
   }
 
   reAsignarActas(idProvider:any){
