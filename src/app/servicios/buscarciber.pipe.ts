@@ -14,7 +14,9 @@ export class BuscarciberPipe implements PipeTransform {
 
       let value;
       value = item['nombre'].toLowerCase().includes(args);
+    
       if(value.length == 0){
+        value = item['id'].toLowerCase().includes(args);
         value = item['username'].toLowerCase().includes(args);
       }
      return value;

@@ -13,6 +13,8 @@ import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { myData } from 'src/app/models/myData.model';
 import { Robot } from 'src/app/models/Robot.model';
 import { ActasService } from 'src/app/servicios/Actas/actas.service';
+declare function loader(): any;
+declare function closeAlert(): any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,6 +32,9 @@ export class HomeComponent implements OnInit {
   imageToShow: any;
   myRol:string = "";
   robothandle:any = [];
+  Limites:any= [];
+  Actas_Limite:any;
+  actas_current:any;
   isImageLoading:boolean = false;
   
   //new Instruction
@@ -40,11 +45,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    loader();
     this.myData$.subscribe(data => {
       this.myRol = data.rol;
+      this.GiveMeUserLimit(data.username);
       switch (data.rol) {
         case "Admin":
-          this.GiveMeAllRobots();
+          this.GiveSIDRobots();
           break;
         case "Supervisor":
           break;
@@ -52,7 +59,21 @@ export class HomeComponent implements OnInit {
     });
  
   }
+  GiveMeUserLimit(user:any){
+    this.robots.GetUserLimit(user).subscribe(data => {
+      this.Limites = data;
+      closeAlert();
+      for (let i = 0; i <  this.Limites.length; i++) {
+        const element =  this.Limites[i];
+   
+        this.Actas_Limite = element.actas_limit
+        this.actas_current = element.actas_current;
+      }
+     
+      
+    });
 
+  }
 
   GiveMeAllRobots(){
     this.robots.GetAllRobots().subscribe(data => {
@@ -116,7 +137,7 @@ export class HomeComponent implements OnInit {
           this.instruction = [];
           document.getElementById("modal")?.setAttribute("style", "display: none;");
           document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");
-          this.GiveMeAllRobots();
+          this.GiveSIDRobots();
         }, err => {
           this.auth.Unauth();
         });
@@ -128,7 +149,7 @@ export class HomeComponent implements OnInit {
           this.instruction = [];
           document.getElementById("modal")?.setAttribute("style", "display: none;");
           document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");
-          this.GiveMeAllRobots();
+          this.GiveSIDRobots();
         }, err => {
           this.auth.Unauth();
         });
@@ -140,7 +161,7 @@ export class HomeComponent implements OnInit {
             this.NewAccessToken = "";
             document.getElementById("modal")?.setAttribute("style", "display: none;");
             document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");  
-            this.GiveMeAllRobots();      
+            this.GiveSIDRobots();      
           }, err => {
             this.auth.Unauth();
           });

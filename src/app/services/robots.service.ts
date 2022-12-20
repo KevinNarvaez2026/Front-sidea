@@ -30,11 +30,18 @@ export class RobotsService {
 
 
   }
+GetUserLimit(User:any){
+  let token = this.local.TokenDesencrypt();
+  const headers = new HttpHeaders({ 'private-key': 
+  'SgVkYp2s5v8y/B?E(H+MbQeThWmZq4t6w9z\$C&F)J@NcRfUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9y\$B?E(H+MbQeThWmZq4t7w!z%C*F)J@NcRfUjXn2r5u8x/A?D(' });
+  return this.http.get(api+"/api/user/limits/search/"+User, { headers });
 
+
+}
   UpNewInstruction(instruction:any, name:any){
     let token = this.local.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.post(`${api}/api/robots/controller/instruction/new/`, {name, instruction}, {headers});
+    return this.http.post(`${api}/api/robotsUsage/controller/instruction/new/`, {name, instruction}, {headers});
   }
 
   UpNewInstruction_SIDS( name:any){
