@@ -19,13 +19,13 @@ import Swal from 'sweetalert2';
 import { RfcService } from 'src/app/servicios/RFC/rfc.service';
 import { Router } from '@angular/router';
 //JS
-declare function LoaderModal():any;
-declare function closeAlert():any;
-declare function OkStatus(msg:any):any;
+declare function LoaderModal(): any;
+declare function closeAlert(): any;
+declare function OkStatus(msg: any): any;
 @Component({
   selector: 'app-rfcs',
   templateUrl: './rfcs.component.html',
-  styleUrls: ['./rfcs.component.css']
+  styleUrls: ['./rfcs.component.css'],
 })
 export class RfcsComponent implements OnInit {
   //Icons
@@ -40,77 +40,78 @@ export class RfcsComponent implements OnInit {
   faRotate = faRotate;
   faPeopleArrowsLeftRight = faPeopleArrowsLeftRight;
   //MyData
-  myRol:string = "";
-  id:string = "";
-  valorabuscar: string = "";
+  myRol: string = '';
+  id: string = '';
+  valorabuscar: string = '';
   //Values New Req
-  MetodoBusqueda: string = "MÉTODO DE BUSQUEDA";
-  Persona: string = "PERSONA";
-  DatoEnviar: string = "";
-  Estado: string = "";
+  MetodoBusqueda: string = 'MÉTODO DE BUSQUEDA';
+  Persona: string = 'PERSONA';
+  DatoEnviar: string = '';
+  Estado: string = '';
   //RFCs
-  rfcs:any = [];
-  dates:any = [];
-  dateSelect:any;
+  rfcs: any = [];
+  dates: any = [];
+  dateSelect: any;
   //Views
-  view:number = 0;
-  switchTranspose:boolean = false;
-  Vista:boolean = false;
-  newTranspose:any;
-  allUsers:any;
-  valorabuscartranspose:string = "";
-  constructor(private router: Router,  private rfcservice: RfcService, private req:RequestsService, private auth: AuthService) {
-    auth.GetMyData.subscribe(data => {
+  view: number = 0;
+  switchTranspose: boolean = false;
+  Vista: boolean = false;
+  newTranspose: any;
+  allUsers: any;
+  valorabuscartranspose: string = '';
+  constructor(
+    private router: Router,
+    private rfcservice: RfcService,
+    private req: RequestsService,
+    private auth: AuthService
+  ) {
+    auth.GetMyData.subscribe((data) => {
       this.myRol = data.rol;
       this.id = data.id.toString();
     });
-   }
-
-  ngOnInit(): void {
-
   }
+
+  ngOnInit(): void {}
   Vista_actas() {
-    this.Vista= true;
-  
+    this.Vista = true;
   }
-  close_actas(){
-    this.Vista= false;
-  
+  close_actas() {
+    this.Vista = false;
+
     this.switchTranspose = false;
-    this.newTranspose= [];
-   this. allUsers = [];
-   this.valorabuscartranspose = "";
-   this.rfcs = [];
+    this.newTranspose = [];
+    this.allUsers = [];
+    this.valorabuscartranspose = '';
+    this.rfcs = [];
   }
 
-  reAsignarActas(idProvider:any){
+  reAsignarActas(idProvider: any) {
     this.switchTranspose = false;
-    this.rfcservice.reAsignarActa(this.newTranspose, idProvider, "rfc").subscribe((data:any) => {
-      Swal.fire(
-        {
-          position: 'center',
-          icon: 'success',
-          title: 'Re-Asignado',
-          showConfirmButton: false,
-          timer: 1500
+    this.rfcservice
+      .reAsignarActa(this.newTranspose, idProvider, 'rfc')
+      .subscribe(
+        (data: any) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Re-Asignado',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          this.close_actas();
+        },
+        (error: any) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Contacte al equipo de soporte',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.close_actas();
         }
       );
-
-      this. close_actas();
-    }, (error:any) => {
-      Swal.fire(
-        {
-          position: 'center',
-          icon: 'error',
-          title: 'Contacte al equipo de soporte',
-          showConfirmButton: false,
-          timer: 1500
-        }
-      );
-      this. close_actas();
-    });
-
-
   }
   //RECARGAMOS LA PAGINA POR SI MISMA
   reloadCurrentRoute() {
@@ -120,7 +121,6 @@ export class RfcsComponent implements OnInit {
     });
   }
 
-
   //Views
   switcheableView(i: number) {
     //1 = Solicitudes
@@ -129,136 +129,195 @@ export class RfcsComponent implements OnInit {
       case 1:
         this.view = 1;
         this.GetMyDates();
-        this. Vista_actas();
+        this.Vista_actas();
         break;
       case 2:
         this.view = 2;
-        this. Vista_actas();
+        this.Vista_actas();
         break;
       default:
         this.view = 0;
         break;
     }
   }
-  obtainAllUsers(id:any) {
+  obtainAllUsers(id: any) {
     //getuser
     this.switchTranspose = !this.switchTranspose;
-
 
     if (this.switchTranspose == true) {
       this.newTranspose = id;
 
-
-      this.rfcservice.getuser().subscribe((data: any) =>  {
+      this.rfcservice.getuser().subscribe((data: any) => {
         this.allUsers = data;
-
       });
-    }
-    else{
+    } else {
       this.allUsers = [];
     }
-
   }
-
 
   //New Request
   SelectMetodoBusqueda(newValue: any) {
-    if (newValue != "MÉTODO DE BUSQUEDA") {
-      this.DatoEnviar = "";
-      document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-
+    if (newValue != 'MÉTODO DE BUSQUEDA') {
+      this.DatoEnviar = '';
+      document
+        .getElementById('solicitarReq')
+        ?.setAttribute('class', 'myButtonOff');
     }
   }
 
   SelectPersona(newValue: any) {
-    if (newValue != "PERSONA") {
-      document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-      document.getElementsByName("MetodoBusqueda")[0]?.removeAttribute("disabled");
-      this.DatoEnviar = "";
+    if (newValue != 'PERSONA') {
+      document
+        .getElementById('solicitarReq')
+        ?.setAttribute('class', 'myButtonOff');
+      document
+        .getElementsByName('MetodoBusqueda')[0]
+        ?.removeAttribute('disabled');
+      this.DatoEnviar = '';
     }
-    this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
+    this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
   }
 
   KeyupData() {
     switch (this.MetodoBusqueda) {
-      case "CURP":
+      case 'CURP':
         if (this.DatoEnviar.length > 18) {
           this.DatoEnviar = this.DatoEnviar.slice(0, 18);
-        }
-        else if (this.DatoEnviar.length == 18) {
+        } else if (this.DatoEnviar.length == 18) {
           this.DatoEnviar = this.DatoEnviar.toUpperCase();
           if (this.verifyCurp() == false) {
-            document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-            document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(240, 125, 125); color:black;");
+            document
+              .getElementById('solicitarReq')
+              ?.setAttribute('class', 'myButtonOff');
+            document
+              .getElementById('alertState')
+              ?.setAttribute(
+                'style',
+                'background-color: rgb(240, 125, 125); color:black;'
+              );
+          } else {
+            document
+              .getElementById('solicitarReq')
+              ?.setAttribute('class', 'myButtonOn');
+            document
+              .getElementById('alertState')
+              ?.setAttribute(
+                'style',
+                'background-color: rgb(158, 240, 125); color:black;'
+              );
           }
-          else {
-            document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOn");
-            document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(158, 240, 125); color:black;");
-          }
-        }
-        else {
-          document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-          document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(255, 255, 255); color:black;");
+        } else {
+          document
+            .getElementById('solicitarReq')
+            ?.setAttribute('class', 'myButtonOff');
+          document
+            .getElementById('alertState')
+            ?.setAttribute(
+              'style',
+              'background-color: rgb(255, 255, 255); color:black;'
+            );
         }
         break;
-      case "RFC":
+      case 'RFC':
         switch (this.Persona) {
-          case "FISICA":
+          case 'FISICA':
             if (this.DatoEnviar.length > 13) {
               this.DatoEnviar = this.DatoEnviar.slice(0, 13);
-            }
-            else if (this.DatoEnviar.length == 13) {
+            } else if (this.DatoEnviar.length == 13) {
               this.DatoEnviar = this.DatoEnviar.toUpperCase();
               if (this.verifyFisica() == false) {
-                document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-                document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(240, 125, 125); color:black;");
+                document
+                  .getElementById('solicitarReq')
+                  ?.setAttribute('class', 'myButtonOff');
+                document
+                  .getElementById('alertState')
+                  ?.setAttribute(
+                    'style',
+                    'background-color: rgb(240, 125, 125); color:black;'
+                  );
+              } else {
+                document
+                  .getElementById('solicitarReq')
+                  ?.setAttribute('class', 'myButtonOn');
+                document
+                  .getElementById('alertState')
+                  ?.setAttribute(
+                    'style',
+                    'background-color: rgb(158, 240, 125); color:black;'
+                  );
               }
-              else {
-                document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOn");
-                document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(158, 240, 125); color:black;");
-              }
-            }
-            else {
-              document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-              document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(255, 255, 255); color:black;");
+            } else {
+              document
+                .getElementById('solicitarReq')
+                ?.setAttribute('class', 'myButtonOff');
+              document
+                .getElementById('alertState')
+                ?.setAttribute(
+                  'style',
+                  'background-color: rgb(255, 255, 255); color:black;'
+                );
             }
             break;
-          case "MORAL":
+          case 'MORAL':
             if (this.DatoEnviar.length > 12) {
               this.DatoEnviar = this.DatoEnviar.slice(0, 12);
-            }
-            else if (this.DatoEnviar.length == 12) {
+            } else if (this.DatoEnviar.length == 12) {
               this.DatoEnviar = this.DatoEnviar.toUpperCase();
               if (this.verifyMoral() == false) {
-                document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-                document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(240, 125, 125); color:black;");
+                document
+                  .getElementById('solicitarReq')
+                  ?.setAttribute('class', 'myButtonOff');
+                document
+                  .getElementById('alertState')
+                  ?.setAttribute(
+                    'style',
+                    'background-color: rgb(240, 125, 125); color:black;'
+                  );
+              } else {
+                document
+                  .getElementById('solicitarReq')
+                  ?.setAttribute('class', 'myButtonOn');
+                document
+                  .getElementById('alertState')
+                  ?.setAttribute(
+                    'style',
+                    'background-color: rgb(158, 240, 125); color:black;'
+                  );
               }
-              else {
-                document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOn");
-                document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(158, 240, 125); color:black;");
-              }
-            }
-            else {
-              document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-              document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(255, 255, 255); color:black;");
+            } else {
+              document
+                .getElementById('solicitarReq')
+                ?.setAttribute('class', 'myButtonOff');
+              document
+                .getElementById('alertState')
+                ?.setAttribute(
+                  'style',
+                  'background-color: rgb(255, 255, 255); color:black;'
+                );
             }
             break;
           default:
             break;
         }
 
-
         break;
       default:
         break;
     }
-
-
   }
 
   verifyMoral() {
-    let razon = this.DatoEnviar.charAt(0) + this.DatoEnviar.charAt(1) + this.DatoEnviar.charAt(2);
-    let fecha = this.DatoEnviar.charAt(3) + this.DatoEnviar.charAt(4) + this.DatoEnviar.charAt(5) + this.DatoEnviar.charAt(6) + this.DatoEnviar.charAt(7) + this.DatoEnviar.charAt(8);
+    let razon =
+      this.DatoEnviar.charAt(0) +
+      this.DatoEnviar.charAt(1) +
+      this.DatoEnviar.charAt(2);
+    let fecha =
+      this.DatoEnviar.charAt(3) +
+      this.DatoEnviar.charAt(4) +
+      this.DatoEnviar.charAt(5) +
+      this.DatoEnviar.charAt(6) +
+      this.DatoEnviar.charAt(7) +
+      this.DatoEnviar.charAt(8);
     var hasNumber = /\d/;
     var hasString = /[A-Za-z]/;
 
@@ -266,16 +325,27 @@ export class RfcsComponent implements OnInit {
     let two = hasString.test(fecha);
     if (!one && !two) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
-
   }
   verifyFisica() {
-    let iniciales = this.DatoEnviar.charAt(0) + this.DatoEnviar.charAt(1) + this.DatoEnviar.charAt(2) + this.DatoEnviar.charAt(3);
-    let año = this.DatoEnviar.charAt(4) + this.DatoEnviar.charAt(5) + this.DatoEnviar.charAt(6) + this.DatoEnviar.charAt(7) + this.DatoEnviar.charAt(8) + this.DatoEnviar.charAt(9);
-    let clave = this.DatoEnviar.charAt(10) + this.DatoEnviar.charAt(11) + this.DatoEnviar.charAt(12);
+    let iniciales =
+      this.DatoEnviar.charAt(0) +
+      this.DatoEnviar.charAt(1) +
+      this.DatoEnviar.charAt(2) +
+      this.DatoEnviar.charAt(3);
+    let año =
+      this.DatoEnviar.charAt(4) +
+      this.DatoEnviar.charAt(5) +
+      this.DatoEnviar.charAt(6) +
+      this.DatoEnviar.charAt(7) +
+      this.DatoEnviar.charAt(8) +
+      this.DatoEnviar.charAt(9);
+    let clave =
+      this.DatoEnviar.charAt(10) +
+      this.DatoEnviar.charAt(11) +
+      this.DatoEnviar.charAt(12);
     var hasNumber = /\d/;
     var hasString = /[A-Za-z]/;
 
@@ -284,73 +354,95 @@ export class RfcsComponent implements OnInit {
 
     if (!one && !two) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
-
   }
 
   verifyCurp() {
-    let iniciales = this.DatoEnviar.charAt(0) + this.DatoEnviar.charAt(1) +  this.DatoEnviar.charAt(2) + this.DatoEnviar.charAt(3);
-    let año = this.DatoEnviar.charAt(4) + this.DatoEnviar.charAt(5) + this.DatoEnviar.charAt(6) + this.DatoEnviar.charAt(7) + this.DatoEnviar.charAt(8) + this.DatoEnviar.charAt(9);
-    let clave = this.DatoEnviar.charAt(10) + this.DatoEnviar.charAt(11) + this.DatoEnviar.charAt(12) + this.DatoEnviar.charAt(13) + this.DatoEnviar.charAt(14) + this.DatoEnviar.charAt(15);
+    let iniciales =
+      this.DatoEnviar.charAt(0) +
+      this.DatoEnviar.charAt(1) +
+      this.DatoEnviar.charAt(2) +
+      this.DatoEnviar.charAt(3);
+    let año =
+      this.DatoEnviar.charAt(4) +
+      this.DatoEnviar.charAt(5) +
+      this.DatoEnviar.charAt(6) +
+      this.DatoEnviar.charAt(7) +
+      this.DatoEnviar.charAt(8) +
+      this.DatoEnviar.charAt(9);
+    let clave =
+      this.DatoEnviar.charAt(10) +
+      this.DatoEnviar.charAt(11) +
+      this.DatoEnviar.charAt(12) +
+      this.DatoEnviar.charAt(13) +
+      this.DatoEnviar.charAt(14) +
+      this.DatoEnviar.charAt(15);
     var hasNumber = /\d/;
     var hasString = /[A-Za-z]/;
     var hasAccent = /[À-ú]/;
     let one = hasNumber.test(iniciales);
     let two = hasString.test(año);
     let three = hasNumber.test(clave);
-    let four = hasAccent.test(iniciales+clave);
-    if(!one && !two && !three && !four){
+    let four = hasAccent.test(iniciales + clave);
+    if (!one && !two && !three && !four) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
 
-  restartVariables(){
-    this.MetodoBusqueda = "MÉTODO DE BUSQUEDA";
-    this.Persona = "PERSONA";
-    this.DatoEnviar = "";
-    this.Estado = "";
-    document.getElementsByName("MetodoBusqueda")[0]?.setAttribute("disabled","");
-    document.getElementById("solicitarReq")?.setAttribute("class", "myButtonOff");
-    document.getElementById("alertState")?.setAttribute("style", "background-color: rgb(255, 255, 255); color:black;");
+  restartVariables() {
+    this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
+    this.Persona = 'PERSONA';
+    this.DatoEnviar = '';
+    this.Estado = '';
+    document
+      .getElementsByName('MetodoBusqueda')[0]
+      ?.setAttribute('disabled', '');
+    document
+      .getElementById('solicitarReq')
+      ?.setAttribute('class', 'myButtonOff');
+    document
+      .getElementById('alertState')
+      ?.setAttribute(
+        'style',
+        'background-color: rgb(255, 255, 255); color:black;'
+      );
   }
 
-  selectDate(date: any){
+  selectDate(date: any) {
     this.dateSelect = date;
-    this.req.getAllRFCRequest(this.dateSelect).subscribe((data:any) => {
-      let requests = [];
-      for (let i = 0; i < data.length; i++) {
-        requests.push({
-          "nm": i + 1,
-          "id": data[i].id,
-          "type": data[i].search,
-          "metadata": data[i].data,
-          "createdAt": data[i].createdAt,
-          "comments": data[i].comments,
-          "url": data[i].namefile,
-          "idtranspose": data[i].idtranspose,
-          "downloaded": data[i].downloaded
-        });
-      }
-      this.rfcs = requests;
-    }, err => {
-
-    });
-
+    this.req.getAllRFCRequest(this.dateSelect).subscribe(
+      (data: any) => {
+        let requests = [];
+        for (let i = 0; i < data.length; i++) {
+          requests.push({
+            nm: i + 1,
+            id: data[i].id,
+            type: data[i].search,
+            metadata: data[i].data,
+            createdAt: data[i].createdAt,
+            comments: data[i].comments,
+            url: data[i].namefile,
+            idtranspose: data[i].idtranspose,
+            downloaded: data[i].downloaded,
+          });
+        }
+        this.rfcs = requests;
+      },
+      (err) => {}
+    );
   }
 
-  DownloadActa(id:any, name:any){
-    if(name != null){
-      this.req.DownloadRFC(id).subscribe(data => {
-        this. close_actas();
-        const a = document.createElement('a')
+  DownloadActa(id: any, name: any) {
+    if (name != null) {
+      this.req.DownloadRFC(id).subscribe((data) => {
+       
+        const a = document.createElement('a');
         const objectUrl = URL.createObjectURL(data);
-        a.href = objectUrl
+        a.href = objectUrl;
         a.download = name;
         a.click();
         URL.revokeObjectURL(objectUrl);
@@ -358,56 +450,57 @@ export class RfcsComponent implements OnInit {
     }
   }
 
-  Send(){
-    if(document.getElementById("solicitarReq")?.getAttribute("class") == "myButtonOn"){
-
+  Send() {
+    if (
+      document.getElementById('solicitarReq')?.getAttribute('class') ==
+      'myButtonOn'
+    ) {
       let timerInterval: number;
       Swal.fire({
-          title: 'Procesando',
-          text: 'Espere porfavor',
-          didOpen: () => {
-              Swal.showLoading()
-          },
-          willClose: () => {
-              clearInterval(timerInterval)
-          }
-      }).then((result) => {
-      });
+        title: 'Procesando',
+        text: 'Espere porfavor',
+        didOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+      }).then((result) => {});
 
-      this.req.SendRFCRequest(this.MetodoBusqueda, this.DatoEnviar, this.Persona).subscribe( data => {
-        Swal.close();
-        this.restartVariables();
-      }, err => {
-        closeAlert();
-        Swal.fire(
-          {
-            position: 'center',
-            icon: 'error',
-            title: 'ERROR',
-            showConfirmButton: false,
-            timer: 1500,
-            text: 'Contactar al administrador' 
+      this.req
+        .SendRFCRequest(this.MetodoBusqueda, this.DatoEnviar, this.Persona)
+        .subscribe(
+          (data) => {
+            Swal.close();
+            this.restartVariables();
+          },
+          (err) => {
+            closeAlert();
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'ERROR',
+              showConfirmButton: false,
+              timer: 1500,
+              text: 'Contactar al administrador',
+            });
           }
         );
-      }
-      );
-
     }
-    console.log(document.getElementById("solicitarReq")?.getAttribute("class"));
+    console.log(document.getElementById('solicitarReq')?.getAttribute('class'));
   }
-
 
   //ViewRequest
-  GetMyDates(){
-    this.req.getMyDatesRFCRequest().subscribe((data: any) => {
-      this.dates = data;
-      this.selectDate(data[0].corte);
-    }, (err: any) => {
-      //No Identificated!
-      console.log(err.error.message);
-    });
+  GetMyDates() {
+    this.req.getMyDatesRFCRequest().subscribe(
+      (data: any) => {
+        this.dates = data;
+        this.selectDate(data[0].corte);
+      },
+      (err: any) => {
+        //No Identificated!
+        console.log(err.error.message);
+      }
+    );
   }
-
-
-
 }
