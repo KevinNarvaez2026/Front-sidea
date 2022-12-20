@@ -87,7 +87,7 @@ export class ActasComponent implements OnInit {
         break;
       case 2:
         this.getServices();
-      
+        this. Vista_actas();
         break;
       default:
         break;

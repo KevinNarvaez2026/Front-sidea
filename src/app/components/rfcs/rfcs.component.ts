@@ -132,6 +132,7 @@ export class RfcsComponent implements OnInit {
         break;
       case 2:
         this.view = 2;
+        this. Vista_actas();
         break;
       default:
         this.view = 0;
