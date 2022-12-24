@@ -612,7 +612,7 @@ export class ActasComponent implements OnInit {
     loader();
     this.reqService.DownloadFolio(folio).subscribe((data: any) => {
       var blob = this.b64toBlob(data?.b64, 'application/pdf');
-     
+
       closeAlert();
       let a = document.createElement('a');
       var url = URL.createObjectURL(blob);
