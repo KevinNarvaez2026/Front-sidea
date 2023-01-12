@@ -6,7 +6,8 @@
   <div class="myBody space">
     <div
       class="mySubCard"
-      style="background-color: rgb(1, 8, 31); color: white !important">
+      style="background-color: rgb(1, 8, 31); color: white !important"
+    >
       <div class="mySubTitle">
         <label for="mySubTitle">Solicitudes</label>
       </div>
@@ -30,7 +31,8 @@
     </div>
     <div
       class="mySubCard"
-      style="background-color: rgb(1, 8, 31); color: white !important">
+      style="background-color: rgb(1, 8, 31); color: white !important"
+    >
       <div class="mySubTitle">
         <label for="mySubTitle">Nuevo</label>
       </div>
@@ -52,7 +54,7 @@
     </div>
   </div>
 
-  <div [ngSwitch]="view" *ngIf="Vista">
+  <div [ngSwitch]="view"  *ngIf="Vista"   >
     <div *ngSwitchCase="1">
       <div class="myBody" *ngIf="view == 1">
         <div class="mySubCard" style="background-color: #494848; width: 100%">
@@ -71,7 +73,7 @@
                   placeholder="BUSCAR POR DATOS PROPORCIONADOS"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
-                  />
+                />
                 <span class="input-group-text" id="basic-addon2">
                   <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
                 </span>
@@ -88,18 +90,21 @@
                   role="button"
                   id="dropdownMenuLink"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                  aria-expanded="false"
+                >
                   {{ dateSelect || "Actual" }}
                 </a>
                 <ul
                   class="dropdown-menu dropdown-menu-dark corte"
-                  aria-labelledby="dropdownMenuButton2">
+                  aria-labelledby="dropdownMenuButton2"
+                >
                   <li>
                     <a
                       *ngFor="let date of dates"
                       (click)="selectDate(date.corte)"
                       class="dropdown-item"
-                      style="cursor: pointer">
+                      style="cursor: pointer"
+                    >
                       {{ date.corte || "Actual" }}
                     </a>
                   </li>
@@ -112,47 +117,53 @@
       <div class="myContentFlex">
         <div
           *ngFor="let req of rfcs | pipeacta : valorabuscar"
-          class="viewCard">
+          class="viewCard"
+        >
           <span
-            class="position-absolute top-45 start-90 translate-middle badge
-            rounded-pill bg-primary"
-            style="z-index: 2">
+            class="position-absolute top-45 start-90 translate-middle badge rounded-pill bg-primary"
+            style="z-index: 2"
+          >
             {{ req.nm }}
           </span>
 
           <div
             *ngIf="
-            req.downloaded != true &&
-            req.url != null &&
-            req.comments == 'Enviado'
+              req.downloaded != true &&
+              req.url != null &&
+              req.comments == 'Enviado'
             "
-            style="position: absolute; z-index: 2; margin-left: 12%">
+            style="position: absolute; z-index: 2; margin-left: 12%"
+          >
             <div
               style="
-              width: 3rem;
-              height: 3rem;
-              position: relative;
-              text-align: center;
-              ">
+                width: 3rem;
+                height: 3rem;
+                position: relative;
+                text-align: center;
+              "
+            >
               <label
                 style="
-                font-family: inherit;
-                color: white;
-                z-index: 1;
-                display: flex;
-                align-self: center;
-                position: absolute;
-                margin-top: 35%;
-                margin-left: 20%;
-                ">Nuevo</label>
+                  font-family: inherit;
+                  color: white;
+                  z-index: 1;
+                  display: flex;
+                  align-self: center;
+                  position: absolute;
+                  margin-top: 35%;
+                  margin-left: 20%;
+                "
+                >Nuevo</label
+              >
               <fa-icon
                 class="fa-4x"
                 [icon]="faCertificate"
                 style="
-                color: #0e6ffd !important;
-                display: flex;
-                align-self: center;
-                "></fa-icon>
+                  color: #0e6ffd !important;
+                  display: flex;
+                  align-self: center;
+                "
+              ></fa-icon>
             </div>
           </div>
 
@@ -160,8 +171,8 @@
             <div class="Card-head">
               <div
                 class="Card-cover"
-                style="background-image:
-                url(../../../assets/documents/rfc.png)"></div>
+                style="background-image: url(../../../assets/documents/rfc.png)"
+              ></div>
             </div>
             <div class="Card-main">
               <h1 class="Card-titleContent">
@@ -177,16 +188,17 @@
 
               <label class="Card-filename" style="margin-top: 1rem">{{
                 req.url || "Sin archivo"
-                }}</label>
+              }}</label>
               <div class="row" style="margin-top: 0.5em">
                 <a
                   class="btn btn-success"
                   (click)="DownloadActa(req.id, req.url)"
                   *ngIf="
-                  req.url != null &&
-                  req.comments == 'Descargado' &&
-                  req.downloaded != true
-                  ">
+                    req.url != null &&
+                    req.comments == 'Descargado' &&
+                    req.downloaded != true
+                  "
+                >
                   <fa-icon [icon]="faFileArrowDown"></fa-icon>
                   &nbsp;Descargar
                 </a>
@@ -195,10 +207,11 @@
                   class="btn btn-secondary"
                   (click)="DownloadActa(req.id, req.url)"
                   *ngIf="
-                  req.url != null &&
-                  req.comments == 'Descargado' &&
-                  req.downloaded == true
-                  ">
+                    req.url != null &&
+                    req.comments == 'Descargado' &&
+                    req.downloaded == true
+                  "
+                >
                   <fa-icon [icon]="faCheckToSlot"></fa-icon>
                   &nbsp;Descargado
                 </a>
@@ -206,20 +219,22 @@
                 <a
                   class="btn btn-danger"
                   *ngIf="
-                  req.comments != 'Descargado' &&
-                  req.comments != null &&
-                  req.comments != ''
-                  ">
+                    req.comments != 'Descargado' &&
+                    req.comments != null &&
+                    req.comments != ''
+                  "
+                >
                   <fa-icon [icon]="faCircleXmark"></fa-icon>
                   &nbsp;Detalles
                 </a>
                 <a
                   class="btn btn-warning"
                   *ngIf="
-                  (req.comments == null && req.url == null) ||
-                  (req.comments == 'Descargado' && req.url == null) ||
-                  (req.comments == '' && req.url == null)
-                  ">
+                    (req.comments == null && req.url == null) ||
+                    (req.comments == 'Descargado' && req.url == null) ||
+                    (req.comments == '' && req.url == null)
+                  "
+                >
                   <fa-icon [icon]="faRotate"></fa-icon>
                   &nbsp;En proceso
                 </a>
@@ -227,24 +242,26 @@
 
               <div
                 *ngIf="
-                (myRol == 'Supervisor' &&
-                req.url != null &&
-                req.comments == 'Descargado') ||
-                (id == '1500' &&
-                req.url != null &&
-                req.comments == 'Descargado') ||
-                (id == '1585' &&
-                req.url != null &&
-                req.comments == 'Enviado') ||
-                (myRol == 'Admin' &&
-                req.url != null &&
-                req.comments == 'Descargado')
-                ">
+                  (myRol == 'Supervisor' &&
+                    req.url != null &&
+                    req.comments == 'Descargado') ||
+                  (id == '1500' &&
+                    req.url != null &&
+                    req.comments == 'Descargado') ||
+                  (id == '1585' &&
+                    req.url != null &&
+                    req.comments == 'Enviado') ||
+                  (myRol == 'Admin' &&
+                    req.url != null &&
+                    req.comments == 'Descargado')
+                "
+              >
                 <div
                   *ngIf="req.idtranspose == null"
                   (click)="obtainAllUsers(req.id)"
                   class="row"
-                  style="margin-top: 0.5em">
+                  style="margin-top: 0.5em"
+                >
                   <a class="btn btn-primary">
                     <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
                     &nbsp;Re-Asignar Acta
@@ -255,7 +272,8 @@
                   *ngIf="req.idtranspose != null"
                   (click)="obtainAllUsers(req.id)"
                   class="row"
-                  style="margin-top: 1em">
+                  style="margin-top: 1em"
+                >
                   <a class="btn btn-secondary">
                     <fa-icon [icon]="faPeopleArrowsLeftRight"></fa-icon>
                     &nbsp;Acta Asignada
@@ -277,7 +295,8 @@
               aria-label="Default select example"
               [(ngModel)]="Persona"
               (ngModelChange)="SelectPersona($event)"
-              name="Persona">
+              name="Persona"
+            >
               <option disabled selected>PERSONA</option>
               <option value="FISICA">FISICA</option>
               <option value="MORAL">MORAL</option>
@@ -289,7 +308,8 @@
               [(ngModel)]="MetodoBusqueda"
               (ngModelChange)="SelectMetodoBusqueda($event)"
               name="MetodoBusqueda"
-              disabled>
+              disabled
+            >
               <option disabled selected>MÉTODO DE BUSQUEDA</option>
               <option value="CURP" *ngIf="Persona == 'FISICA'">CURP</option>
               <option value="RFC">RFC</option>
@@ -307,151 +327,138 @@
                   name="DatoEnviar"
                   maxlength="18"
                   (ngModelChange)="KeyupData()"
-                  onkeypress="return ((event.charCode>= 48 && event.charCode <=
-                  57) || (event.charCode>= 65 && event.charCode <= 90) ||
-                    (event.charCode>= 97 && event.charCode <= 122))"
-                      />
-                      <span
-                        class="input-group-text"
-                        style="user-select: none !important"
-                        id="alertState">
-                        {{ Estado }}
-                      </span>
-                    </div>
-                  </div>
-                  <div *ngSwitchCase="'RFC'">
-                    <div class="input-group" style="margin-top: 1rem">
-                      <span class="input-group-text">RFC</span>
-                      <input
-                        type="text"
-                        style="text-transform: uppercase"
-                        class="form-control"
-                        [(ngModel)]="DatoEnviar"
-                        name="DatoEnviar"
-                        maxlength="13"
-                        (ngModelChange)="KeyupData()"
-                        onkeypress="return ((event.charCode>= 48 &&
-                      event.charCode <= 57) || (event.charCode>= 65 &&
-                        event.charCode <= 90) || (event.charCode>= 97 &&
-                          event.charCode <= 122))"
-                            />
-                            <span
-                              class="input-group-text"
-                              style="user-select: none !important"
-                              id="alertState">
-                              {{ Estado }}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div [ngSwitch]="MetodoBusqueda" *ngIf="Persona ==
-                        'MORAL'">
-                        <div *ngSwitchCase="'RFC'">
-                          <div class="input-group" style="margin-top: 1rem">
-                            <span class="input-group-text">RFC</span>
-                            <input
-                              type="text"
-                              style="text-transform: uppercase"
-                              class="form-control"
-                              [(ngModel)]="DatoEnviar"
-                              name="DatoEnviar"
-                              maxlength="12"
-                              (ngModelChange)="KeyupData()"
-                              onkeypress="return ((event.charCode>= 48 &&
-                            event.charCode <= 57) || (event.charCode>= 65 &&
-                              event.charCode <= 90) || (event.charCode>= 97 &&
-                                event.charCode <= 122))"
-                                  />
-                                  <span
-                                    class="input-group-text"
-                                    style="user-select: none !important"
-                                    id="alertState">
-                                    {{ Estado }}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
+                  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"
+                />
+                <span
+                  class="input-group-text"
+                  style="user-select: none !important"
+                  id="alertState"
+                >
+                  {{ Estado }}
+                </span>
+              </div>
+            </div>
+            <div *ngSwitchCase="'RFC'">
+              <div class="input-group" style="margin-top: 1rem">
+                <span class="input-group-text">RFC</span>
+                <input
+                  type="text"
+                  style="text-transform: uppercase"
+                  class="form-control"
+                  [(ngModel)]="DatoEnviar"
+                  name="DatoEnviar"
+                  maxlength="13"
+                  (ngModelChange)="KeyupData()"
+                  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"
+                />
+                <span
+                  class="input-group-text"
+                  style="user-select: none !important"
+                  id="alertState"
+                >
+                  {{ Estado }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div [ngSwitch]="MetodoBusqueda" *ngIf="Persona == 'MORAL'">
+            <div *ngSwitchCase="'RFC'">
+              <div class="input-group" style="margin-top: 1rem">
+                <span class="input-group-text">RFC</span>
+                <input
+                  type="text"
+                  style="text-transform: uppercase"
+                  class="form-control"
+                  [(ngModel)]="DatoEnviar"
+                  name="DatoEnviar"
+                  maxlength="12"
+                  (ngModelChange)="KeyupData()"
+                  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"
+                />
+                <span
+                  class="input-group-text"
+                  style="user-select: none !important"
+                  id="alertState"
+                >
+                  {{ Estado }}
+                </span>
+              </div>
+            </div>
+          </div>
 
-                            <div class="myButtonOff" id="solicitarReq"
-                              (click)="Send()">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <fa-icon [icon]="faPaperPlane"></fa-icon>
-                              SOLICITAR
-                              <!-- <fa-icon [icon]="faMagnifyingGlass"></fa-icon> BUSCAR ACTA -->
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="myButtonOff" id="solicitarReq" (click)="Send()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <fa-icon [icon]="faPaperPlane"></fa-icon> SOLICITAR
+            <!-- <fa-icon [icon]="faMagnifyingGlass"></fa-icon> BUSCAR ACTA -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  *ngIf="switchTranspose"
+  class="animate__animated animate__fadeIn"
+  style="
+    width: 100%;
+    height: 100%;
+    z-index: 5000;
+    background-color: #2121217a;
+    position: fixed;
+    top: 0px;
+  "
+>
+  <div
+    class="card"
+    style="
+      width: 50%;
+      margin: auto;
+      margin-top: 15%;
+      position: sticky !important;
+      top: 10px !important;
+    "
+  >
+    <div class="card-header" style="background-color: #478edf">
+      <div class="row">
+        <div class="col">
+          <div style="color: white; margin-left: 10rem; text-align: center">
+            Re-Asignar Acta
+          </div>
+        </div>
 
+        <div class="col-2" style="text-align: right">
+          <a (click)="obtainAllUsers(0)" class="btn btn-danger"> Cerrar </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="valorabuscartranspose"
+          name="valorabuscartranspose"
+          placeholder="Nuevo Ciber"
+        />
+      </div>
 
-                  <div
-                    *ngIf="switchTranspose"
-                    class="animate__animated animate__fadeIn"
-                    style="
-                    width: 100%;
-                    height: 100%;
-                    z-index: 5000;
-                    background-color: #2121217a;
-                    position: fixed;
-                    top: 0px;
-                    ">
-                    <div
-                      class="card"
-                      style="
-                      width: 50%;
-                      margin: auto;
-                      margin-top: 15%;
-                      position: sticky !important;
-                      top: 10px !important;
-                      ">
-                      <div class="card-header" style="background-color:
-                        #478edf">
-                        <div class="row">
-                          <div class="col">
-                            <div style="color: white; margin-left: 10rem;
-                              text-align: center">
-                              Re-Asignar Acta
-                            </div>
-                          </div>
-
-                          <div class="col-2" style="text-align: right">
-                            <a (click)="obtainAllUsers(0)" class="btn
-                              btn-danger"> Cerrar </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="input-group mb-3">
-                          <input
-                            type="text"
-                            class="form-control"
-                            [(ngModel)]="valorabuscartranspose"
-                            name="valorabuscartranspose"
-                            placeholder="Nuevo Ciber"
-                            />
-                        </div>
-
-                        <div
-                          *ngIf="valorabuscartranspose.length> 0"
-                          style="overflow: hidden; overflow-y: scroll; height:
-                          30rem"
-                          >
-                          <li class="list-group-item active"
-                            aria-current="true">Resultados:</li>
-                          <li
-                            *ngFor="let user of allUsers | buscarciber :
-                            valorabuscartranspose"
-                            class="list-group-item"
-                            style="cursor: pointer"
-                            (click)="reAsignarActas(user.id)">
-                            {{ user.nombre }} - {{ user.rol }}
-                          </li>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+      <div
+        *ngIf="valorabuscartranspose.length > 0"
+        style="overflow: hidden; overflow-y: scroll; height: 30rem"
+      >
+        <li class="list-group-item active" aria-current="true">Resultados:</li>
+        <li
+          *ngFor="let user of allUsers | buscarciber : valorabuscartranspose"
+          class="list-group-item"
+          style="cursor: pointer"
+          (click)="reAsignarActas(user.id)"
+        >
+          {{ user.nombre }} - {{ user.rol }}
+        </li>
+      </div>
+    </div>
+  </div>
+</div>

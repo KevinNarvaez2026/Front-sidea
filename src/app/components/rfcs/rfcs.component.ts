@@ -439,6 +439,7 @@ export class RfcsComponent implements OnInit {
   DownloadActa(id: any, name: any) {
     if (name != null) {
       this.req.DownloadRFC(id).subscribe((data) => {
+       
         const a = document.createElement('a');
         const objectUrl = URL.createObjectURL(data);
         a.href = objectUrl;
@@ -466,32 +467,25 @@ export class RfcsComponent implements OnInit {
         },
       }).then((result) => {});
 
-      let _curp: string = '';
-      let _rfc: string = '';
-
-      if (this.MetodoBusqueda == 'CURP') {
-        _curp = this.DatoEnviar;
-      } else {
-        _rfc = this.DatoEnviar;
-      }
-
-      this.req.SendRFCRequestFisica(_curp, _rfc).subscribe(
-        (data) => {
-          Swal.close();
-          this.restartVariables();
-        },
-        (err) => {
-          closeAlert();
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'ERROR',
-            showConfirmButton: false,
-            timer: 1500,
-            text: 'Contactar al administrador',
-          });
-        }
-      );
+      this.req
+        .SendRFCRequest(this.MetodoBusqueda, this.DatoEnviar, this.Persona)
+        .subscribe(
+          (data) => {
+            Swal.close();
+            this.restartVariables();
+          },
+          (err) => {
+            closeAlert();
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'ERROR',
+              showConfirmButton: false,
+              timer: 1500,
+              text: 'Contactar al administrador',
+            });
+          }
+        );
     }
     console.log(document.getElementById('solicitarReq')?.getAttribute('class'));
   }

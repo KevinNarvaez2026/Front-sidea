@@ -18,7 +18,7 @@ declare function closeAlert(): any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   //Observable
@@ -30,210 +30,165 @@ export class HomeComponent implements OnInit {
   faKey = faKey;
   //Captha Image
   imageToShow: any;
-  myRol: string = '';
-  robothandle: any = [];
-  Limites: any = [];
-  Actas_Limite: any;
-  actas_current: any;
-  isImageLoading: boolean = false;
-
+  myRol:string = "";
+  robothandle:any = [];
+  Limites:any= [];
+  Actas_Limite:any;
+  actas_current:any;
+  isImageLoading:boolean = false;
+  
   //new Instruction
-  instruction: any = [];
-  NewAccessToken: string = '';
-  constructor(
-    private actas: ActasService,
-    private robots: RobotsService,
-    private auth: AuthService
-  ) {
+  instruction:any = [];
+  NewAccessToken:string="";
+  constructor(private actas: ActasService, private robots: RobotsService, private auth: AuthService) {
     this.myData$ = auth.GetMyData;
   }
 
   ngOnInit(): void {
     loader();
-    this.myData$.subscribe((data) => {
+    this.myData$.subscribe(data => {
       this.myRol = data.rol;
       this.GiveMeUserLimit(data.username);
       switch (data.rol) {
-        case 'Admin':
+        case "Admin":
           this.GiveSIDRobots();
           break;
-        case 'Supervisor':
+        case "Supervisor":
           break;
       }
     });
+ 
   }
-  GiveMeUserLimit(user: any) {
-    this.robots.GetUserLimit(user).subscribe((data) => {
+  GiveMeUserLimit(user:any){
+    this.robots.GetUserLimit(user).subscribe(data => {
       this.Limites = data;
       closeAlert();
-      for (let i = 0; i < this.Limites.length; i++) {
-        const element = this.Limites[i];
-
-        this.Actas_Limite = element.actas_limit;
+      for (let i = 0; i <  this.Limites.length; i++) {
+        const element =  this.Limites[i];
+   
+        this.Actas_Limite = element.actas_limit
         this.actas_current = element.actas_current;
       }
+     
+      
     });
+
   }
 
-  GiveMeAllRobots() {
-    this.robots.GetAllRobots().subscribe((data) => {
+  GiveMeAllRobots(){
+    this.robots.GetAllRobots().subscribe(data => {
       this.robothandle = data;
       console.log(this.robothandle);
+      
     });
   }
-  GiveSIDRobots() {
-    this.robots.GetRobots_SID().subscribe((data) => {
+  GiveSIDRobots(){
+
+    this.robots.GetRobots_SID().subscribe(data => {
       this.robothandle = data;
       console.log(this.robothandle);
+      
     });
+
   }
 
   GiveMeCaptcha() {
-    this.robots.Captcha('robot2').subscribe(
-      (data) => {
-        this.createImageFromBlob(data);
-      },
-      (err) => {
-        // console.log("error");
-      }
-    );
+    this.robots.Captcha("robot2").subscribe(data => {
+      this.createImageFromBlob(data);
+    }, err => {
+      // console.log("error");
+    });
   }
 
-  Instruction(instruction: string, robot: Robot) {
-    switch (instruction) {
-      case 'off':
+  Instruction(instruction:string, robot:Robot){
+    switch(instruction){
+      case "off":
         this.instruction = [instruction, robot];
-        document
-          .getElementById('modal')
-          ?.setAttribute('style', 'display: block;');
-        document
-          .getElementById('confirmRequest')
-          ?.setAttribute('style', 'display: block;');
+        document.getElementById("modal")?.setAttribute("style", "display: block;");
+        document.getElementById("confirmRequest")?.setAttribute("style", "display: block;");
         break;
-      case 'on':
+      case "on":
         this.instruction = [instruction, robot];
-        document
-          .getElementById('modal')
-          ?.setAttribute('style', 'display: block;');
-        document
-          .getElementById('confirmRequest')
-          ?.setAttribute('style', 'display: block;');
+        document.getElementById("modal")?.setAttribute("style", "display: block;");
+        document.getElementById("confirmRequest")?.setAttribute("style", "display: block;");
         break;
-      case 'changeAccessToken':
+      case "changeAccessToken":
         this.instruction = [instruction, robot];
-        document
-          .getElementById('modal')
-          ?.setAttribute('style', 'display: block;');
-        document
-          .getElementById('changeToken')
-          ?.setAttribute('style', 'display: block;');
+        document.getElementById("modal")?.setAttribute("style", "display: block;");
+        document.getElementById("changeToken")?.setAttribute("style", "display: block;");
         break;
     }
   }
 
-  NextStep() {
-    switch (this.instruction[0]) {
-      case 'changeAccessToken':
-        document
-          .getElementById('changeToken')
-          ?.setAttribute('style', 'display: none;');
-        document
-          .getElementById('confirmRequest')
-          ?.setAttribute('style', 'display: block;');
+  NextStep(){
+    switch(this.instruction[0]){
+      case "changeAccessToken":
+        document.getElementById("changeToken")?.setAttribute("style", "display: none;");
+        document.getElementById("confirmRequest")?.setAttribute("style", "display: block;");
         break;
     }
   }
 
-  Send() {
-    switch (this.instruction[0]) {
-      case 'off':
-        this.robots
-          .UpNewInstruction(this.instruction[0], this.instruction[1].name)
-          .subscribe(
-            (data) => {
-              console.log(data);
-              this.instruction = [];
-              document
-                .getElementById('modal')
-                ?.setAttribute('style', 'display: none;');
-              document
-                .getElementById('confirmRequest')
-                ?.setAttribute('style', 'display: none;');
-              this.GiveSIDRobots();
-            },
-            (err) => {
-              this.auth.Unauth();
-            }
-          );
+  Send(){
+    switch(this.instruction[0]){
+      case "off":
+        this.robots.UpNewInstruction(this.instruction[0], this.instruction[1].name).subscribe(data => {
+          console.log(data);
+          this.instruction = [];
+          document.getElementById("modal")?.setAttribute("style", "display: none;");
+          document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");
+          this.GiveSIDRobots();
+        }, err => {
+          this.auth.Unauth();
+        });
 
         break;
-      case 'on':
-        this.robots
-          .UpNewInstruction(this.instruction[0], this.instruction[1].name)
-          .subscribe(
-            (data) => {
-              console.log(data);
-              this.instruction = [];
-              document
-                .getElementById('modal')
-                ?.setAttribute('style', 'display: none;');
-              document
-                .getElementById('confirmRequest')
-                ?.setAttribute('style', 'display: none;');
-              this.GiveSIDRobots();
-            },
-            (err) => {
-              this.auth.Unauth();
-            }
-          );
+      case "on":
+        this.robots.UpNewInstruction( this.instruction[0],this.instruction[1].name).subscribe(data => {
+          console.log(data);
+          this.instruction = [];
+          document.getElementById("modal")?.setAttribute("style", "display: none;");
+          document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");
+          this.GiveSIDRobots();
+        }, err => {
+          this.auth.Unauth();
+        });
         break;
 
-      case 'changeAccessToken':
-        this.robots
-          .UpNewInstruction(
-            `${this.instruction[0]}=${this.NewAccessToken}`,
-            this.instruction[1].name
-          )
-          .subscribe(
-            (data) => {
-              this.instruction = [];
-              this.NewAccessToken = '';
-              document
-                .getElementById('modal')
-                ?.setAttribute('style', 'display: none;');
-              document
-                .getElementById('confirmRequest')
-                ?.setAttribute('style', 'display: none;');
-              this.GiveSIDRobots();
-            },
-            (err) => {
-              this.auth.Unauth();
-            }
-          );
-        break;
+        case "changeAccessToken":
+          this.robots.UpNewInstruction(`${this.instruction[0]}=${this.NewAccessToken}`, this.instruction[1].name).subscribe(data => {
+            this.instruction = [];
+            this.NewAccessToken = "";
+            document.getElementById("modal")?.setAttribute("style", "display: none;");
+            document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");  
+            this.GiveSIDRobots();      
+          }, err => {
+            this.auth.Unauth();
+          });
+          break;
+      
     }
   }
 
-  CancelModal() {
+  CancelModal(){
     this.instruction = [];
-    document.getElementById('modal')?.setAttribute('style', 'display: none;');
-    document
-      .getElementById('confirmRequest')
-      ?.setAttribute('style', 'display: none;');
+    document.getElementById("modal")?.setAttribute("style", "display: none;");
+    document.getElementById("confirmRequest")?.setAttribute("style", "display: none;");
   }
+
 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
-    reader.addEventListener(
-      'load',
-      () => {
-        this.imageToShow = reader.result;
-      },
-      false
-    );
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
 
     if (image) {
       reader.readAsDataURL(image);
     }
   }
+
+  
+
+
 }
