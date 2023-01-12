@@ -20,10 +20,10 @@ export class RequestsService {
     return this.http.get(urlApi + '/api/requests/dates/', { headers });
   }
 
-  getAllActasRequest(date:any) {
+  getAllActasRequest(date: any) {
     let token = this.local.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.http.get(urlApi + '/api/get/myRequests/'+date,  {
+    return this.http.get(urlApi + '/api/get/myRequests/' + date, {
       headers,
     });
   }
@@ -60,12 +60,12 @@ export class RequestsService {
   }
 
   //RFCs
-  SendRFCRequest(search: any, data: any, clasification: any) {
+  SendRFCRequestFisica(CURP: string, RFC: string) {
     let token = this.local.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
     return this.http.post(
-      urlApi + '/api/rfc/requests/news/',
-      { search, data, clasification },
+      urlApi + '/api/services/rfcs/fisica/new',
+      { CURP, RFC },
       { headers }
     );
   }

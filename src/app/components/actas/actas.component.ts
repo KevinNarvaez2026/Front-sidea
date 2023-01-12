@@ -567,32 +567,42 @@ export class ActasComponent implements OnInit {
               }
             }
           );
-        // } else if (this.MetodoBusqueda == 'CADENA') {
-        //   metadata = { cadena: this.DatoEnviar };
-        //   this.reqService
-        //     .SendARequest('Cadena Digital', metadata, preferences)
-        //     .subscribe(
-        //       (data: any) => {
-        //         this.ActoRegistral = 'ACTA REGISTRAL';
-        //         this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
-        //         this.DatoEnviar = '';
-        //         this.CanInput = false;
-        //         this.Lock = false;
-        //         document
-        //           .getElementById('solicitarReq')
-        //           ?.setAttribute('class', 'myButtonOff');
-        //         document
-        //           .getElementsByName('ActoRegistral')[0]
-        //           ?.setAttribute('disabled', '');
-        //       },
-        //       (err: any) => {
-        //         this.auth.Unauth();
-        //         console.log(err);
-        //       }
-        //     );
-        // }
+        
+      }
+      else if (this.MetodoBusqueda == 'CADENA') {
+        metadata = { cadena: this.DatoEnviar };
+
+       
+        
+        this.reqService
+          .SendARequest(  "NACIMIENTO",
+          this.MetodoBusqueda,
+          this.DatoEnviar,
+          this.Estado,
+          preferences)
+          .subscribe(
+            (data: any) => {
+              closeAlert();
+              this.ActoRegistral = 'ACTA REGISTRAL';
+              this.MetodoBusqueda = 'MÉTODO DE BUSQUEDA';
+              this.DatoEnviar = '';
+              this.CanInput = false;
+              this.Lock = false;
+              document
+                .getElementById('solicitarReq')
+                ?.setAttribute('class', 'myButtonOff');
+              document
+                .getElementsByName('ActoRegistral')[0]
+                ?.setAttribute('disabled', '');
+            },
+            (err: any) => {
+              this.auth.Unauth();
+              console.log(err);
+            }
+          );
       }
     }
+     
   }
   Vista_actas() {
     this.Vista = true;
