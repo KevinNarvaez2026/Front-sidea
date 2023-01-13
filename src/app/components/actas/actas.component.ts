@@ -471,11 +471,11 @@ export class ActasComponent implements OnInit {
         ?.removeAttribute('disabled');
 
       if (newValue == 'CADENA') {
-        this.ActoRegistral = 'CADENA';
-        this.CanInput = true;
+        this.ActoRegistral = 'ACTA REGISTRAL';
+        this.CanInput = false;
         document
           .getElementsByName('ActoRegistral')[0]
-          ?.setAttribute('disabled', '');
+          ?.removeAttribute('disabled');
       } else if (newValue == 'CURP') {
         this.ActoRegistral = 'ACTA REGISTRAL';
         this.CanInput = false;
@@ -575,7 +575,7 @@ export class ActasComponent implements OnInit {
        
         
         this.reqService
-          .SendARequest(  "NACIMIENTO",
+          .SendARequest(   this.ActoRegistral,
           this.MetodoBusqueda,
           this.DatoEnviar,
           this.Estado,
