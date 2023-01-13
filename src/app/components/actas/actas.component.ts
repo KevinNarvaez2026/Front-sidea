@@ -588,6 +588,7 @@ export class ActasComponent implements OnInit {
               this.DatoEnviar = '';
               this.CanInput = false;
               this.Lock = false;
+              this.reqResult = data;
               document
                 .getElementById('solicitarReq')
                 ?.setAttribute('class', 'myButtonOff');
