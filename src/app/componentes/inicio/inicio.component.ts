@@ -196,7 +196,7 @@ export class InicioComponent implements OnInit {
     this.id = id;
     this.result.push(id);
     //getmydata
-    this.database.getmydata(id).subscribe((data:any) => {
+    this.database.getmydata().subscribe((data:any) => {
       this.myRol = data.data.rol;
     }, (err:any) => {
       console.log(err);

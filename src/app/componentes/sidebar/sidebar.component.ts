@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit {
   public ngOnInit(): void {
     this.descry();
 
-    this.database.getmydata(this.userid).subscribe((data:any) => {
+    this.database.getmydata().subscribe((data:any) => {
       this.socketClient.onNewNotify().subscribe( (data:any) => {
         
         if( this.userid ==  data.data.id_req ){
@@ -184,8 +184,8 @@ async descry(){
       var idValue = CryptoJS.AES.decrypt(localStorage.getItem('іди') || '{}', "іди");
       this.userid = idValue.toString(CryptoJS.enc.Utf8);
       
-      const data: any = await this.database.getmydata(this.userid).toPromise();
-      this.myRol = data.data.rol;
+      const data: any = await this.database.getmydata().toPromise();
+      this.myRol = data.rol;
 
     }
     }

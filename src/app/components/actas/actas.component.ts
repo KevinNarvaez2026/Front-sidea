@@ -709,6 +709,8 @@ export class ActasComponent implements OnInit {
         this.close_actas();
       },
       (error: any) => {
+        console.log(error);
+        
         Swal.fire({
           position: 'center',
           icon: 'error',

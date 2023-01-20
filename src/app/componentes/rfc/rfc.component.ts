@@ -325,8 +325,8 @@ export class RfcComponent implements OnInit {
   this.id = id;
   this.result.push(id);
   //getmydata
-  const data: any = await this.database.getmydata(id).toPromise();
-  this.myRol = data.data.rol;
+  const data: any = await this.database.getmydata().toPromise();
+  this.myRol = data.rol;
 }
 
   async downloadActa(id: any, url: any) {

@@ -221,9 +221,11 @@ export class EditarpreciosComponent implements OnInit {
       idSuper = this.newResponsable?.id;
     }
 
+console.log(this.usuarios.id);
+console.log(this.newRol);
 
   
-    const data = await this.perfil.editprecios(this.usuarios.id, {precios:this.precios, username: this.newUsername, password: this.newPassword, nombre: this.Negocio, type: this.tipoNegocio}).toPromise();
+    const data = await this.perfil.editprecios(this.usuarios.id, {precios:this.precios, username: this.newUsername, password: this.newPassword, nombre: this.Negocio, type: this.tipoNegocio,rol:this.newRol}).toPromise();
     if(data){
       this.router.navigateByUrl("/administrar");
       Swal.fire({
@@ -244,7 +246,7 @@ export class EditarpreciosComponent implements OnInit {
     var i = CryptoJS.AES.decrypt(idlocal || '{}', "іди");
     var id: any = i.toString(CryptoJS.enc.Utf8);
     let data:any =  await this.restservice.getidsupervisor(id).toPromise();
-    this.myRol = data.data.rol;
+    this.myRol = data.rol;
   }
 
   nextStep() {
@@ -300,8 +302,12 @@ export class EditarpreciosComponent implements OnInit {
       this.alert = [3, 'Ocurrio un Error!!'];
     }
   }
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const data: any = await this.database.getmydata().toPromise();
+    this.myRol = data.rol;
+console.log(data);
 
+    this.myRol = data.rol;
     this.getdatos();
     this.getMyData();
 

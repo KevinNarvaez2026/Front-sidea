@@ -352,7 +352,7 @@ async descry() {
   var id: any = i.toString(CryptoJS.enc.Utf8);
   this.result.push(id);
 
-  const data: any = await this.database.getmydata(id).toPromise();
+  const data: any = await this.database.getmydata().toPromise();
   this.myRol = data.data.rol;
 }
 

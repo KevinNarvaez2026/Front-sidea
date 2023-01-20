@@ -33,7 +33,7 @@ export class RestService {
 
   //SE trae a todos los usuarios
   getuser(): Observable<any> {
-    return this.http.get(api+'/api/user/getFull/')
+    return this.http.get(api+'/api/user/Full/')
   }
   
   //SE optienen las actas
@@ -68,7 +68,7 @@ export class RestService {
   }
   //se trae el supervisor por id
   getidsupervisor(id: any) {
-    return this.http.get(api+'/api/user/getOne/' + id);
+    return this.http.get(api+'/api/user/get/' + id);
   }
 
   //enviamos el acta tras haber seleccionado el ciber
@@ -142,7 +142,7 @@ export class RestService {
 
 
   getAllClients(): Observable<any> {
-    return this.http.get(api+'/api/user/getFull/')
+    return this.http.get(api+'/api/user/full/')
   }
  
 

@@ -167,7 +167,7 @@ export class PaysComponent implements OnInit {
     var i = CryptoJS.AES.decrypt(idlocal || '{}', 'іди');
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
-    const data: any = await this.database.getmydata(id).toPromise();
+    const data: any = await this.database.getmydata().toPromise();
     this.myRol = data.data.rol;
     this.usuario_Mycorte = data.data.username;
     //console.log(data.data.username);
@@ -614,7 +614,7 @@ export class PaysComponent implements OnInit {
       var idlocal = localStorage.getItem('іди');
       var i = CryptoJS.AES.decrypt(idlocal || '{}', 'іди');
       var id: any = i.toString(CryptoJS.enc.Utf8);
-      const users: any = await this.database.getAllUsers(id).toPromise();
+      const users: any = await this.database.getAllUsers().toPromise();
       let enterprises: any = [];
       users!.forEach((element: any) => {
         enterprises.push(element.nombre);

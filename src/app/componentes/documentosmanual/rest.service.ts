@@ -24,17 +24,18 @@ export class RestService {
     return this.http.post(api+`/api/actas/load`, body, { headers })
   }
   getuser(): Observable<any> {
-    return this.http.get(api+'/api/user/getFull/')
+    return this.http.get(api+'/api/user/full/')
   }
   getciber(): Observable<any> {
-    return this.http.get(api+'/api/clients/getAll');
+    return this.http.get(api+'/api/user/getMyClients/');
   }
   getprecioyasesor(tipo: any, estado: any, id: any) {
     return this.http.put(api + '/api/clients/getMyData/' + id, { "tipo": tipo, "estado": estado })
   }
 
   getidsupervisor(id: any) {
-    return this.http.get(api+'/api/user/getOne/' + id);
+    
+    return this.http.get(api+'/api/user/get/' + id);
   }
 
   enviarcta(ciberseleccionado: any,  tipo: any, curp: any, estado: any, nombre: any, nombredearchivo:any): Observable<any> {

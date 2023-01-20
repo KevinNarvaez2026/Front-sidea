@@ -52,7 +52,7 @@ export class RfcService {
 
     //SE trae a todos los usuarios
     getuser(): Observable<any> {
-      return this.http.get(api+'/api/user/getFull/')
+      return this.http.get(api+'/api/user/full/')
     }
 
     getDates(){

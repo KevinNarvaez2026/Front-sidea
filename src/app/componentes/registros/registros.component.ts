@@ -108,7 +108,7 @@ export class RegistrosComponent implements OnInit {
     const array = UserName.split('"');
     this.usernameLocal = array[1];
 
-    const data: any = await this.database.getmydata(id).toPromise();
+    const data: any = await this.database.getmydata().toPromise();
     this.myRol = data.data.rol;
 
     if (this.myRol != 'Cliente' && this.myRol != 'Empleado') {

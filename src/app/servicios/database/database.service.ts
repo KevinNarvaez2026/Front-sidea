@@ -12,8 +12,13 @@ export class DatabaseService {
   constructor(private httpClient: HttpClient) { }
 
 
-  getAllUsers(id:any){
-    return this.httpClient.get(api+'/api/user/getMyClients/'+id);
+  getAllUsers(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.httpClient.get(api+'/api/user/myClients/',{headers});
   }
 
   getAllProviders(rol:string){
@@ -22,8 +27,13 @@ export class DatabaseService {
     return this.httpClient.get(api+'/api/user/getMySuperviser/'+rol);
   }
 
-  getmydata(id:any){
-    return this.httpClient.get(api+'/api/user/getOne/'+id);
+  getmydata(){
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return this.httpClient.get(api+'/api/user/myData/',{headers});
   }
 
   getAllClients(username:any){

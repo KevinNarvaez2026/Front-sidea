@@ -388,6 +388,8 @@ export class AdministrarComponent implements OnInit {
   //EDITAMOS EL PRECIO DEL USUARIO
   async editprice(user: any) {
     const data = this.restservice.getidsupervisor(user.idSuper);
+    console.log(data);
+    
     this.perfil.set(user);
     this.router.navigateByUrl('editprecio');
   }
@@ -617,7 +619,7 @@ export class AdministrarComponent implements OnInit {
     var idlocal = localStorage.getItem('іди');
     var i = CryptoJS.AES.decrypt(idlocal || '{}', 'іди');
     var id: any = i.toString(CryptoJS.enc.Utf8);
-    const users = await this.database.getAllUsers(id).toPromise();
+    const users = await this.database.getAllUsers().toPromise();
     if (users) {
       this.usuarios = users;
     }
@@ -689,10 +691,12 @@ export class AdministrarComponent implements OnInit {
     const array = UserName.split('"');
     this.usernameLocal = array[1];
 
-    const data: any = await this.database.getmydata(id).toPromise();
+    const data: any = await this.database.getmydata().subscribe();
+    console.log(data);
+    
     this.myData = data.data;
 
-    this.myRol = data.data.rol;
+    this.myRol = data.rol;
 
     if (
       this.myRol != 'Cliente' &&
@@ -769,8 +773,10 @@ export class AdministrarComponent implements OnInit {
     var id: any = i.toString(CryptoJS.enc.Utf8);
     this.result.push(id);
 
-    const data: any = await this.database.getmydata(id).toPromise();
-    this.myRol = data.data.rol;
+    const data: any = await this.database.getmydata().subscribe();
+    console.log(data);
+    
+    this.myRol = data.rol;
     console.log(this.myRol);
   }
 }
