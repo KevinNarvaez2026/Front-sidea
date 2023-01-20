@@ -18,8 +18,10 @@ export class DatabaseService {
     return this.httpClient.get(api+'/api/user/getMyClients/'+id);
   }
 
-  getAllProviders(rol:string){
-    return this.httpClient.get(api+'/api/user/getMySuperviser/'+rol);
+  getAllProviders(){
+    let token = this.localStorageService.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.httpClient.get(api+'/api/user/mySuperviser/',{headers});
   }
 
   getmydata(): Observable<any>{

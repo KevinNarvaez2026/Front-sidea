@@ -427,7 +427,7 @@ console.log(data);
     }
 
     if (this.newRol != "") {
-      const providers = await this.database.getAllProviders(this.newRol).toPromise();
+      const providers = await this.database.getAllProviders().toPromise();
       console.log(providers);
       
       if (providers) {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import * as CryptoJS from 'crypto-js';
+import { LocalstorageService } from '../localstorage/localstorage.service';
 const api = "https://actasalinstante.com:3030";
 
 
@@ -9,7 +10,7 @@ const api = "https://actasalinstante.com:3030";
 })
 export class DatabaseService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,  private localStorage: LocalstorageService ) { }
 
 
   getAllUsers(){
@@ -21,10 +22,11 @@ export class DatabaseService {
     return this.httpClient.get(api+'/api/user/myClients/',{headers});
   }
 
-  getAllProviders(rol:string){
-    console.log(rol);
-    
-    return this.httpClient.get(api+'/api/user/getMySuperviser/'+rol);
+  getAllProviders(){
+  
+    let token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.httpClient.get(api+'/api/user/mySuperviser/',{headers});
   }
 
   getmydata(){

@@ -640,7 +640,7 @@ export class AdministrarComponent implements OnInit {
     }
     if (this.newRol != '') {
       const providers = await this.database
-        .getAllProviders(this.newRol)
+        .getAllProviders()
         .toPromise();
 
       if (providers) {
