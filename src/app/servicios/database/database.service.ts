@@ -22,11 +22,11 @@ export class DatabaseService {
     return this.httpClient.get(api+'/api/user/myClients/',{headers});
   }
 
-  getAllProviders(){
-  
+  getAllProviders(rol:string){
+    console.log(rol);
     let token = this.localStorage.TokenDesencrypt();
     const headers = new HttpHeaders({ 'x-access-token': token! });
-    return this.httpClient.get(api+'/api/user/mySuperviser/',{headers});
+    return this.httpClient.get(api+'/api/user/mySuperviser/'+rol,{headers});
   }
 
   getmydata(){

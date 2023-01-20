@@ -225,7 +225,7 @@ console.log(this.usuarios.id);
 console.log(this.newRol);
 
   
-    const data = await this.perfil.editprecios(this.usuarios.id, {precios:this.precios, username: this.newUsername, password: this.newPassword, nombre: this.Negocio, type: this.tipoNegocio,rol:this.newRol}).toPromise();
+    const data = await this.perfil.editprecios(this.usuarios.id, {precios:this.precios, username: this.newUsername, password: this.newPassword, nombre: this.Negocio, type: this.tipoNegocio,rol:this.myRol}).toPromise();
     if(data){
       this.router.navigateByUrl("/administrar");
       Swal.fire({
@@ -427,7 +427,7 @@ console.log(data);
     }
 
     if (this.newRol != "") {
-      const providers = await this.database.getAllProviders().toPromise();
+      const providers = await this.database.getAllProviders(this.newRol).toPromise();
       console.log(providers);
       
       if (providers) {

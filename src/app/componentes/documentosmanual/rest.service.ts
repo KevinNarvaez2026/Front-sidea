@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { Token } from '../login/token.model';
+import { LocalstorageService } from 'src/app/servicios/localstorage/localstorage.service';
 const api = "https://actasalinstante.com:3030";
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private localStorage:LocalstorageService) {
   }
   sendPost(body: FormData): Observable<any> {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
@@ -24,7 +25,9 @@ export class RestService {
     return this.http.post(api+`/api/actas/load`, body, { headers })
   }
   getuser(): Observable<any> {
-    return this.http.get(api+'/api/user/full/')
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.get(api+'/api/user/full/',{headers})
   }
   getciber(): Observable<any> {
     return this.http.get(api+'/api/user/getMyClients/');

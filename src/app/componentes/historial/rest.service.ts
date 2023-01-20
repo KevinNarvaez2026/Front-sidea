@@ -33,7 +33,10 @@ export class RestService {
 
   //SE trae a todos los usuarios
   getuser(): Observable<any> {
-    return this.http.get(api+'/api/user/Full/')
+    
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.get(api + '/api/user/full/',{headers});
   }
   
   //SE optienen las actas
@@ -142,7 +145,10 @@ export class RestService {
 
 
   getAllClients(): Observable<any> {
-    return this.http.get(api+'/api/user/full/')
+    var token = this.localStorage.TokenDesencrypt();
+    const headers = new HttpHeaders({ 'x-access-token': token! });
+    return this.http.get(api + '/api/user/full/',{headers});
+  
   }
  
 

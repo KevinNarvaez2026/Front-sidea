@@ -708,6 +708,7 @@ export class DocumentosmanualComponent implements OnInit {
   async getAllCibers() {
     let arreglo: any = await this.restService.getuser().toPromise();
     this.getciber = arreglo;
+console.log(this.getciber);
 
   }
 
