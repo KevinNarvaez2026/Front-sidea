@@ -67,11 +67,23 @@ export class RestService {
   }
   //Se trae el precio de los asesores
   getprecioyasesor(tipo: any, estado: any, id: any) {
-    return this.http.put(api + '/api/clients/getMyData/' + id, { "tipo": tipo, "estado": estado })
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    let tokenfinal: string = final;
+    const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+    return this.http.put(api + '/api/clients/getPrice/' + id, { "tipo": tipo, "estado": estado },{headers})
   }
   //se trae el supervisor por id
   getidsupervisor(id: any) {
-    return this.http.get(api+'/api/user/get/' + id);
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    let tokenfinal: string = final;
+    const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
+    return this.http.get(api+'/api/user/get/' + id,{headers});
   }
 
   //enviamos el acta tras haber seleccionado el ciber
