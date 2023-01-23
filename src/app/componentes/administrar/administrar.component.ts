@@ -678,6 +678,19 @@ export class AdministrarComponent implements OnInit {
   }
   //Encriptación de Id, Usuario y Contraseñia, ademas de bloquear vistas
   //a los niveles inferiores como: Cliente, Sucursal y Empleado.
+  data:any;
+  async Getmydata(){
+    try {
+      this.data = await this.database.getmydata().toPromise();
+      console.log(this.data);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+
+  }
   async ngOnInit() {
     const token = localStorage.getItem('привіт');
     const usuario = localStorage.getItem('Імякористувача');
@@ -690,18 +703,20 @@ export class AdministrarComponent implements OnInit {
 
     const array = UserName.split('"');
     this.usernameLocal = array[1];
-
-    const data: any = await this.database.getmydata().subscribe();
+    this.Getmydata();
+    const data: any = await this.database.getmydata().toPromise();
     console.log(data);
     
     this.myData = data.data;
 
     this.myRol = data.rol;
+    var user =  data.username;
 
     if (
       this.myRol != 'Cliente' &&
       this.myRol != 'Sucursal' &&
-      this.myRol != 'Empleado'
+      this.myRol != 'Empleado' 
+     
     ) {
       this.getAllUsers();
 

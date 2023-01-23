@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit {
   contrasena: string = "";
   result:any = [];
   myRol: any;
+  User:any;
 
   CiberSelect:any;
   userid:string = "";
@@ -186,6 +187,7 @@ async descry(){
       
       const data: any = await this.database.getmydata().toPromise();
       this.myRol = data.rol;
+      this.User = data.username;
 
     }
     }
