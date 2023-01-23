@@ -19,6 +19,14 @@ export class LoginService {
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     const headers = new HttpHeaders({ 'x-access-token': final! });
-    return await this.httpclient.post<Token>(urlApi + '/api/user/createOne/', { username: username, password: password, rol: rol, type: type, idSuper: idSuper, precios: precios, status: status, nombre: nombre },{headers}).toPromise();
+    return await this.httpclient.post<Token>(urlApi + '/api/user/add/', { username: username, password: password, rol: rol, type: type, idSuper: idSuper, precios: precios, status: status, nombre: nombre },{headers}).toPromise();
+  }
+  async edituser(username: any, password: any, rol: any, type: any, idSuper: any, precios: any, status: any, nombre: any) {
+    var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
+    var token: any = i.toString(CryptoJS.enc.Utf8);
+    var parteuno = token.slice(1);
+    var final = parteuno.slice(0, -1);
+    const headers = new HttpHeaders({ 'x-access-token': final! });
+    return await this.httpclient.post<Token>(urlApi + '/api/user/update/', { username: username, password: password, rol: rol, type: type, idSuper: idSuper, precios: precios, status: status, nombre: nombre },{headers}).toPromise();
   }
 }

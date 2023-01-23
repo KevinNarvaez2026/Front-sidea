@@ -525,6 +525,8 @@ export class ManagementComponent implements OnInit {
       );
 
       if (data) {
+
+        
         Swal.fire({
           position: 'center',
           icon: 'success',

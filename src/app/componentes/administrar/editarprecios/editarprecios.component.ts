@@ -225,8 +225,9 @@ console.log(this.usuarios.id);
 console.log(this.newRol);
 
   
-    const data = await this.perfil.editprecios(this.usuarios.id, {precios:this.precios, username: this.newUsername, password: this.newPassword, nombre: this.Negocio, type: this.tipoNegocio,rol:this.myRol}).toPromise();
-    if(data){
+this.perfil.editprecios(this.usuarios.id, {precios:this.precios, username: this.newUsername, password: this.newPassword, nombre: this.Negocio, type: this.tipoNegocio,rol:this.myRol}).subscribe((data: any) =>{
+    console.log(data);
+    
       this.router.navigateByUrl("/administrar");
       Swal.fire({
         position: 'center',
@@ -236,7 +237,9 @@ console.log(this.newRol);
         timer: 1500,
         text: this.usuarios.username +'-'+this.usuarios.nombre,
       })
-    }
+
+    });
+    
   
 }
 
