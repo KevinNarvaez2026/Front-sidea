@@ -66,14 +66,14 @@ export class RestService {
     return this.http.get(api+'/api/clients/getAll');
   }
   //Se trae el precio de los asesores
-  getprecioyasesor(tipo: any, estado: any, id: any) {
+  getprecioyasesor(id: any) {
     var i = CryptoJS.AES.decrypt(localStorage.getItem("привіт") || '{}', "привіт");
     var token: any = i.toString(CryptoJS.enc.Utf8);
     var parteuno = token.slice(1);
     var final = parteuno.slice(0, -1);
     let tokenfinal: string = final;
     const headers = new HttpHeaders({ 'x-access-token': tokenfinal! });
-    return this.http.put(api + '/api/clients/getPrice/' + id, { "tipo": tipo, "estado": estado },{headers})
+    return this.http.get(api + '/api/user/get/' + id,{headers})
   }
   //se trae el supervisor por id
   getidsupervisor(id: any) {

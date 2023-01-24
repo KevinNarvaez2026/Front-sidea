@@ -639,13 +639,13 @@ export class DocumentsComponent implements OnInit {
       state = 'ext';
     }
     const precioyasesor = await this.restService
-      .getprecioyasesor(documento, state, id)
+      .getprecioyasesor( id)
       .toPromise();
     this.precioyasesor = precioyasesor;
     const data: any = await this.restService
-      .getidsupervisor(this.precioyasesor.superviser)
+      .getidsupervisor(this.precioyasesor.id)
       .toPromise();
-    this.nombreasesor = data?.data.nombre;
+    this.nombreasesor = data.username;
   }
 
   //CAMBIAMOS LA VISTA HACIA OTRA TABLA

@@ -652,7 +652,7 @@ export class DocumentosmanualComponent implements OnInit {
     this.result.push(id);
 
     const data: any = await this.database.getmydata().toPromise();
-    this.myRol = data.data.rol;
+    this.myRol = data.rol;
   }
 
   //PROTEGEMOS LAS VISTAS PARA NO SER HACKEADAS
@@ -671,7 +671,7 @@ export class DocumentosmanualComponent implements OnInit {
     this.usernameLocal = array[1];
     
     const data: any = await this.database.getmydata().toPromise();
-    this.myRol = data.data.rol;
+    this.myRol = data.rol;
 
     if(this.myRol != 'Cliente'  && this.myRol != 'Sucursal' ){
     

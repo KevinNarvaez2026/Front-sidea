@@ -541,7 +541,7 @@ export class HistorialComponent implements OnInit {
     if (this.info.estado.includes("ESTADOS")) {
       state = "ext";
     }
-    const precioyasesor = await this.restService.getprecioyasesor(documento, state, id).toPromise();
+    const precioyasesor = await this.restService.getprecioyasesor( id).toPromise();
     this.precioyasesor = precioyasesor;
     const data: any = await this.restService.getidsupervisor(this.precioyasesor.superviser).toPromise();
     this.nombreasesor = data?.data.nombre;
