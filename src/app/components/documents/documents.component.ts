@@ -426,7 +426,7 @@ export class DocumentsComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500,
     });
-    this.router.navigateByUrl('/historial');
+    this.reloadCurrentRoute();
     const body = new FormData();
     body.append('enterprise', this.ciberseleccionado);
     body.append('provider', this.precioyasesor.superviser);
