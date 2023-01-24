@@ -783,6 +783,8 @@ export class HistorialComponent implements OnInit {
 
   ObtainAllCibers() {
     this.restService.getAllClients().subscribe((data: any) => {
+      console.log(data);
+      
       this.allUsers = data;
     });
   }

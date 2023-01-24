@@ -816,6 +816,8 @@ export class DocumentsComponent implements OnInit {
       .HistorialDeRegistros(this.dateSelect)
       .subscribe((data: any) => {
         this.rowData = data;
+        console.log(data);
+        
         this.onPinnedRowBottomCount();
         closeAlert();
       });
