@@ -715,7 +715,7 @@ export class ManagementComponent implements OnInit {
     this.usernameLocal = array[1];
 
     const data: any = await this.database.getmydata().toPromise();
-    this.myData = data.data;
+    this.myData = data.rol;
 console.log(data);
 
     this.myRol = data.rol;

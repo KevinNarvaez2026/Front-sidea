@@ -302,7 +302,7 @@ export class DocumentsComponent implements OnInit {
 
     this.result.push(id);
     const data: any = await this.database.getmydata().toPromise();
-    this.myRol = data.data.rol;
+    this.myRol = data.rol;
 
     if (
       !token &&
@@ -639,7 +639,7 @@ export class DocumentsComponent implements OnInit {
       state = 'ext';
     }
     const precioyasesor = await this.restService
-      .getprecioyasesor( id)
+      .getprecioyasesor(id)
       .toPromise();
     this.precioyasesor = precioyasesor;
     const data: any = await this.restService
@@ -660,7 +660,7 @@ export class DocumentsComponent implements OnInit {
     this.result.push(id);
     //getmydata
     const data: any = await this.database.getmydata().toPromise();
-    this.myRol = data.data.rol;
+    this.myRol = data.rol;
   }
 
   //OBTENEMOS TODOS LOS CIBER PARA EL BUSCADOR
@@ -817,7 +817,7 @@ export class DocumentsComponent implements OnInit {
       .subscribe((data: any) => {
         this.rowData = data;
         console.log(data);
-        
+
         this.onPinnedRowBottomCount();
         closeAlert();
       });
