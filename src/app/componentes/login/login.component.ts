@@ -28,49 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async inicio() {
-    try {
-      const data = await this.login.login(this.usuario, this.contrasena);
-
-      if (data) {
-
-        var usuario = CryptoJS.AES.encrypt(JSON.stringify(data.username), "Імякористувача");
-
-        var id = CryptoJS.AES.encrypt(JSON.stringify(data.id), "іди");
-        
-        var token = CryptoJS.AES.encrypt(JSON.stringify(data.token), "привіт");
-
-        var idC = CryptoJS.AES.decrypt(id || '{}', "іди");
-        var i: any = idC.toString(CryptoJS.enc.Utf8);
-
-
-        
-        this.router.navigateByUrl("/app");
-        const now = new Date();
-        // localStorage.setItem("u", JSON.stringify(now.getTime() + 18000000));
-        localStorage.setItem("привіт", token.toString());
-        localStorage.setItem("Імякористувача", usuario.toString());
-        localStorage.setItem("іди", id.toString());
-    
-      }
-    } catch (error) {
-      Swal.fire(
-        {
-          position: 'center',
-          icon: 'error',
-          title: 'Credenciales Invalidas',
-          showConfirmButton: false,
-          timer: 1500,
-          text: 'No se encuentra el usuario: ' +this.usuario 
-        }
-      );
-    }
-  }
-reg(){
-  this.router.navigateByUrl("/re");
-
-
-}
+ 
 
 
 }
